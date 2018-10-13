@@ -25,5 +25,9 @@ public class Map {
     public void setCurrentLocation(Point point) {
         return currentLocation;
     }
-   
+   //toSring method
+    @Override
+    public String toString(){
+        
+    }
 }

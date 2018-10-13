@@ -1,3 +1,4 @@
+
 package model;
 
 /**
@@ -57,4 +58,5 @@ public class InventoryItem implements Serializable {
                + quantity + ", "
                + condition;
     }
+
 }

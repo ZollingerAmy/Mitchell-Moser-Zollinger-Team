@@ -7,16 +7,23 @@ package model;
 
 /**
  *
- * @author metauser
+ * @author teresamoser
  */
 public class Map {
-
+    private Location[][] locations;
+    private Point currentLocation;
+    
     public Map(){
         // Empty constructor for bean
     }
-    
-    @Override
-    public String toString() {
-        return "Sooon";
+    public Location[][] getLocations() {
+        return Locations;
     }
+    public Point getCurrentLocation() {
+        return Point;
+    }
+    public void setCurrentLocation(Point point) {
+        return currentLocation;
+    }
+   
 }

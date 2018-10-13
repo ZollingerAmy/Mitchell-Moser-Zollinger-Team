@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author teresamoser
  */
-public class Map implements Serializable{
+public class Map implements Serializable {
     private Location[][] locations;
     private Point currentLocation;
     

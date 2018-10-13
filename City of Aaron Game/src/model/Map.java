@@ -5,11 +5,12 @@
  */
 package model;
 
+import java.io.Serializable;
 /**
  *
  * @author teresamoser
  */
-public class Map {
+public class Map implements Serializable{
     private Location[][] locations;
     private Point currentLocation;
     
@@ -23,7 +24,7 @@ public class Map {
         return currentLocation;
     }
     public void setCurrentLocation(Point point) {
-        this.currentLocation = currentLocation;
+        this.point = currentLocation;
     }
     
    //toString method

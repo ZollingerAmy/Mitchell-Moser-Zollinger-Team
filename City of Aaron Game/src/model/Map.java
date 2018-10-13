@@ -17,17 +17,18 @@ public class Map {
         // Empty constructor for bean
     }
     public Location[][] getLocations() {
-        return Locations;
+        return locations;
     }
     public Point getCurrentLocation() {
-        return Point;
-    }
-    public void setCurrentLocation(Point point) {
         return currentLocation;
     }
-   //toSring method
+    public void setCurrentLocation(Point point) {
+        this.currentLocation = currentLocation;
+    }
+    
+   //toString method
     @Override
-    public String toString(){
+    public String toString(){ 
         
     }
 }

@@ -19,10 +19,10 @@ public class Map implements Serializable {
         return currentLocation;
     }
     public void setCurrentLocation(Point point){
-        this.point = currentLocation;
+        //this.point = currentLocation;
     }
-   
-    
+  
+       
    // toString method
     @Override
     public String toString(){

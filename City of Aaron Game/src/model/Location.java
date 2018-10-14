@@ -1,6 +1,7 @@
 
 package model;
 
+import java.util.Arrays;
 import java.io.Serializable;
 /**
  * @author teresamoser
@@ -47,7 +48,7 @@ public class Location implements Serializable {
                 + name + ","
                 + description + ","
                 + mapSymbol + ","
-                + gameTips;                         
+                + Arrays.toString(gameTips);                         
     } 
        
 }

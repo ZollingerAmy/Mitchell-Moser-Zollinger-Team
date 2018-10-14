@@ -14,13 +14,14 @@ public class Map implements Serializable {
     }
     public Location[][] getLocations() {
         return locations;
-    }
+    }  
     public Point getCurrentLocation() {
         return currentLocation;
     }
-    public void setCurrentLocation(Point point) {
+    public void setCurrentLocation(Point point){
         this.point = currentLocation;
     }
+   
     
    // toString method
     @Override

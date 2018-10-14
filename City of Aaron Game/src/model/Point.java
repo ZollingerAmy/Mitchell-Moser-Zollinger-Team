@@ -34,6 +34,7 @@ public class Point implements Serializable {
     //toString method
     @Override
     public String toString(){ 
+        return "Point" + 
         
     }
     

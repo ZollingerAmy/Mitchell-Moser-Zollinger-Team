@@ -25,7 +25,6 @@ public class Map implements Serializable {
    // toString method
     @Override
     public String toString(){
-        return "Map" 
-                + "Location:  " + currentLocation;    
+        return "Map " + "Location:  " + currentLocation;    
     }
 }

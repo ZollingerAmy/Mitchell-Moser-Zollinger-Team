@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import java.io.Serializable;
 /**
- *
  * @author teresamoser
  */
 public class Map implements Serializable {
@@ -27,9 +22,10 @@ public class Map implements Serializable {
         this.point = currentLocation;
     }
     
-   //toString method
+   // toString method
     @Override
-    public String toString(){ 
-        
+    public String toString(){
+        return "Map" 
+                + "Location:  " + currentLocation;    
     }
 }

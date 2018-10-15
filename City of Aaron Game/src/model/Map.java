@@ -19,9 +19,8 @@ public class Map implements Serializable {
         return currentLocation;
     }
     public void setCurrentLocation(Point point){
-     //  this.point = currentLocation;
+      // this.point = currentLocation;
      // unable to get this error fixed
-     // it has been commented out.
     }
   
        

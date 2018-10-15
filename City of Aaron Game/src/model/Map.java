@@ -20,6 +20,8 @@ public class Map implements Serializable {
     }
     public void setCurrentLocation(Point point){
      //  this.point = currentLocation;
+     // unable to get this error fixed
+     // it has been commented out.
     }
   
        

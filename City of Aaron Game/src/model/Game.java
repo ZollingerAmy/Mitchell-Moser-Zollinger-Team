@@ -72,14 +72,14 @@ public class Game implements Serializable {
     // toString method
     @Override
     public String toString() {
-        return "Game{" 
-                + "thePlayer=" + thePlayer 
-                + ", theMap=" + theMap 
-                + ", theStorehouse=" + theStorehouse 
-                + ", currentPopulation=" + currentPopulation 
-                + ", acresOwned=" + acresOwned 
-                + ", wheatInStorage=" + wheatInStorage 
-                + '}';
+        return "Game{\n" 
+                + "The Player: " + thePlayer 
+                + "\nThe Map: " + theMap 
+                + "\nThe Storehouse: " + theStorehouse 
+                + "\nCurrent Population: " + currentPopulation 
+                + "\nAcres Owned: " + acresOwned 
+                + "\nWheat in Storage: " + wheatInStorage 
+                + "\n}";
     }
     
     

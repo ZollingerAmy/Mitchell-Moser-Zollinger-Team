@@ -54,9 +54,9 @@ public class CityOfAaron {
         Storehouse theStorehouse = theGame.getTheStorehouse();
 
         // initialize Storehouse elements
-        theStorehouse.setAnimals(new ArrayList<>());
-        theStorehouse.setTools(new ArrayList<>());
-        theStorehouse.setProvisions(new ArrayList<>());
+        theStorehouse.setAnimals(new ArrayList<Animal>());
+        theStorehouse.setTools(new ArrayList<InventoryItem>());
+        theStorehouse.setProvisions(new ArrayList<Provision>());
 
         // set up an animal (one for now!)
         ArrayList<Animal> animals = theStorehouse.getAnimals(); // this is for the Storehouse class

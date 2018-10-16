@@ -15,7 +15,7 @@ public class Storehouse implements Serializable{
     private Author[] authors = new Author[3];
     private ArrayList<Animal> animals = new ArrayList<>();
     private ArrayList<InventoryItem> tools = new ArrayList<>();
-    private ArrayList<Provision> provisions = new ArrayList<>();
+    private ArrayList<String> provisions = new ArrayList<>();
     
        public Storehouse(){
         // Empty constructor for bean
@@ -41,11 +41,11 @@ public class Storehouse implements Serializable{
         this.tools = tools;
     }
 
-    public ArrayList<Provision> getProvisions() {
+    public ArrayList<String> getProvisions() {
         return provisions;
     }
 
-    public void setProvisions(ArrayList<Provision> provisions) {
+    public void setProvisions(ArrayList<String> provisions) {
         this.provisions = provisions;
     }
 

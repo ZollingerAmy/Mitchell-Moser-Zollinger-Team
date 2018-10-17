@@ -1,9 +1,8 @@
-
 package model;
 
 import java.io.Serializable;
 /**
- * @author teresamoser
+ * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class Map implements Serializable {
     private Location[][] locations;

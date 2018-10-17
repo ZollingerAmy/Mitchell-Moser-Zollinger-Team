@@ -1,12 +1,10 @@
-
 package model;
 
 import java.util.Arrays;
 import java.io.Serializable;
 /**
- * @author teresamoser
+ * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-
 public class Location implements Serializable {
     private String name;
     private String description;

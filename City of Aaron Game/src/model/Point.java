@@ -1,11 +1,9 @@
-
 package model;
 
 import java.io.Serializable;
 /**
- * @author teresamoser
+ * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-
 public class Point implements Serializable {
     private int row;
     private int column;

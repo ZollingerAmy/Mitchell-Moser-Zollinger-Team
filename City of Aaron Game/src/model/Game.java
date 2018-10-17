@@ -4,10 +4,8 @@
 package model;
 
 import java.io.Serializable;
-
 /**
- *
- * @authors Amber, Teresa and Amy
+ * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class Game implements Serializable {
     private Player thePlayer;

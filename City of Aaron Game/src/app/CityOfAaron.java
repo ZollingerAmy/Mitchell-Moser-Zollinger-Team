@@ -4,7 +4,6 @@
  */
 package app;
 /**
- *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 import java.util.*;

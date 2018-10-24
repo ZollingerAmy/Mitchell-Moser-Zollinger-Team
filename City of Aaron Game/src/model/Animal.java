@@ -4,7 +4,7 @@ import java.io.Serializable;
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class Animal implements Serializable{
+public class Animal extends InventoryItem implements Serializable{
     private String name;
     private int age;
     

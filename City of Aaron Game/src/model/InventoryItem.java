@@ -8,10 +8,10 @@ package model;
 import java.io.Serializable;
 
 public class InventoryItem implements Serializable {
-    private String name;
-    private ItemType type;
-    private int quantity;
-    private Condition condition;
+    String name;
+    ItemType type;
+    int quantity;
+    Condition condition;
 
     public InventoryItem() {
         // Empty constructor for bean
@@ -52,11 +52,11 @@ public class InventoryItem implements Serializable {
     // toString method
     @Override
     public String toString() {
-        return "Inventory Item: "
+        return "\n{ Inventory Item: "
                + name + ", "
                + type + ", "
                + quantity + ", "
-               + condition;
+               + condition + " }";
     }
 
 }

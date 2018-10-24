@@ -6,21 +6,10 @@ import java.util.ArrayList;
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class Animal extends InventoryItem implements Serializable{
-    private String name;
     private ArrayList<Integer> age = new ArrayList<>();    
 
     public Animal(){
     
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
     }
 
     public ArrayList<Integer> getAge() {
@@ -35,9 +24,11 @@ public class Animal extends InventoryItem implements Serializable{
      // toString method
     @Override
     public String toString() {
-        return "Animal{" 
-                + "name=" + name 
-                + ", age=" + age
-                + '}';
+        return "\n{ Animal: " 
+               + name + ", "
+               + age + ", "
+               + type + ", "
+               + quantity + ", "
+               + condition + " }";
     }
 }

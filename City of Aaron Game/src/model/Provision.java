@@ -3,7 +3,7 @@ import java.io.Serializable;
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class Provision implements Serializable {
+public class Provision extends InventoryItem implements Serializable {
     private String name;
     private boolean perishable;
     
@@ -11,10 +11,12 @@ public class Provision implements Serializable {
         //Empty constructor for JavaBeans
     }
     
+    @Override
     public String getName(){
         return name;
     }
     
+    @Override
     public void setName(String name){
         this.name = name;
     }

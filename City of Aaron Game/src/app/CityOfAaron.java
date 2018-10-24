@@ -3,6 +3,7 @@
  * the program starts.
  */
 package app;
+
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
@@ -42,12 +43,6 @@ public class CityOfAaron {
 //        animals.add("Cow");
         //theStorehouse.setAnimals(animals);
         //Provisions
-
-
-
-
-
-
         // AMBER TESTS
         // set up theStorehouse, pull it from theGame
         Storehouse theStorehouse = theGame.getTheStorehouse();
@@ -57,16 +52,27 @@ public class CityOfAaron {
         theStorehouse.setTools(new ArrayList<InventoryItem>());
         theStorehouse.setProvisions(new ArrayList<Provision>());
 
-        // set up an animal (one for now!)
+        //object{ type: ItemType.Animal, name:"Bears", quantity: 2, condition: Condition.Good, age: 30 }
+        // set up an animal (one type for now!)
         ArrayList<Animal> animals = theStorehouse.getAnimals(); // this is for the Storehouse class
-        Animal cow = new Animal(); // this is for the Animal class
-        cow.setName("Bessie"); // Animal class...
-        cow.setAge(12); // Animal class...
-        animals.add(cow); // now add it to the Storehouse!
+        Animal cows = new Animal(); // this is for the InventoryItem class
+        cows.setType(ItemType.Animal); // InventoryItem class...
+        cows.setQuantity(2); // InventoryItem class...
+        cows.setCondition(Condition.Good); // InventoryItem class...
+        // let's have two animals, ages as follows
+        ArrayList<Integer> ages = new ArrayList<Integer>();
+        ages.add(10);
+        ages.add(12);
+        cows.setAge(ages); // does this line even work?
+        cows.setName("Cows"); // InventoryItem class, or Animal class?
+        animals.add(cows); // now add it to the Storehouse!
 
         // set up a provision (one for now!)
         ArrayList<Provision> provisions = theStorehouse.getProvisions(); // this is for the Storehouse class
         Provision bread = new Provision(); // this is for the Provision class
+        bread.setType(ItemType.Provision); // InventoryItem class...
+        bread.setQuantity(200); // InventoryItem class...
+        bread.setCondition(Condition.Good); // InventoryItem class...
         bread.setName("Bread"); // Provision class...
         bread.setPerishable(true); // Provision class...
         provisions.add(bread); // now add it to the Storehouse!

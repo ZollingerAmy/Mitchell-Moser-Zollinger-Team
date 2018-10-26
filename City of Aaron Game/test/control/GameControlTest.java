@@ -82,7 +82,7 @@ public class GameControlTest {
     @Test
     public void ValidRangeTest() {
         int[][] testRanges = new int[][]{
-            {1, 10},
+            {1, 3},
             {15, 100},
             {5, 6},
             {0, Integer.MAX_VALUE-1}

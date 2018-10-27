@@ -83,5 +83,6 @@ public class WheatControl {
         int yield = (harvest * acresPlanted);
         System.out.println("Harvest yield: " + yield);
             return yield;
+        }
     }
 

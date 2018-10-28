@@ -71,5 +71,53 @@ public class WheatControlTest {
                     String.format("%d is lost from %d wheat", loss, wheat),
                     loss <= wheat);
         }
+    }  
+
+    /**
+     * Test of calcHarvest method, of class WheatControl.
+     */
+    @Test
+    public void testCalcHarvest() {
+        System.out.println("Harvest yield: ");
+        int acresPlanted = 0;
+        int tithesPercent = 0;
+        int expResult = 0;
+        int result = WheatControl.calcHarvest(acresPlanted, tithesPercent);
+        assertEquals(expResult, result);
+
     }
+    
+    @Test
+    public void testCase1(){      
+       int result = WheatControl.calcHarvest(100,10); // put in the test case matrix numbers 
+       assertEquals(result, result, 0);
+       
+    }
+    
+     @Test
+    public void testCase2(){
+       int result = WheatControl.calcHarvest(-50,-10); // put in the test case matrix numbers 
+       assertEquals(result, result, 0);
+       
+    }
+    
+    @Test
+    public void testCase3(){
+       int result = WheatControl.calcHarvest(200,0); // put in the test case matrix numbers 
+       assertEquals(result, result, 0);
+       
+    } 
+    
+    @Test
+    public void testCase4(){
+       int result = WheatControl.calcHarvest(100,10); // put in the test case matrix numbers 
+       assertEquals(result, result, 0);
+    } 
+    
+    @Test
+    public void testCase5(){
+       int result = WheatControl.calcHarvest(0,20); // put in the test case matrix numbers 
+       assertEquals(result, result, 0);
+       
+    }  
 }

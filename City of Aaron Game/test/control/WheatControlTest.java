@@ -78,7 +78,6 @@ public class WheatControlTest {
      */
     @Test
     public void testCalcHarvest() {
-        System.out.println("Harvest yield: ");
         int acresPlanted = 0;
         int tithesPercent = 0;
         int expResult = 0;
@@ -110,7 +109,7 @@ public class WheatControlTest {
     
     @Test
     public void testCase4(){
-       int result = WheatControl.calcHarvest(100,10); // put in the test case matrix numbers 
+       int result = WheatControl.calcHarvest(10,100); // put in the test case matrix numbers 
        assertEquals(result, result, 0);
     } 
     

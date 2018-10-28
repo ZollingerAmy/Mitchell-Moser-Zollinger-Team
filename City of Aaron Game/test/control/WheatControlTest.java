@@ -85,38 +85,43 @@ public class WheatControlTest {
         assertEquals(expResult, result);
 
     }
-    
-    @Test
-    public void testCase1(){      
-       int result = WheatControl.calcHarvest(100,10); // put in the test case matrix numbers 
-       assertEquals(result, result, 0);
-       
-    }
-    
-     @Test
-    public void testCase2(){
-       int result = WheatControl.calcHarvest(-50,-10); // put in the test case matrix numbers 
-       assertEquals(result, result, 0);
-       
+        @Test
+    public void InputsNoNegativeAcresPlantedTest() {
+        // test that Acres Planted  is not negative
+        int wheat = WheatControl.calcHarvest(-1, 10);
+        assertEquals(-1, wheat);
     }
     
     @Test
-    public void testCase3(){
-       int result = WheatControl.calcHarvest(200,0); // put in the test case matrix numbers 
-       assertEquals(result, result, 0);
-       
-    } 
-    
+    public void InputTrueTithesTest() {
+        // test that tithes are not negative and not over 100
+        int tithesPercent = WheatControl.calcHarvest(10, -1);
+        assertEquals(-2, tithesPercent);
+        
+        tithesPercent = WheatControl.calcHarvest(10, 101);
+        assertEquals(-2, tithesPercent);
+    }
+
     @Test
-    public void testCase4(){
-       int result = WheatControl.calcHarvest(10,100); // put in the test case matrix numbers 
-       assertEquals(result, result, 0);
-    } 
-    
-    @Test
-    public void testCase5(){
-       int result = WheatControl.calcHarvest(0,20); // put in the test case matrix numbers 
-       assertEquals(result, result, 0);
+    public void TrueTest() {
+        int[][] testRanges = new int[][]{
+            {3000, 5},
+            {3000, 10},
+            {3000, 15}
+        };
+        
+        for (int i=0; i < testRanges.length; i++){
+            int tithes = testRanges[i][0];
+            int wheat = testRanges[i][1];
+            
+            int yield = WheatControl.calcHarvest(tithes, wheat);
+            System.out.printf("Tithes: %d , Wheat: %d = Yield: %d\n", tithes, wheat, yield);
+            
+            assertTrue(
+                    String.format("%d is gained from %d wheat", yield, wheat),
+                    yield >= wheat);
+        }
+
        
     }  
 }

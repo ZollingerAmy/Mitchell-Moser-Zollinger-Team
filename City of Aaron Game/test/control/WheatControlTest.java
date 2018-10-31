@@ -85,7 +85,7 @@ public class WheatControlTest {
         assertEquals(expResult, result);
 
     }
-        @Test
+     @Test
     public void InputsNoNegativeAcresPlantedTest() {
         // test that Acres Planted  is not negative
         int wheat = WheatControl.calcHarvest(-1, 10);
@@ -105,9 +105,9 @@ public class WheatControlTest {
     @Test
     public void TrueTest() {
         int[][] testRanges = new int[][]{
-            {3000, 5},
-            {3000, 10},
-            {3000, 15}
+            {5, 3000},
+            {10, 3000},
+            {15, 3000}
         };
         
         for (int i=0; i < testRanges.length; i++){
@@ -119,9 +119,10 @@ public class WheatControlTest {
             
             assertTrue(
                     String.format("%d is gained from %d wheat", yield, wheat),
-                    yield >= wheat);
+                    yield <= wheat);
         }
 
        
-    }  
+    }
+    
 }

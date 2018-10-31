@@ -67,12 +67,12 @@ public class WheatControl {
         if (tithesPercent < 8) {
             low = 1;
             high = 3;   
-         }
+        }
      
         if (tithesPercent >= 8 && tithesPercent <= 12) {
              low = 2;
              high = 4;       
-         }
+        }
      
         if (tithesPercent > 12) {
             low = 2;
@@ -81,8 +81,8 @@ public class WheatControl {
         
         int harvest = GameControl.getRandomNumber(low, high);
         int yield = (harvest * acresPlanted);
-        System.out.println("Harvest yield: " + yield);
-            return yield;
-        }
+        return yield;
     }
+    
+}
 

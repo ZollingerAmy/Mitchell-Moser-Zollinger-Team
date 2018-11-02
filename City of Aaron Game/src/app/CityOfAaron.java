@@ -18,10 +18,10 @@ import model.Provision;
 import model.InventoryItem;
 import model.ItemType;
 import model.Condition;
-import View.StartProgramView;
-import View.NewGameView;
-import View.MainMenuView;
-import View.HelpMenuView;
+import view.StartProgramView;
+import view.NewGameView;
+import view.MainMenuView;
+import view.HelpMenuView;
 
 public class CityOfAaron {
 
@@ -30,44 +30,21 @@ public class CityOfAaron {
      *
      * @param args Any parameters passed on the command line will be contained in this array.
      */
- public static Game currentGame = null;
- 
- public static Game getCurrentGame() {
+    public static Game currentGame = null;
+
+    public static Game getCurrentGame() {
         return currentGame;
     }
 
-    public static void setCurrentGame(Game currentGame) {
-        currentGame = currentGame;
+    public static void setCurrentGame(Game thisCurrentGame) {
+        currentGame = thisCurrentGame;
     }
-    
+
     public static void main(String[] args) {
-        
-        
 
         StartProgramView startProgramView = new StartProgramView();
         startProgramView.displayView();
-        
-    
-       
-        
-        //Delete code as per team instructions
-//        Game theGame = new Game();
-//        theGame.setThePlayer(new Player());
-//        theGame.setTheMap(new Map());
-//        theGame.setTheStorehouse(new Storehouse());
-//        theGame.setCurrentPopulation(105);
-//        theGame.setAcresOwned(2000);
-//        theGame.setWheatInStorage(3000);
-//      
-//        //end of game stuff
-//
-//        //Amy Test
-//        //Storehouse theStorehouse = new Storehouse();
-////        ArrayList<String> animals = new ArrayList<String>();
-////        animals.add("Cow");
-//        //theStorehouse.setAnimals(animals);
-//        //Provisions
-//        // AMBER TESTS
+
 //        // set up theStorehouse, pull it from theGame
 //        Storehouse theStorehouse = theGame.getTheStorehouse();
 //
@@ -124,27 +101,6 @@ public class CityOfAaron {
 //        System.out.println(theGame.toString());
 //        System.out.println(theStorehouse.toString());
 //        // END AMBER TESTS
-
     }
-    
-}
 
-////////////////////////////////////////
-// NOTES //////////////////////////////
-///////////////////////////////////////
-//(for array classes -- in their class defs)
-//import java.util.Arrays; 
-// @Override
-//    public String toString() {
-//          return "ClassName { "
-//          + ", variable = " + Arrays.toString(variable)  
-//          + " }";
-//          }
-//
-//Then when you go to you main you can call it like this:
-//
-//ClassName theVariable = new ClassName();
-//
-//theVariable.setVarriable(new String[] {
-//"Tip 1", "Tip 2", "Tip 3"
-//});
+}

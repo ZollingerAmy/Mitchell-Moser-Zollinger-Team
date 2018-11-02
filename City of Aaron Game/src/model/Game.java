@@ -15,6 +15,9 @@ public class Game implements Serializable {
     private int acresOwned;
     private int wheatInStorage;
     
+
+   
+    
     public Game(){
         // Empty constructor for bean
     }
@@ -66,6 +69,9 @@ public class Game implements Serializable {
     public void setWheatInStorage(int wheatInStorage) {
         this.wheatInStorage = wheatInStorage;
     }
+  
+     
+     
     
     // toString method
     @Override

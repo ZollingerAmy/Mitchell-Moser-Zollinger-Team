@@ -2,6 +2,7 @@ package control;
 
 import java.util.Random;
 import model.Game;
+import model.Player;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -19,9 +20,14 @@ public class GameControl {
         randomGenerator = random;
     }
     
-    public static Game createNewGame(String playerName) {
+    public static Game createNewGame(Player thePlayer) {
         Game theGame = new Game();
         return theGame;
+    }
+    
+    public static Player savePlayer(String name){
+        System.out.println("*** savePlayer() called ***");
+        return new Player();
     }
     
     /**

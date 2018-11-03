@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package View;
 
 import control.GameControl;
@@ -11,7 +7,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Amy
+ * @author Amy, Teresa
  */
 public class StartProgramView {
      
@@ -26,13 +22,20 @@ public class StartProgramView {
      */
     public StartProgramView(){
         
-        message = "Welcome to the City of Aaron Game.\n" //Program start description
-                + "You will assume the role as leader over the city of Aaron.\n" //objective
-                + "For the next 10 years you will manage the crops\n" //objective
-                + "\n"
-                + "\n"
-                + "To begin, press any key.\n"
-                + "Good luck!\n";
+        message ="Welcome to the City of Aaron Game.\n" 
+                +"You have been chosen to be the leader of the City of Aaron.\n"//Program start description
+                +"Wheat is the staff of life, and is used as the main currency in the city.\n"//objective
+                +"Your responsiblities are as follows:  \n"
+                +"\n"
+                +"  *to buy and sell land \n"
+                +"  *to determine how much wheat to plant each year \n"
+                +"  *to determine how much wheat to set aside to feed your people\n"
+                +"\n"
+                +"In addition, it will be your job to pay an annual tithe on the wheat that is harvested. \n"
+                +"If you fail to produce enough wheat for your people, they will starve, and some people will die.\n"
+                +"This will leave your workforce diminished. \n"
+                +"To become a great leader you must plan wisely. And by the way, there will be chances of rats\n"
+                +"eating the wheat harvest. \n";
                 
     }
  
@@ -90,7 +93,7 @@ public class StartProgramView {
         // from the user.
         String[] inputs = new String[1];
         
-        inputs[0] = getUserInput("Change this text to prompt the user for the input.");
+        inputs[0] = getUserInput("On the next line, press '1' then 'enter' to veiw the Main Menu.");
         
         // Repeat for each input you need, putting it into its proper slot in the array.
         
@@ -121,7 +124,7 @@ public class StartProgramView {
     
     
     /**
-     * Control this view's display/prompt/action loop until the user
+     * Control this views display/prompt/action loop until the user
      * chooses and action that causes this view to close.
      */
     public void displayView(){

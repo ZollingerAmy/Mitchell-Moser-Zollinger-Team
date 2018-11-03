@@ -87,7 +87,9 @@ public class MainMenuView {
         // from the user.
         String[] inputs = new String[1];
         
-        inputs[0] = getUserInput("Please choose an option from the Main Menu.");//AZ
+
+        inputs[0] = getUserInput("On the next line, choose a letter from the Main Menu and press enter.")
+
         
         // Repeat for each input you need, putting it into its proper slot in the array.
         

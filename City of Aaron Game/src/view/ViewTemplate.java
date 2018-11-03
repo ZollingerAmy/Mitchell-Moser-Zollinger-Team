@@ -1,4 +1,6 @@
-
+/*
+ * Describe class. This view engages when...
+ */
 package view;
 
 import java.util.Scanner;
@@ -6,13 +8,6 @@ import java.util.Scanner;
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
- * 
- * StartProgramView - print welcome, display main menu
- * MainMenuView - start, load, help, quit
- * HelpMenuView - game goals, where is city, how to view map, how to move, how to see storehouse, back to main menu
- * NewGameView - ask player name, initiate new game.
- * Modify CityOfAaron.main() method to remove the old model test code and call the StartProgramView
-* 
  */
 public class ViewTemplate {
     
@@ -26,14 +21,8 @@ public class ViewTemplate {
      * Constructor
      */
     public ViewTemplate(){
-        
         message = "This is the message that is printed to the user by this view.\n"
-                + "You have three tasks:\n"
-                + "1 - Replace this message text with the text that is specific to your view.\n"
-                + "2 - Replace this list with menu options that are specific to your view.\n"
-                + "\n"
-                + "3 - Prompt the user for what they are expected to enter.\n";
-                
+                + "\n";
     }
     
     
@@ -87,13 +76,13 @@ public class ViewTemplate {
      */
     public String[] getInputs() {
         
-        // Declare the array to have the number of elements you intend to get 
+        // Declare the array to have the number of elements we'll get 
         // from the user.
         String[] inputs = new String[1];
         
         inputs[0] = getUserInput("Change this text to prompt the user for the input.");
         
-        // Repeat for each input you need, putting it into its proper slot in the array.
+        // Repeat for each input we need, putting it into its proper slot in the array.
         
         return inputs;
     }
@@ -111,10 +100,10 @@ public class ViewTemplate {
         // other functions to call. You can use an if-, if-else,
         // or switch statement.
         
-        // return false if you want this view to exit and return
-        // to the view that called it.
         someActionHandler();
-        
+
+        // return false if we want this view to exit and return
+        // to the view that called it.
         return true;
     }
     
@@ -136,17 +125,16 @@ public class ViewTemplate {
     }
     
     
-    // Define your action handlers here. These are the methods that your doAction()
+    // Define action handlers here. These are the methods that the doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
     
     
     private boolean someActionHandler(){
-        // Define whatever code you need here to accomplish the action.
-        // You can make this a void method if you want. Whatever you need 
-        // here, you are free to do.
+        // Define whatever code needed to accomplish the action.
+        // Can make this a void method. Whatever we need. 
         //
-        // Generally, though, this is where you will call into your Control
+        // Generally, though, this is where we will call into the Control
         // classes to do the work of the application.
         
         return true;

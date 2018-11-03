@@ -9,19 +9,7 @@ package app;
  */
 import java.util.*;
 import model.Game;
-import model.Map;
-import model.Player;
-import model.Storehouse;
-import model.Animal;
-import model.Author;
-import model.Provision;
-import model.InventoryItem;
-import model.ItemType;
-import model.Condition;
 import view.StartProgramView;
-import view.NewGameView;
-import view.MainMenuView;
-import view.HelpMenuView;
 
 public class CityOfAaron {
 

@@ -8,10 +8,10 @@ package model;
 import java.io.Serializable;
 
 public class InventoryItem implements Serializable {
-    String name;
-    ItemType type;
-    int quantity;
-    Condition condition;
+    protected String name;
+    protected ItemType type;
+    protected int quantity;
+    protected Condition condition;
 
     public InventoryItem() {
         // Empty constructor for bean

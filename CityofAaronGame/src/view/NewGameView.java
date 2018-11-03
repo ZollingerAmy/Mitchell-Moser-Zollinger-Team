@@ -1,16 +1,18 @@
 /*
- * Main Menu class. This view engages on game startup right after the welcome message, and is 
- * bounced back to when deeper views exit.
+ * New Game class. This view engages when the player chooses "N" from the Main Menu.
  */
-package view_tmp;
+package view;
 
+import app.CityOfAaron;
 import java.util.Scanner;
+import model.Player;
+import model.Game;
 
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class MainMenuView {
+public class NewGameView {
 
     /**
      * The message that will be displayed by this view.
@@ -20,16 +22,9 @@ public class MainMenuView {
     /**
      * Constructor
      */
-    public MainMenuView() {
+    public NewGameView() {
 
-        message = "\n\n--------------------\n"
-                + "Main Menu\n"
-                + "------------\n"
-                + "N - Start new game\n"
-                + "L - Load saved game\n"
-                + "H - Help menu\n"
-                + "Q - Quit game\n"
-                + "\n";
+        message = "\n\nLet's get to playing!\n\n";
 
     }
 
@@ -84,8 +79,11 @@ public class MainMenuView {
      */
     public String[] getInputs() {
 
+        // Declare the array to have the number of elements we get 
+        // from the user.
         String[] inputs = new String[1];
-        inputs[0] = getUserInput("Please select a choice from the Main Menu.");
+
+        inputs[0] = getUserInput("Please enter your name, or press 'Enter' to return to the Main Menu", true);
 
         return inputs;
     }
@@ -98,26 +96,20 @@ public class MainMenuView {
      */
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        switch (inputs[0].trim().toUpperCase()) {
-            case "N":
-                startNewGame();
-                break;
-            case "L":
-                loadSavedGame();
-                break;
-            case "H":
-                helpMenu();
-                break;
-            case "Q":
-                System.out.println("Thank you for playing. Good-bye.");
-                return false;
+        if (inputs[0] == null || inputs[0].equals("")) {
+            System.out.println("No player name entered. Returning to the Main Menu...");
+            return false;
         }
 
-        return true;
+        String playerName = inputs[0];
+        createAndStartGame(playerName);
+
+        //return false so we don't loop.
+        return false;
     }
 
     /**
-     * Control this view's display/prompt/action loop until the user chooses and action that causes this view to close.
+     * Control this view's display/prompt/action loop until the user chooses an action that causes this view to close.
      */
     public void displayView() {
 
@@ -134,17 +126,25 @@ public class MainMenuView {
     // Define action handlers here. These are the methods that doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void startNewGame() {
-        NewGameView view = new NewGameView();
-        view.displayView();
-    }
+    private void createAndStartGame(String playerName) {
+        // Eventually, we will do this:
+        // Game game = GameControl.createNewGame(playerName);
 
-    private void helpMenu() {
-        HelpMenuView help = new HelpMenuView();
-        help.displayView();
-    }
+        // but for week 7 we just do this....
+        Player player = new Player();
+        player.setName(playerName);
 
-    private void loadSavedGame() {
-        System.out.println("***Saved game coming soon. Please choose a different option");//AZ
+        Game game = new Game();
+        game.setThePlayer(player);
+
+        CityOfAaron.setCurrentGame(game);
+
+        System.out.println();
+        System.out.println("Welcome to the game, " + CityOfAaron.getCurrentGame().getThePlayer().getName() + "! \n");
+        //System.out.println("Welcome to the game, " + playerName + "! \n");
+
+        // Once the GameMenuView is created, we will call it here...
+        // GameMenuView gameMenu = new GameMenuView();
+        // gameMenu.displayView();
     }
 }

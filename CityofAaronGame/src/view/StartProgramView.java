@@ -1,18 +1,15 @@
 /*
- * New Game class. This view engages when the player chooses "N" from the Main Menu.
+ * Start Program class. This view engages on game startup.
  */
-package view_tmp;
+package view;
 
-import app.CityOfAaron;
 import java.util.Scanner;
-import model.Player;
-import model.Game;
 
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class NewGameView {
+public class StartProgramView {
 
     /**
      * The message that will be displayed by this view.
@@ -22,10 +19,25 @@ public class NewGameView {
     /**
      * Constructor
      */
-    public NewGameView() {
+    public StartProgramView() {
 
-        message = "\n\nLet's get to playing!\n\n";
 
+        message ="\n\n--------------------\n"
+                + "Welcome to the City of Aaron Game.\n" 
+                +"You have been chosen to be the leader of the City of Aaron.\n"//Program start description
+                +"Wheat is the staff of life, and is used as the main currency in the city.\n\n"//objective
+                + "Your responsiblities are as follows:  \n"
+                +"\n"
+                +"  * to buy and sell land \n"
+                +"  * to determine how much wheat to plant each year \n"
+                +"  * to determine how much wheat to set aside to feed your people\n"
+                +"\n"
+                +"In addition, it will be your job to pay an annual tithe on the wheat that is harvested. \n"
+                +"If you fail to produce enough wheat for your people, they will starve, and some people will die.\n"
+                +"This will leave your workforce diminished. \n"
+                +"To become a great leader you must plan wisely. And by the way, there will be chances of being raided by robbers!\n";
+
+                
     }
 
     /**
@@ -79,11 +91,8 @@ public class NewGameView {
      */
     public String[] getInputs() {
 
-        // Declare the array to have the number of elements we get 
-        // from the user.
         String[] inputs = new String[1];
-
-        inputs[0] = getUserInput("Please enter your name, or press 'Enter' to return to the Main Menu", true);
+        inputs[0] = getUserInput("To begin, press Enter. Good luck!\n", true);
 
         return inputs;
     }
@@ -96,20 +105,13 @@ public class NewGameView {
      */
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        if (inputs[0] == null || inputs[0].equals("")) {
-            System.out.println("No player name entered. Returning to the Main Menu...");
-            return false;
-        }
+        startMainMenuView();
 
-        String playerName = inputs[0];
-        createAndStartGame(playerName);
-
-        //return false so we don't loop.
         return false;
     }
 
     /**
-     * Control this view's display/prompt/action loop until the user chooses an action that causes this view to close.
+     * Control this view's display/prompt/action loop until the user chooses and action that causes this view to close.
      */
     public void displayView() {
 
@@ -126,25 +128,13 @@ public class NewGameView {
     // Define action handlers here. These are the methods that doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void createAndStartGame(String playerName) {
-        // Eventually, we will do this:
-        // Game game = GameControl.createNewGame(playerName);
+    private void startMainMenuView() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException exception) {
+        }
 
-        // but for week 7 we just do this....
-        Player player = new Player();
-        player.setName(playerName);
-
-        Game game = new Game();
-        game.setThePlayer(player);
-
-        CityOfAaron.setCurrentGame(game);
-
-        System.out.println();
-        System.out.println("Welcome to the game, " + CityOfAaron.getCurrentGame().getThePlayer().getName() + "! \n");
-        //System.out.println("Welcome to the game, " + playerName + "! \n");
-
-        // Once the GameMenuView is created, we will call it here...
-        // GameMenuView gameMenu = new GameMenuView();
-        // gameMenu.displayView();
+        MainMenuView mainMenu = new MainMenuView();
+        mainMenu.displayView();
     }
 }

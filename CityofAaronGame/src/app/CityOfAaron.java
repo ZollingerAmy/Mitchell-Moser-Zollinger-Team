@@ -9,7 +9,7 @@ package app;
  */
 import java.util.*;
 import model.Game;
-import view_tmp.StartProgramView;
+import view.StartProgramView;
 
 public class CityOfAaron {
 

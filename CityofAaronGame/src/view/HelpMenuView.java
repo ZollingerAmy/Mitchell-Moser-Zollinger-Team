@@ -1,7 +1,7 @@
 /*
  * Help Menu class. This view engages when the player chooses "H" from the Main Menu.
  */
-package view_tmp;
+package view;
 
 import java.util.Scanner;
 

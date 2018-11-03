@@ -1,7 +1,8 @@
 /*
- * Start Program class. This view engages on game startup.
+ * Main Menu class. This view engages on game startup right after the welcome message, and is 
+ * bounced back to when deeper views exit.
  */
-package view_tmp;
+package view;
 
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class StartProgramView {
+public class MainMenuView {
 
     /**
      * The message that will be displayed by this view.
@@ -19,25 +20,17 @@ public class StartProgramView {
     /**
      * Constructor
      */
-    public StartProgramView() {
+    public MainMenuView() {
 
+        message = "\n\n--------------------\n"
+                + "Main Menu\n"
+                + "------------\n"
+                + "N - Start new game\n"
+                + "L - Load saved game\n"
+                + "H - Help menu\n"
+                + "Q - Quit game\n"
+                + "\n";
 
-        message ="\n\n--------------------\n"
-                + "Welcome to the City of Aaron Game.\n" 
-                +"You have been chosen to be the leader of the City of Aaron.\n"//Program start description
-                +"Wheat is the staff of life, and is used as the main currency in the city.\n\n"//objective
-                + "Your responsiblities are as follows:  \n"
-                +"\n"
-                +"  * to buy and sell land \n"
-                +"  * to determine how much wheat to plant each year \n"
-                +"  * to determine how much wheat to set aside to feed your people\n"
-                +"\n"
-                +"In addition, it will be your job to pay an annual tithe on the wheat that is harvested. \n"
-                +"If you fail to produce enough wheat for your people, they will starve, and some people will die.\n"
-                +"This will leave your workforce diminished. \n"
-                +"To become a great leader you must plan wisely. And by the way, there will be chances of being raided by robbers!\n";
-
-                
     }
 
     /**
@@ -92,7 +85,7 @@ public class StartProgramView {
     public String[] getInputs() {
 
         String[] inputs = new String[1];
-        inputs[0] = getUserInput("To begin, press Enter. Good luck!\n", true);
+        inputs[0] = getUserInput("Please select a choice from the Main Menu.");
 
         return inputs;
     }
@@ -105,9 +98,22 @@ public class StartProgramView {
      */
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        startMainMenuView();
+        switch (inputs[0].trim().toUpperCase()) {
+            case "N":
+                startNewGame();
+                break;
+            case "L":
+                loadSavedGame();
+                break;
+            case "H":
+                helpMenu();
+                break;
+            case "Q":
+                System.out.println("Thank you for playing. Good-bye.");
+                return false;
+        }
 
-        return false;
+        return true;
     }
 
     /**
@@ -128,13 +134,17 @@ public class StartProgramView {
     // Define action handlers here. These are the methods that doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void startMainMenuView() {
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException exception) {
-        }
+    private void startNewGame() {
+        NewGameView view = new NewGameView();
+        view.displayView();
+    }
 
-        MainMenuView mainMenu = new MainMenuView();
-        mainMenu.displayView();
+    private void helpMenu() {
+        HelpMenuView help = new HelpMenuView();
+        help.displayView();
+    }
+
+    private void loadSavedGame() {
+        System.out.println("***Saved game coming soon. Please choose a different option");//AZ
     }
 }

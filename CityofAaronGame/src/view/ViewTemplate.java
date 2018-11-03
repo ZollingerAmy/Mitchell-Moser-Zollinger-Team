@@ -1,7 +1,7 @@
 /*
  * Describe class. This view engages when...
  */
-package view_tmp;
+package view;
 
 import java.util.Scanner;
 

@@ -36,7 +36,7 @@ public class StartProgramView {
                 +"If you fail to produce enough wheat for your people, they will starve, and some people will die.\n"
                 +"This will leave your workforce diminished. \n"
                 +"To become a great leader you must plan wisely. And by the way, there will be chances of rats\n"
-                +"eating the wheat harvest. \n"
+                +"eating the wheat harvest. \n";
 
                 
     }

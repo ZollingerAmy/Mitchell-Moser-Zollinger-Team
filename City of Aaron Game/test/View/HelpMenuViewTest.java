@@ -49,8 +49,7 @@ public class HelpMenuViewTest {
         String expResult = "";
         String result = instance.getUserInput(prompt, allowEmpty);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      
     }
 
     /**
@@ -64,8 +63,7 @@ public class HelpMenuViewTest {
         String expResult = "";
         String result = instance.getUserInput(prompt);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      
     }
 
     /**
@@ -78,8 +76,7 @@ public class HelpMenuViewTest {
         String[] expResult = null;
         String[] result = instance.getInputs();
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      
     }
 
     /**
@@ -93,8 +90,7 @@ public class HelpMenuViewTest {
         boolean expResult = false;
         boolean result = instance.doAction(inputs);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -105,8 +101,7 @@ public class HelpMenuViewTest {
         System.out.println("displayView");
         HelpMenuView instance = new HelpMenuView();
         instance.displayView();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
-    
+  
 }

@@ -31,7 +31,8 @@ public class StartProgramView {
                 + "For the next 10 years you will manage the crops\n" //objective
                 + "\n"
                 + "\n"
-                + "To begin, press any key.\n"
+                + ""
+                + "\n"
                 + "Good luck!\n";
                 
     }
@@ -90,7 +91,7 @@ public class StartProgramView {
         // from the user.
         String[] inputs = new String[1];
         
-        inputs[0] = getUserInput("Change this text to prompt the user for the input.");
+        inputs[0] = getUserInput("Please enter your name.");
         
         // Repeat for each input you need, putting it into its proper slot in the array.
         

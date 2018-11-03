@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 /**
  *
- * @author metauser
+ * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  * 
  * StartProgramView - print welcome, display main menu
  * MainMenuView - start, load, help, quit
- * HelpMenuView - 
- * StartNewGameView - 
+ * HelpMenuView - game goals, where is city, how to view map, how to move, how to see storehouse, back to main menu
+ * NewGameView - ask player name, initiate new game.
  * Modify CityOfAaron.main() method to remove the old model test code and call the StartProgramView
 * 
  */

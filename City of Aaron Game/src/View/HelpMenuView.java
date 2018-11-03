@@ -164,6 +164,7 @@ public class HelpMenuView {
    
      private void gameGoals(){
        System.out.println("Goals of the Game");
+        System.out.println("Goals of the Game");
     }
     
     private void cityofAaronLocation(){

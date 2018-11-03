@@ -22,6 +22,7 @@ public class StartProgramView {
      */
     public StartProgramView(){
         
+
         message ="Welcome to the City of Aaron Game.\n" 
                 +"You have been chosen to be the leader of the City of Aaron.\n"//Program start description
                 +"Wheat is the staff of life, and is used as the main currency in the city.\n"//objective
@@ -35,7 +36,8 @@ public class StartProgramView {
                 +"If you fail to produce enough wheat for your people, they will starve, and some people will die.\n"
                 +"This will leave your workforce diminished. \n"
                 +"To become a great leader you must plan wisely. And by the way, there will be chances of rats\n"
-                +"eating the wheat harvest. \n";
+                +"eating the wheat harvest. \n"
+
                 
     }
  
@@ -93,7 +95,10 @@ public class StartProgramView {
         // from the user.
         String[] inputs = new String[1];
         
+
         inputs[0] = getUserInput("On the next line, press '1' then 'enter' to veiw the Main Menu.");
+
+
         
         // Repeat for each input you need, putting it into its proper slot in the array.
         

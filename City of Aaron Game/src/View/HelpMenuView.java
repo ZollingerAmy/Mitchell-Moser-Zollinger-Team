@@ -19,18 +19,21 @@ public class HelpMenuView {
      * The message that will be displayed by this view.
      */
     protected String message;
+  
     
     /**
      * Constructor
      */
     public HelpMenuView(){
         
-        message = "This is the message that is printed to the user by this view.\n"
-                + "You have three tasks:\n"
-                + "1 - Replace this message text with the text that is specific to your view.\n"
-                + "2 - Replace this list with menu options that are specific to your view.\n"
-                + "\n"
-                + "3 - Prompt the user for what they are expected to enter.\n";
+        message = "Help Menu\n"
+                + "--------------------\n"
+                + "G - Game Goals\n"
+                + "W - Where is the city of Aaron?\n"
+                + "V - How to view map\n"
+                + "M - How to move to another location\n"
+                + "D - How to display items in storehouse\n"
+                + "Q - Quit\n";
                 
     }
     
@@ -89,8 +92,8 @@ public class HelpMenuView {
         // from the user.
         String[] inputs = new String[1];
         
-        inputs[0] = getUserInput("Change this text to prompt the user for the input.");
-        
+        inputs[0] = getUserInput("Which help menu option would you like?");
+      
         // Repeat for each input you need, putting it into its proper slot in the array.
         
         return inputs;
@@ -111,8 +114,27 @@ public class HelpMenuView {
         
         // return false if you want this view to exit and return
         // to the view that called it.
-        someActionHandler();
-        
+      
+          switch(inputs[0].trim().toUpperCase()){
+            case "G":
+                gameGoals();
+                break;
+            case "W":
+                cityofAaronLocation();
+                break;
+            case "V":
+                viewMap();
+                break;
+            case "M":
+                move();
+                break; 
+            case "D":
+                displayStorehouseItems();
+                break;
+            case "Q":
+                System.out.println("Thank you for playing. Good-bye.");
+                return false;
+          }
         return true;
     }
     
@@ -139,16 +161,25 @@ public class HelpMenuView {
     // complex game stuff in our doAction() method. It will get messy very quickly.
     
     
-    private boolean someActionHandler(){
-        // Define whatever code you need here to accomplish the action.
-        // You can make this a void method if you want. Whatever you need 
-        // here, you are free to do.
-        //
-        // Generally, though, this is where you will call into your Control
-        // classes to do the work of the application.
-        
-        return true;
+   
+     private void gameGoals(){
+       System.out.println("Goals of the Game");
+        System.out.println("Goals of the Game");
+    }
+    
+    private void cityofAaronLocation(){
+      System.out.println("***   City of Aaron location coming soon.");
+    }
+    
+    private void  viewMap(){
+        System.out.println("***   Map view coming soon.");
+    }
+
+    private void  move(){
+        System.out.println("*** move() called. Need to implement");
+    }
+     
+    private void  displayStorehouseItems(){
+        System.out.println("***   Storehouse items coming soon.");
     }
 }
-
-    

@@ -37,7 +37,7 @@ public class PeopleControlTest {
     @Test
     public void CurrentPopulation(){
         int result = PeopleControl.calculateMortality(1500, 100);
-            assertEquals(25, result); // plenty of food so no one died
+            assertEquals(25, result); // 25 died because not enough food was set aside
     }
     
     @Test

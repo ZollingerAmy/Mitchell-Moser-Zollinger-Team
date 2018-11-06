@@ -121,6 +121,7 @@ public class MoveLocationView {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
             }
+            return false;
 
         }
 
@@ -164,7 +165,7 @@ public class MoveLocationView {
         CityOfAaron.getCurrentGame().getTheMap().setCurrentLocation(point);
 
         // print to user
-        System.out.println(thisLocation.getMapSymbol() + " " + thisLocation.getName() + "\n"
+        System.out.println("\nYou have moved to:\n" + thisLocation.getMapSymbol() + " " + thisLocation.getName() + "\n"
                 + thisLocation.getDescription() + "\n" + thisLocation.getGameTip());
     }
 

@@ -87,7 +87,6 @@ public class MoveLocationView {
         // Declare the array to have the number of elements we'll get 
         // from the user.
         String[] inputs = new String[1];
-
         inputs[0] = getUserInput("Type a row and column to move location -- format: row/col \nor type 'X' to return to the Game Menu.");
 
         // Repeat for each input we need, putting it into its proper slot in the array.
@@ -107,26 +106,21 @@ public class MoveLocationView {
         // or switch statement.
         String go = inputs[0].trim().toUpperCase();
 
-        switch (go.substring(0, 1)) {
-            case "X":
-                System.out.println("Returning to Game Menu.");
-                return false;
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-                try {
-                    int row = Integer.parseInt(go.substring(0, 1));
-                    int col = Integer.parseInt(go.substring(go.length() - 1));
-                    moveLocation(mapArray, row, col);
-                } catch (NumberFormatException | NullPointerException e) {
-                    System.out.println("Please enter a row and column number such as: '2/4'.");
-                }
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                }
+        if (go.substring(0, 1).equals("X")) {
+            System.out.println("Returning to Game Menu.");
+            return false;
+        } else if (go.substring(0, 1).equals("1") || go.substring(0, 1).equals("2") || go.substring(0, 1).equals("3") || go.substring(0, 1).equals("4") || go.substring(0, 1).equals("5")) {
+            try {
+                int row = Integer.parseInt(go.substring(0, 1));
+                int col = Integer.parseInt(go.substring(go.length() - 1));
+                moveLocation(mapArray, row, col);
+            } catch (NumberFormatException | NullPointerException e) {
+                System.out.println("Please enter a row and column number such as: '2/4'.");
+            }
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+            }
 
         }
 
@@ -181,11 +175,13 @@ public class MoveLocationView {
         for (int i = 0; i < mapArray.length; i++) {
             mapString += "\n###################################################################################################################################\n";
 
-            for (int j = 0; j < mapArray[i].length; j++) {
+            // AM: while loop for individual assignment week 8, change back to FOR loop later.
+            int j = 0;
+            while (j < mapArray[i].length) {
                 String symbol = mapArray[i][j].getMapSymbol();
                 String name = mapArray[i][j].getName();
-
                 mapString += "##    " + symbol + "  " + name + "    ##";
+                j++;
             }
 
             mapString += "\n###################################################################################################################################";

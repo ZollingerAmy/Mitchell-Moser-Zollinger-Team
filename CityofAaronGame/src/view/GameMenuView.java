@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 /**
  *
+
  * @author Amy
  */
 public class GameMenuView {
@@ -19,18 +20,20 @@ public class GameMenuView {
      */
     public GameMenuView() {
 
+
         message = "\n\n--------------------\n"
                 + "Game Menu Options\n"
                 + "--------------------\n"
                 + "D - Display current report\n"
-                + "V - View map\n"
-                + "L - Move location\n"
+                + "M - View (M)ap\n"
+                + "L - Move (L)ocation\n"
                 + "C - Manage crops\n"
                 + "Y - Live year\n"
                 + "S - View storehouse\n"
                 + "G - Save game\n"
                 + "R - Return to Main Menu\n";
 
+=
     }
 
     /**
@@ -84,8 +87,10 @@ public class GameMenuView {
      */
     public String[] getInputs() {
 
+
         String[] inputs = new String[1];
         inputs[0] = getUserInput("Which game menu option would you like?");
+
 
         return inputs;
     }
@@ -99,10 +104,11 @@ public class GameMenuView {
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
         switch (inputs[0].trim().toUpperCase()) {
+
             case "D":
                 displayCurrentReport();
                 break;
-            case "V":
+            case "M":
                 viewMap();
                 break;
             case "L":
@@ -127,6 +133,7 @@ public class GameMenuView {
                 System.out.println("Thank you for playing. Good-bye.");
                 return false;
         }
+
         return true;
     }
 
@@ -144,20 +151,11 @@ public class GameMenuView {
             keepGoing = doAction(inputs);
         }
     }
+
     
  private void displayCurrentReport() {
         StorehouseView report = new StorehouseView();//where will this be?
         System.out.println("***Game report coming soon. Please choose a different option");
-    }
- 
-  private void viewMap() {
-        MapView map = new MapView();
-        System.out.println("***Game map coming soon. Please choose a different option");
-    }
-  
-   private void moveLocation() {
-        MoveLocationView location = new MoveLocationView();
-        System.out.println("***Game location coming soon. Please choose a different option");
     }
    
     private void manageCrops() {
@@ -185,4 +183,14 @@ public class GameMenuView {
         MainMenuView mainmenu = new MainMenuView();
         mainmenu.displayView();
     }
+
+    private void viewMap() {
+        MapView view = new MapView();
+        view.displayView();
+    }
+    private void moveLocation() {
+        MoveLocationView view = new MoveLocationView();
+        view.displayView();
+    }
+
 }

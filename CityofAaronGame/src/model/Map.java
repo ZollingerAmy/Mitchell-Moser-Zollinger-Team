@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
@@ -14,6 +15,9 @@ public class Map implements Serializable {
     public Location[][] getLocations() {
         return locations;
     }  
+    public void setLocations(Location[][] locations) {
+        this.locations = locations;
+    }  
     public Point getCurrentLocation() {
         return currentLocation;
     }
@@ -26,6 +30,8 @@ public class Map implements Serializable {
    // toString method
     @Override
     public String toString(){
-        return "Map " + "Location:  " + currentLocation;    
+        return "Map " + "Location:  " + currentLocation
+                + "\nMap:  " + Arrays.deepToString(locations);    
     }
+    
 }

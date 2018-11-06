@@ -41,8 +41,7 @@ public class WheatControl {
         
         int percentLost = GameControl.getRandomNumber(low, high);
         int loss = wheatInStorage * percentLost / 100;
-        System.out.println("Percentage of Loss: " + percentLost + " (total below)");
-
+        
         return loss;
 
     }

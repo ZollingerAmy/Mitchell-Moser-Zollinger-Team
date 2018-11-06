@@ -9,7 +9,7 @@ public class Location implements Serializable {
     private String name;
     private String description;
     private String mapSymbol;
-    private String[] gameTips;
+    private String gameTip;
     
     public Location(){
         //Empty constructor for bean
@@ -32,11 +32,11 @@ public class Location implements Serializable {
     public void setMapSymbol(String mapSymbol){
         this.mapSymbol = mapSymbol;
     }
-    public String[] getGameTips(){
-        return gameTips;
+    public String getGameTip(){
+        return gameTip;
     }
-    public void setGameTimps(String[] gameTips){
-        this.gameTips = gameTips;  
+    public void setGameTip(String gameTip){
+        this.gameTip = gameTip;  
     }
      
     // toString method
@@ -46,7 +46,7 @@ public class Location implements Serializable {
                 + name + ","
                 + description + ","
                 + mapSymbol + ","
-                + Arrays.toString(gameTips);                         
+                + gameTip;                         
     } 
        
 }

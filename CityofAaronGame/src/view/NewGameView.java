@@ -3,8 +3,9 @@
  */
 package view;
 
-import app.CityOfAaron;
 import java.util.Scanner;
+import app.CityOfAaron;
+import control.GameControl;
 import model.Player;
 import model.Game;
 
@@ -127,24 +128,21 @@ public class NewGameView {
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
     private void createAndStartGame(String playerName) {
-        // Eventually, we will do this:
-        // Game game = GameControl.createNewGame(playerName);
 
-        // but for week 7 we just do this....
-        Player player = new Player();
-        player.setName(playerName);
+        Game thisGame = GameControl.createNewGame(playerName);
 
-        Game game = new Game();
-        game.setThePlayer(player);
+        CityOfAaron.setCurrentGame(thisGame);
 
-        CityOfAaron.setCurrentGame(game);
+        System.out.println(thisGame.toString());
+        System.out.println("\nWelcome to the game, " + CityOfAaron.getCurrentGame().getThePlayer().getName() + "! \n");
 
-        System.out.println();
-        System.out.println("Welcome to the game, " + CityOfAaron.getCurrentGame().getThePlayer().getName() + "! \n");
-        //System.out.println("Welcome to the game, " + playerName + "! \n");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException exception) {
+        }
 
         // Once the GameMenuView is created, we will call it here...
-        // GameMenuView gameMenu = new GameMenuView();
-        // gameMenu.displayView();
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayView();
     }
 }

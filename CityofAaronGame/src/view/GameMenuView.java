@@ -1,16 +1,15 @@
-/*
- * Describe class. This view engages when...
- */
+
 package view;
 
 import java.util.Scanner;
 
 /**
  *
- * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
+
+ * @author Amy
  */
 public class GameMenuView {
-
+    
     /**
      * The message that will be displayed by this view.
      */
@@ -20,12 +19,21 @@ public class GameMenuView {
      * Constructor
      */
     public GameMenuView() {
+
+
         message = "\n\n--------------------\n"
-                + "Game Menu\n"
-                + "------------\n"
-                + "M - view (M)ap\n"
-                + "L - move to a new (L)ocation\n"
-                + "\n";
+                + "Game Menu Options\n"
+                + "--------------------\n"
+                + "D - Display current report\n"
+                + "M - View (M)ap\n"
+                + "L - Move (L)ocation\n"
+                + "C - Manage crops\n"
+                + "Y - Live year\n"
+                + "S - View storehouse\n"
+                + "G - Save game\n"
+                + "R - Return to Main Menu\n";
+
+=
     }
 
     /**
@@ -79,12 +87,11 @@ public class GameMenuView {
      */
     public String[] getInputs() {
 
-        // Declare the array to have the number of elements we'll get 
-        // from the user.
-        String[] inputs = new String[1];
-        inputs[0] = getUserInput("Please select a choice from the Game Menu.");
 
-        // Repeat for each input we need, putting it into its proper slot in the array.
+        String[] inputs = new String[1];
+        inputs[0] = getUserInput("Which game menu option would you like?");
+
+
         return inputs;
     }
 
@@ -97,14 +104,33 @@ public class GameMenuView {
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
         switch (inputs[0].trim().toUpperCase()) {
+
+            case "D":
+                displayCurrentReport();
+                break;
             case "M":
                 viewMap();
                 break;
             case "L":
                 moveLocation();
                 break;
-            case "X":
-                System.out.println("Returning to the Main Menu.");
+            case "C":
+                manageCrops();
+                break;
+            case "Y":
+                liveYear();
+                break;
+            case "S":
+                viewStorehouse();
+                break;
+            case "G":
+                saveGame();
+                break;
+            case "R":
+                mainMenu();
+                break;
+            case "Q":
+                System.out.println("Thank you for playing. Good-bye.");
                 return false;
         }
 
@@ -112,7 +138,7 @@ public class GameMenuView {
     }
 
     /**
-     * Control this view's display/prompt/action loop until the user chooses an action that causes this view to close.
+     * Control this view's display/prompt/action loop until the user chooses and action that causes this view to close.
      */
     public void displayView() {
 
@@ -126,9 +152,38 @@ public class GameMenuView {
         }
     }
 
-    // Define action handlers here. These are the methods that the doAction()
-    // method will call based on the user's input. We don't want to do a lot of 
-    // complex game stuff in our doAction() method. It will get messy very quickly.
+    
+ private void displayCurrentReport() {
+        StorehouseView report = new StorehouseView();//where will this be?
+        System.out.println("***Game report coming soon. Please choose a different option");
+    }
+   
+    private void manageCrops() {
+        ManageCropsView crops = new ManageCropsView();
+        System.out.println("***Game crops coming soon. Please choose a different option");
+    }
+   
+    
+     private void liveYear() {
+        GameMenuView year = new GameMenuView();//where will this be?
+        System.out.println("***Game year coming soon. Please choose a different option");
+    }
+     
+      private void viewStorehouse() {
+        StorehouseView storehouse = new StorehouseView();
+        System.out.println("***View storehouse coming soon. Please choose a different option");
+    }
+
+    private void saveGame() {
+        SaveGameView save = new SaveGameView();
+        save.displayView();
+    }
+
+    private void mainMenu() {
+        MainMenuView mainmenu = new MainMenuView();
+        mainmenu.displayView();
+    }
+
     private void viewMap() {
         MapView view = new MapView();
         view.displayView();

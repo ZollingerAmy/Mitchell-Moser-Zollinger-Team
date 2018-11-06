@@ -40,6 +40,7 @@ public class GameControl {
         theGame.setCurrentPopulation(100);
         theGame.setAcresOwned(1000);
         theGame.setWheatInStorage(2700);
+        theGame.setYear(1);
         
         // create the map (call MapControl)
         Map thisMap = new Map();

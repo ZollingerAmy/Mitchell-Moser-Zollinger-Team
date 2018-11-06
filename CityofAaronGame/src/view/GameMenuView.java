@@ -24,16 +24,14 @@ public class GameMenuView {
         message = "\n\n--------------------\n"
                 + "Game Menu Options\n"
                 + "--------------------\n"
-                + "D - Display current report\n"
-                + "M - View (M)ap\n"
-                + "L - Move (L)ocation\n"
-                + "C - Manage crops\n"
-                + "Y - Live year\n"
-                + "S - View storehouse\n"
-                + "G - Save game\n"
-                + "R - Return to Main Menu\n";
+                + "1 - View Map\n"
+                + "2 - Move Location\n"
+                + "3 - Manage crops\n"
+                + "4 - Live year\n"
+                + "5 - View storehouse\n"
+                + "6 - Save game\n"
+                + "X - Exit to Main Menu\n";
 
-=
     }
 
     /**
@@ -105,32 +103,26 @@ public class GameMenuView {
         // Act on the user's input.
         switch (inputs[0].trim().toUpperCase()) {
 
-            case "D":
-                displayCurrentReport();
-                break;
-            case "M":
+            case "1":
                 viewMap();
                 break;
-            case "L":
+            case "2":
                 moveLocation();
                 break;
-            case "C":
+            case "3":
                 manageCrops();
                 break;
-            case "Y":
+            case "4":
                 liveYear();
                 break;
-            case "S":
+            case "5":
                 viewStorehouse();
                 break;
-            case "G":
+            case "6":
                 saveGame();
                 break;
-            case "R":
-                mainMenu();
-                break;
-            case "Q":
-                System.out.println("Thank you for playing. Good-bye.");
+            case "X":
+                System.out.println("Returning to Main Menu.");
                 return false;
         }
 

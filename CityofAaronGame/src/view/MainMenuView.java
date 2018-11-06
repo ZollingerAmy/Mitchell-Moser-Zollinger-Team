@@ -24,7 +24,7 @@ public class MainMenuView {
 
         message = "\n\n--------------------\n"
                 + "Main Menu\n"
-                + "------------\n"
+                + "--------------------\n"
                 + "N - Start new game\n"
                 + "L - Load saved game\n"
                 + "H - Help menu\n"

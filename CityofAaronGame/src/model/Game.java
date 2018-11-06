@@ -14,9 +14,8 @@ public class Game implements Serializable {
     private int currentPopulation;
     private int acresOwned;
     private int wheatInStorage;
-    
+    private int yearPlaying;
 
-   
     
     public Game(){
         // Empty constructor for bean
@@ -70,6 +69,13 @@ public class Game implements Serializable {
         this.wheatInStorage = wheatInStorage;
     }
   
+    public int getYear() {
+        return yearPlaying;
+    }
+
+    public void setYear(int yearPlaying) {
+        this.yearPlaying = yearPlaying;
+    }
      
      
     

@@ -133,12 +133,22 @@ public class NewGameView {
 
         CityOfAaron.setCurrentGame(thisGame);
 
-        System.out.println(thisGame.toString());
-        System.out.println("\nWelcome to the game, " + CityOfAaron.getCurrentGame().getThePlayer().getName() + "! \n");
+        //System.out.println(thisGame.toString());
+        System.out.println("\nWelcome to the game, " + thisGame.getThePlayer().getName() + "! \n");
+        System.out.println("Year: " + thisGame.getYear() + "\n");
+        System.out.println("People starved: 0\n");
+        System.out.println("People arrived in city: 5\n");
+        System.out.println("Current population: " + thisGame.getCurrentPopulation() + "\n");
+        System.out.println("Acres of wheat fields: " + thisGame.getAcresOwned() + "\n");
+        System.out.println("Bushels per acre harvested: 3\n");
+        System.out.println("Total bushels harvested: 3000\n");
+        System.out.println("Bushels paid in tithes and offerings: 300\n");
+        System.out.println("Bushels stolen by robbers: 0\n");
+        System.out.println("Bushels of wheat in store: " + thisGame.getWheatInStorage() + "\n");
 
         try {
             Thread.sleep(2000);
-        } catch (InterruptedException exception) {
+        } catch (InterruptedException e) {
         }
 
         // Once the GameMenuView is created, we will call it here...

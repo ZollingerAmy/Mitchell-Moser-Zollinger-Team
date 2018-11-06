@@ -20,7 +20,11 @@ public class GameMenuView {
      * Constructor
      */
     public GameMenuView() {
-        message = "This is the message that is printed to the user by this view.\n"
+        message = "\n\n--------------------\n"
+                + "Game Menu\n"
+                + "------------\n"
+                + "M - view (M)ap\n"
+                + "L - move to a new (L)ocation\n"
                 + "\n";
     }
 
@@ -78,8 +82,7 @@ public class GameMenuView {
         // Declare the array to have the number of elements we'll get 
         // from the user.
         String[] inputs = new String[1];
-
-        inputs[0] = getUserInput("Hit any key and Enter.");
+        inputs[0] = getUserInput("Please select a choice from the Game Menu.");
 
         // Repeat for each input we need, putting it into its proper slot in the array.
         return inputs;
@@ -93,14 +96,18 @@ public class GameMenuView {
      */
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        // This is a "dispatch" function that decides what
-        // other functions to call. You can use an if-, if-else,
-        // or switch statement.
+        switch (inputs[0].trim().toUpperCase()) {
+            case "M":
+                viewMap();
+                break;
+            case "L":
+                moveLocation();
+                break;
+            case "X":
+                System.out.println("Returning to the Main Menu.");
+                return false;
+        }
 
-        viewMap();
-
-        // return false if we want this view to exit and return
-        // to the view that called it.
         return true;
     }
 
@@ -124,6 +131,10 @@ public class GameMenuView {
     // complex game stuff in our doAction() method. It will get messy very quickly.
     private void viewMap() {
         MapView view = new MapView();
+        view.displayView();
+    }
+    private void moveLocation() {
+        MoveLocationView view = new MoveLocationView();
         view.displayView();
     }
 

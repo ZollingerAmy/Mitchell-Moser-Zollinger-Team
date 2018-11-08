@@ -47,7 +47,7 @@ public class WheatControl {
     }
     
 // Teresa
-    public static int calcHarvest (int acresPlanted, int tithesPercent){
+    public static int calcHarvest (int tithesPercent, int acresPlanted){
         // Calculate the amount of wheat harvested, based on the percentage
         // of tithing paid. Assume that GameControl.getRandomNumber(low, high)
         // is available to be called.

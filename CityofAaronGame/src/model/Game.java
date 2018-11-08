@@ -4,10 +4,12 @@
 package model;
 
 import java.io.Serializable;
+
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class Game implements Serializable {
+
     private Player thePlayer;
     private Map theMap;
     private Storehouse theStorehouse;
@@ -16,8 +18,39 @@ public class Game implements Serializable {
     private int wheatInStorage;
     private int yearPlaying;
 
-    
-    public Game(){
+    public static class builder {
+
+        private int acresOwned;
+        private int currentPopulation;
+        private int wheatInStorage;
+
+        public builder acresOwned(int acresOwned) {
+            this.acresOwned = acresOwned;
+            return this;
+        }
+
+        public builder currentPopulation(int currentPopulation) {
+            this.currentPopulation = currentPopulation;
+            return this;
+        }
+
+        public builder wheatInStorage(int wheatInStorage) {
+            this.wheatInStorage = wheatInStorage;
+            return this;
+        }
+
+        public Game build() {
+            Game game = new Game();
+            game.acresOwned = this.acresOwned;
+            game.currentPopulation = this.currentPopulation;
+            game.wheatInStorage = this.wheatInStorage;
+
+            return game;
+        }
+
+    }
+
+    public Game() {
         // Empty constructor for bean
     }
 
@@ -68,7 +101,7 @@ public class Game implements Serializable {
     public void setWheatInStorage(int wheatInStorage) {
         this.wheatInStorage = wheatInStorage;
     }
-  
+
     public int getYear() {
         return yearPlaying;
     }
@@ -76,21 +109,33 @@ public class Game implements Serializable {
     public void setYear(int yearPlaying) {
         this.yearPlaying = yearPlaying;
     }
-     
-     
-    
+
     // toString method
     @Override
     public String toString() {
-        return "Game{\n" 
-                + "The Player: " + thePlayer 
-                + "\nThe Map: " + theMap 
-                + "\nThe Storehouse: " + theStorehouse 
-                + "\nCurrent Population: " + currentPopulation 
-                + "\nAcres Owned: " + acresOwned 
-                + "\nWheat in Storage: " + wheatInStorage 
+        return "Game{\n"
+                + "The Player: " + thePlayer
+                + "\nThe Map: " + theMap
+                + "\nThe Storehouse: " + theStorehouse
+                + "\nCurrent Population: " + currentPopulation
+                + "\nAcres Owned: " + acresOwned
+                + "\nWheat in Storage: " + wheatInStorage
                 + "\n}";
     }
-    
-    
+
 }
+
+/// AM: note using Lombok for building models:
+// import lombok.*
+//
+//@Data
+//@Builder
+//public class Game {
+//    private Player thePlayer;
+//    private Storehouse theStorehouse;
+//    private Map theMap;
+//    
+//    private int currentPopulation;
+//    private int acresOwned;
+//    private int wheatInStorage;
+//}

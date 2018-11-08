@@ -105,24 +105,30 @@ public class MoveLocationView {
         // other functions to call. You can use an if-, if-else,
         // or switch statement.
         String go = inputs[0].trim().toUpperCase();
+        String first = go.substring(0,1);
 
-        if (go.substring(0, 1).equals("X")) {
-            System.out.println("Returning to Game Menu.");
-            return false;
-        } else if (go.substring(0, 1).equals("1") || go.substring(0, 1).equals("2") || go.substring(0, 1).equals("3") || go.substring(0, 1).equals("4") || go.substring(0, 1).equals("5")) {
-            try {
-                int row = Integer.parseInt(go.substring(0, 1));
-                int col = Integer.parseInt(go.substring(go.length() - 1));
-                moveLocation(mapArray, row, col);
-            } catch (NumberFormatException | NullPointerException e) {
-                System.out.println("Please enter a row and column number such as: '2/4'.");
-            }
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-            }
-            return false;
-
+        switch (first) {
+            case "X":
+                System.out.println("Returning to Game Menu.");
+                return false;
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+                try {
+                    int row = Integer.parseInt(first);
+                    int col = Integer.parseInt(go.substring(go.length() - 1));
+                    moveLocation(mapArray, row, col);
+                } catch (NumberFormatException | NullPointerException e) {
+                    System.out.println("Please enter a row and column number such as: '2/4'.");
+                }
+                try {Thread.sleep(2000);} catch (InterruptedException e) {}
+                System.out.println("\nMove successful. Returning to Game Menu.");
+                return false;
+            default:
+                System.out.println("\nPlease enter a row and column number such as: '2/4'\n or 'X' to exit to Game Menu.");
+                try {Thread.sleep(2000);} catch (InterruptedException e) {}
         }
 
         // return false if we want this view to exit and return

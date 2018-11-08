@@ -103,8 +103,9 @@ public class MapView {
         // other functions to call. You can use an if-, if-else,
         // or switch statement.
         String go = inputs[0].trim().toUpperCase();
+        String first = go.substring(0,1);
 
-        switch (go.substring(0, 1)) {
+        switch (first) {
             case "X":
                 System.out.println("Returning to Game Menu.");
                 return false;
@@ -114,21 +115,20 @@ public class MapView {
             case "4":
             case "5":
                 try {
-                    int row = Integer.parseInt(go.substring(0, 1));
+                    int row = Integer.parseInt(first);
                     int col = Integer.parseInt(go.substring(go.length() - 1));
                     viewLocation(mapArray, row, col);
                 } catch (NumberFormatException | NullPointerException e) {
                     System.out.println("Please enter a row and column number such as: '2/4'.");
                 }
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                }
-
+                break;
+            default:
+                System.out.println("\nPlease enter a row and column number such as: '2/4'\n or 'X' to exit to Game Menu.");
         }
 
         // return false if we want this view to exit and return
         // to the view that called it.
+        try {Thread.sleep(2000);} catch (InterruptedException e) {}
         return true;
     }
 

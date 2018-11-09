@@ -33,7 +33,6 @@ public class GameMenuView {
                 + "G - Save game\n"
                 + "R - Return to Main Menu\n";
 
-=
     }
 
     /**

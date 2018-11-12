@@ -1,16 +1,22 @@
 /*
- * Main Menu class. This view engages on game startup right after the welcome message, and is 
- * bounced back to when deeper views exit.
+ * Describe class. This view engages when...
+//Ask the user what percentage of their harvest they want to pay in tithes and offerings.
+//Get the user’s input.
+//Check to make sure that the value entered by the user is positive. If it is not, show a message and ask the user to enter a new value.
+//Check to make sure that the value entered by the user is not greater than 100. If it is, display a message and ask the user to enter a new value.
+//Save the value entered by the user in WheatControl.setTithingPercentToPay()
+
  */
 package view;
 
+import control.WheatControl;
 import java.util.Scanner;
 
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class MainMenuView {
+public class PayTithingView {
 
     /**
      * The message that will be displayed by this view.
@@ -20,17 +26,9 @@ public class MainMenuView {
     /**
      * Constructor
      */
-    public MainMenuView() {
-
-        message = "\n\n--------------------\n"
-                + "Main Menu\n"
-                + "--------------------\n"
-                + "N - Start new game\n"
-                + "L - Load saved game\n"
-                + "H - Help menu\n"
-                + "Q - Quit game\n"
+    public PayTithingView() {
+        message = "\n\nPay Tithes and Offerings\n"
                 + "\n";
-
     }
 
     /**
@@ -84,9 +82,14 @@ public class MainMenuView {
      */
     public String[] getInputs() {
 
+        // Declare the array to have the number of elements we'll get 
+        // from the user.
         String[] inputs = new String[1];
-        inputs[0] = getUserInput("Please select a choice from the Main Menu.");
 
+        inputs[0] = getUserInput("What percentage would you like to \n"
+                + "pay for tithes and offerings this year?");
+
+        // Repeat for each input we need, putting it into its proper slot in the array.
         return inputs;
     }
 
@@ -98,26 +101,25 @@ public class MainMenuView {
      */
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        switch (inputs[0].trim().toUpperCase()) {
-            case "N":
-                startNewGame();
-                break;
-            case "L":
-                loadSavedGame();
-                break;
-            case "H":
-                helpMenu();
-                break;
-            case "Q":
-                System.out.println("Thank you for playing. Good-bye.");
-                return false;
+        // Validate input, use Try/Catch
+        // AM: remember that we have to have that many acres, and we have to have the people to work it
+        try {
+            int tithingPercentToPay = Integer.parseInt(inputs[0].trim());
+            payTithing(tithingPercentToPay);
+        } catch (NumberFormatException | NullPointerException e) {
+            System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
+        // 
 
-        return true;
+
+        // return false if we want this view to exit and return
+        // to the view that called it.
+        try {Thread.sleep(2000);} catch (InterruptedException e) {}
+        return false;
     }
 
     /**
-     * Control this view's display/prompt/action loop until the user chooses and action that causes this view to close.
+     * Control this view's display/prompt/action loop until the user chooses an action that causes this view to close.
      */
     public void displayView() {
 
@@ -131,20 +133,10 @@ public class MainMenuView {
         }
     }
 
-    // Define action handlers here. These are the methods that doAction()
+    // Define action handlers here. These are the methods that the doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void startNewGame() {
-        NewGameView view = new NewGameView();
-        view.displayView();
-    }
-
-    private void helpMenu() {
-        HelpMenuView help = new HelpMenuView();
-        help.displayView();
-    }
-
-    private void loadSavedGame() {
-        System.out.println("***Saved game coming soon. Please choose a different option");//AZ
+    private void payTithing(int tithingPercentToPay) {
+        WheatControl.setTithingPercentToPay(tithingPercentToPay);
     }
 }

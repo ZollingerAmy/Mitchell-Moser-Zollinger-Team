@@ -1,12 +1,17 @@
-
 package view;
 
+import app.CityOfAaron;
+import control.GameControl;
+import control.LandControl;
+import control.WheatControl;
 import java.util.Scanner;
+import model.AnnualReport;
+import model.Game;
 
 /**
  *
 
- * @author Amy
+ * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class GameMenuView {
     
@@ -24,14 +29,14 @@ public class GameMenuView {
         message = "\n\n--------------------\n"
                 + "Game Menu Options\n"
                 + "--------------------\n"
-                + "D - Display current report\n"
-                + "M - View (M)ap\n"
-                + "L - Move (L)ocation\n"
-                + "C - Manage crops\n"
-                + "Y - Live year\n"
-                + "S - View storehouse\n"
-                + "G - Save game\n"
-                + "R - Return to Main Menu\n";
+                + "1 - Show Annual Report\n"
+                + "2 - View Map\n"
+                + "3 - Move Location\n"
+                + "4 - Manage crops\n"
+                + "5 - Live year\n"
+                + "6 - View storehouse\n"
+                + "7 - Save game\n"
+                + "X - Exit to Main Menu\n";
 
     }
 
@@ -104,32 +109,29 @@ public class GameMenuView {
         // Act on the user's input.
         switch (inputs[0].trim().toUpperCase()) {
 
-            case "D":
-                displayCurrentReport();
+            case "1":
+                displayAnnualReport();
                 break;
-            case "M":
+            case "2":
                 viewMap();
                 break;
-            case "L":
+            case "3":
                 moveLocation();
                 break;
-            case "C":
+            case "4":
                 manageCrops();
                 break;
-            case "Y":
+            case "5":
                 liveYear();
                 break;
-            case "S":
+            case "6":
                 viewStorehouse();
                 break;
-            case "G":
+            case "7":
                 saveGame();
                 break;
-            case "R":
-                mainMenu();
-                break;
-            case "Q":
-                System.out.println("Thank you for playing. Good-bye.");
+            case "X":
+                System.out.println("Returning to Main Menu.");
                 return false;
         }
 
@@ -152,44 +154,71 @@ public class GameMenuView {
     }
 
     
- private void displayCurrentReport() {
-        StorehouseView report = new StorehouseView();//where will this be?
-        System.out.println("***Game report coming soon. Please choose a different option");
+ private void displayAnnualReport() {
+        AnnualReportView report = new AnnualReportView();
+        report.displayView();
     }
    
+    private void viewMap() {
+        MapView view = new MapView();
+        view.displayView();
+    }
+
+    private void moveLocation() {
+        MoveLocationView view = new MoveLocationView();
+        view.displayView();
+    }
+
     private void manageCrops() {
         ManageCropsView crops = new ManageCropsView();
-        System.out.println("***Game crops coming soon. Please choose a different option");
+        crops.displayView();
     }
    
-    
      private void liveYear() {
-        GameMenuView year = new GameMenuView();//where will this be?
-        System.out.println("***Game year coming soon. Please choose a different option");
+        // we better check that we have all the data to live the year properly (tithesPercent, bushelsForFood, acresToPlant)
+         
+        Game thisGame = CityOfAaron.getCurrentGame();
+        int tithesPercent = WheatControl.getTithingPercentToPay();
+        int bushelsForFood = WheatControl.getBushelsToFeedPeople();
+        int acresToPlant = WheatControl.getAcresToPlant();
+        
+        // live the year and return a report 
+        AnnualReport thisReport = GameControl.liveTheYear(thisGame, tithesPercent,
+            bushelsForFood, acresToPlant);
+
+        // update the main report
+        CityOfAaron.setCurrentReport(thisReport);
+        
+        // this may be a good place to check GameControl.gameShouldEnd();
+
+        // now display the report
+        System.out.println("\nAnnual Report for " + thisGame.getThePlayer().getName() + "! \n");
+        System.out.println("Year: " + thisGame.getYear() + "\n");
+        System.out.println("People starved: " + thisReport.getPeopleStarved() + "\n");
+        System.out.println("People arrived in city: " + thisReport.getPeopleMovedIn() + "\n");
+        System.out.println("Current population: " + thisReport.getEndingPopulation() + "\n");
+        System.out.println("Acres of wheat fields: " + thisReport.getEndingAcresOwned() + "\n");
+        System.out.println("Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n");
+        System.out.println("Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n");
+        System.out.println("Bushels paid in tithes and offerings: " + thisReport.getTithingAmount() + "\n");
+        System.out.println("Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n");
+        System.out.println("Bushels of wheat in store: " + thisReport.getEndingWheatInStorage() + "\n");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
+        
     }
      
       private void viewStorehouse() {
         StorehouseView storehouse = new StorehouseView();
-        System.out.println("***View storehouse coming soon. Please choose a different option");
+        storehouse.displayView();
     }
 
     private void saveGame() {
         SaveGameView save = new SaveGameView();
         save.displayView();
-    }
-
-    private void mainMenu() {
-        MainMenuView mainmenu = new MainMenuView();
-        mainmenu.displayView();
-    }
-
-    private void viewMap() {
-        MapView view = new MapView();
-        view.displayView();
-    }
-    private void moveLocation() {
-        MoveLocationView view = new MoveLocationView();
-        view.displayView();
     }
 
 }

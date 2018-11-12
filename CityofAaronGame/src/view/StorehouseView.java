@@ -5,7 +5,7 @@ package view;
 import java.util.Scanner;
 /**
  *
- * @author TeresaMoser
+ * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class StorehouseView {
 
@@ -19,11 +19,14 @@ public class StorehouseView {
      */
     public StorehouseView(){
         
-        message = "StoreHouse Reports: \n"
-                + "A - View Animal report \n"
-                + "T - View Tool report \n"
-                + "P - View Provisions report\n"
-                + "M - View the authors of this game\n";              
+        message = "\n\n--------------------\n"
+                + "The Storehouse\n"
+                + "--------------------\n"
+                + "1 - View Animal report \n"
+                + "2 - View Tool report \n"
+                + "3 - View Provisions report\n"
+                + "4 - View the authors of this game\n"            
+                + "X - Return to the Game Menu\n";              
     }
      
     /**
@@ -104,17 +107,19 @@ public class StorehouseView {
         // to the view that called it.
         
         switch(inputs[0].trim().toUpperCase()){
-            case "A":
+            case "1":
                 animals();
                 break;
-            case "T":
+            case "2":
                 tools();
                 break;
-            case "P":
+            case "3":
                 provisions();
                 break;
-            case "M":
+            case "4":
                 authors();
+                break;
+            case "X":
                 return false;
         }
       return true;
@@ -160,4 +165,3 @@ public class StorehouseView {
     }
     
 }
-

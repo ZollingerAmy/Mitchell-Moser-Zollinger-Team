@@ -74,6 +74,7 @@ public class WheatControlTest {
     }  
 
     /**
+     * Teresa Moser
      * Test of calcHarvest method, of class WheatControl.
      */
     @Test
@@ -105,24 +106,39 @@ public class WheatControlTest {
     @Test
     public void TrueTest() {
         int[][] testRanges = new int[][]{
-            {5, 3000},
+            {8, 3000},
             {10, 3000},
-            {15, 3000}
+            {12, 3000}
         };
         
-        for (int i=0; i < testRanges.length; i++){
+        for (int i=0; i < testRanges.length; i++) {
             int tithes = testRanges[i][0];
-            int wheat = testRanges[i][1];
-            
+            int wheat = testRanges[i][1];           
             int yield = WheatControl.calcHarvest(tithes, wheat);
+            
+            if (tithes < 8 && wheat <= 3000);
+            
+                assertTrue(
+                    String.format("%d is gained from %d wheat", yield, wheat),
+                    yield >= 30 && yield <= 90);
+                
+                if ((tithes >= 8 && tithes <= 12) && wheat <= 3000); 
+                
+                    assertTrue(
+                        String.format("%d is gained from %d wheat", yield, wheat),
+                        yield >= 60 && yield <= 120);   
+                        
+                    if (tithes > 12 && wheat <= 3000);
+                
+                         assertTrue(
+                             String.format("%d is gained from %d wheat", yield, wheat),
+                             yield >= 60 && yield <= 150);  
+            
             System.out.printf("Tithes: %d , Wheat: %d = Yield: %d\n", tithes, wheat, yield);
             
-            assertTrue(
-                    String.format("%d is gained from %d wheat", yield, wheat),
-                    yield <= wheat);
-        }
+            }
 
+        }
        
     }
     
-}

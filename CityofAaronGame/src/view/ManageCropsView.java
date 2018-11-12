@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author TeresaMoser
+ * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class ManageCropsView {
       
@@ -21,13 +21,15 @@ public class ManageCropsView {
      */
     public ManageCropsView(){
         
-        message = "Manage Crops Menu:  \n"
-                + "B - Buy Land \n"
-                + "S - Sell Land \n"
-                + "F - Feed the People\n"
-                + "P - Plant Crops \n"
-                + "T - Pay Tithes and Offereings \n"
-                + "R - Return to the Game Menu \n";               
+        message = "\n\n--------------------\n"
+                + "Manage Crops\n"
+                + "--------------------\n"
+                + "1 - Buy Land \n"
+                + "2 - Sell Land \n"
+                + "3 - Feed your People\n"
+                + "4 - Plant Crops \n"
+                + "5 - Pay Tithes and Offereings \n"
+                + "X - Return to the Game Menu \n";               
     }
     
     /**
@@ -84,8 +86,8 @@ public class ManageCropsView {
         // from the user.
         String[] inputs = new String[1];
         
-        inputs[0] = getUserInput("Choose the letter of the next action you want to"
-                + " take from the Menu. On the next line place letter and press enter.");
+        inputs[0] = getUserInput("Choose the number of the next action you want to"
+                + " take from the Menu.");
         
         // Repeat for each input you need, putting it into its proper slot in the array.
         
@@ -107,23 +109,22 @@ public class ManageCropsView {
         // to the view that called it.
         
         switch(inputs[0].trim().toUpperCase()){
-            case "B":
+            case "1":
                 buyLand();
                 break;
-            case "S":
+            case "2":
                 sellLand();
                 break;
-            case "F":
+            case "3":
                feedPeople();
                 break;
-            case "P":
+            case "4":
                 acresPlanted();
                 break;
-            case "T":
+            case "5":
                 tithesPercent();
                 break;
-            case "R":
-               MainMenuView();
+            case "X":
                 return false;
         }
       return true;
@@ -152,34 +153,28 @@ public class ManageCropsView {
     
     
     private void buyLand(){
-       ManageCropsView view = new ManageCropsView();
+       BuyLandView view = new BuyLandView();
        view.displayView();
     }
     
     private void sellLand(){
-       ManageCropsView view = new ManageCropsView();
+       SellLandView view = new SellLandView();
        view.displayView();
     }
     
     private void feedPeople(){
-       StorehouseView view= new StorehouseView();
+       FeedPeopleView view = new FeedPeopleView();
        view.displayView();
     }
     
     private void acresPlanted(){
-       ManageCropsView view= new ManageCropsView();
+       PlantCropsView view= new PlantCropsView();
        view.displayView();
     }
     
     private void tithesPercent(){
-       ManageCropsView view= new ManageCropsView();
+       PayTithingView view= new PayTithingView();
        view.displayView();
     }   
     
-    private void MainMenuView(){
-       MainMenuView view= new MainMenuView();
-       view.displayView();
-    } 
-    
 }
-

@@ -1,16 +1,25 @@
 /*
- * Main Menu class. This view engages on game startup right after the welcome message, and is 
- * bounced back to when deeper views exit.
+ * Describe class. This view engages when...
+//Ask the user “How many bushels of grain do you want to give to the people?”
+//User enters a value.
+//Check to make sure that the value is positive. If it is not, show a message and ask the user to enter the value again.
+//Make sure that the city has this much wheat in storage. If not, show a message and ask the user to enter the value again.
+// save the number to WheatControl.setBushelsToFeedPeople()
+// DURING LIVE THE YEAR >>>
+//Subtract this amount from the wheat in storage. Display the amount of wheat you have left.
+//Update the game state to save how many bushels of wheat you have set aside to feed the people.
+
  */
 package view;
 
+import control.WheatControl;
 import java.util.Scanner;
 
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class MainMenuView {
+public class FeedPeopleView {
 
     /**
      * The message that will be displayed by this view.
@@ -20,17 +29,9 @@ public class MainMenuView {
     /**
      * Constructor
      */
-    public MainMenuView() {
-
-        message = "\n\n--------------------\n"
-                + "Main Menu\n"
-                + "--------------------\n"
-                + "N - Start new game\n"
-                + "L - Load saved game\n"
-                + "H - Help menu\n"
-                + "Q - Quit game\n"
+    public FeedPeopleView() {
+        message = "\n\nFeed your People\n"
                 + "\n";
-
     }
 
     /**
@@ -84,9 +85,14 @@ public class MainMenuView {
      */
     public String[] getInputs() {
 
+        // Declare the array to have the number of elements we'll get 
+        // from the user.
         String[] inputs = new String[1];
-        inputs[0] = getUserInput("Please select a choice from the Main Menu.");
 
+        inputs[0] = getUserInput("How many bushels of wheat would you like to \n"
+                + "set aside to feed your people this year?");
+
+        // Repeat for each input we need, putting it into its proper slot in the array.
         return inputs;
     }
 
@@ -98,26 +104,24 @@ public class MainMenuView {
      */
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        switch (inputs[0].trim().toUpperCase()) {
-            case "N":
-                startNewGame();
-                break;
-            case "L":
-                loadSavedGame();
-                break;
-            case "H":
-                helpMenu();
-                break;
-            case "Q":
-                System.out.println("Thank you for playing. Good-bye.");
-                return false;
+        // Validate input, use Try/Catch
+        try {
+            int bushelsToFeedPeople = Integer.parseInt(inputs[0].trim());
+            feedPeople(bushelsToFeedPeople);
+        } catch (NumberFormatException | NullPointerException e) {
+            System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
+        // 
 
-        return true;
+
+        // return false if we want this view to exit and return
+        // to the view that called it.
+        try {Thread.sleep(2000);} catch (InterruptedException e) {}
+        return false;
     }
 
     /**
-     * Control this view's display/prompt/action loop until the user chooses and action that causes this view to close.
+     * Control this view's display/prompt/action loop until the user chooses an action that causes this view to close.
      */
     public void displayView() {
 
@@ -131,20 +135,10 @@ public class MainMenuView {
         }
     }
 
-    // Define action handlers here. These are the methods that doAction()
+    // Define action handlers here. These are the methods that the doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void startNewGame() {
-        NewGameView view = new NewGameView();
-        view.displayView();
-    }
-
-    private void helpMenu() {
-        HelpMenuView help = new HelpMenuView();
-        help.displayView();
-    }
-
-    private void loadSavedGame() {
-        System.out.println("***Saved game coming soon. Please choose a different option");//AZ
+    private void feedPeople(int bushelsToFeedPeople) {
+        WheatControl.setBushelsToFeedPeople(bushelsToFeedPeople);
     }
 }

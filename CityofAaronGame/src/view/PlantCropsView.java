@@ -1,21 +1,29 @@
 /*
- * New Game class. This view engages when the player chooses "N" from the Main Menu.
+ * Describe class. This view engages when...
+//Ask the user “How many acres of land do you want to plant?”
+//User enters a value.
+//Check to make sure that the value is positive. If it is not, show a message and ask the user to enter the value again.
+//Check to make sure the city has this much land. If not, show a message and ask the user to enter a new value.
+//Make sure that the city has enough wheat in storage to plant this many acres (You can plant 2 acres with one bushel of wheat). If not, show a message and ask the user to enter the value again.
+//Make sure that the city has enough people to tend the land. One person can take care of 10 acres. If there are not enough people, show a message and ask the user to enter a different value. ~~Note: this requirement has been moved from the "Buy Land" menu.
+//Calculate the number of bushels required to plant the crops.
+// save acres number to WheatControl.setAcresToPlant()
+// save wheat bushels as seed number to WheatControl.setAcresToPlant()
+// DURING LIVE THE YEAR >>>
+//Subtract this amount from the wheat in storage. Display the amount of wheat you have left.
+//Update game state to save how many acres have been planted.
+
  */
 package view;
 
+import control.WheatControl;
 import java.util.Scanner;
-import app.CityOfAaron;
-import control.GameControl;
-import control.LandControl;
-import model.AnnualReport;
-import model.Player;
-import model.Game;
 
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class NewGameView {
+public class PlantCropsView {
 
     /**
      * The message that will be displayed by this view.
@@ -25,10 +33,9 @@ public class NewGameView {
     /**
      * Constructor
      */
-    public NewGameView() {
-
-        message = "\n\nLet's get to playing!\n\n";
-
+    public PlantCropsView() {
+        message = "\n\nPlant Crops\n"
+                + "\n";
     }
 
     /**
@@ -82,12 +89,14 @@ public class NewGameView {
      */
     public String[] getInputs() {
 
-        // Declare the array to have the number of elements we get 
+        // Declare the array to have the number of elements we'll get 
         // from the user.
         String[] inputs = new String[1];
 
-        inputs[0] = getUserInput("Please enter your name, or press 'Enter' to return to the Main Menu", true);
+        inputs[0] = getUserInput("How many acres of your land would you like to \n"
+                + "plant this year?");
 
+        // Repeat for each input we need, putting it into its proper slot in the array.
         return inputs;
     }
 
@@ -99,15 +108,20 @@ public class NewGameView {
      */
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        if (inputs[0] == null || inputs[0].equals("")) {
-            System.out.println("No player name entered. Returning to the Main Menu...");
-            return false;
+        // Validate input, use Try/Catch
+        // AM: remember that we have to have that many acres, and we have to have the people to work it
+        try {
+            int acresToPlant = Integer.parseInt(inputs[0].trim());
+            plantCrops(acresToPlant);
+        } catch (NumberFormatException | NullPointerException e) {
+            System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
+        // 
 
-        String playerName = inputs[0];
-        createAndStartGame(playerName);
 
-        //return false so we don't loop.
+        // return false if we want this view to exit and return
+        // to the view that called it.
+        try {Thread.sleep(2000);} catch (InterruptedException e) {}
         return false;
     }
 
@@ -126,35 +140,10 @@ public class NewGameView {
         }
     }
 
-    // Define action handlers here. These are the methods that doAction()
+    // Define action handlers here. These are the methods that the doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void createAndStartGame(String playerName) {
-
-        GameControl.createNewGame(playerName);
-
-        Game thisGame = CityOfAaron.getCurrentGame();
-        AnnualReport thisReport = CityOfAaron.getCurrentReport();
-
-        System.out.println("\nWelcome to the game, " + thisGame.getThePlayer().getName() + "! \n");
-        System.out.println("Year: " + thisGame.getYear() + "\n");
-        System.out.println("Acres of wheat fields: " + thisReport.getEndingAcresOwned() + "\n");
-        System.out.println("Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n");
-        System.out.println("Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n");
-        System.out.println("Bushels paid in tithes and offerings: " + (thisReport.getTithingAmount() * thisReport.getBushelsHarvested())/100 + "\n");
-        System.out.println("Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n");
-        System.out.println("Bushels of wheat in store: " + thisReport.getEndingWheatInStorage() + "\n");
-        System.out.println("People starved: " + thisReport.getPeopleStarved() + "\n");
-        System.out.println("People arrived in city: " + thisReport.getPeopleMovedIn() + "\n");
-        System.out.println("Current population: " + thisReport.getEndingPopulation() + "\n");
-        
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
-
-        // now head over to the Game View!
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayView();
+    private void plantCrops(int acresToPlant) {
+        WheatControl.setAcresToPlant(acresToPlant);
     }
 }

@@ -4,21 +4,21 @@
 package model;
 
 import java.io.Serializable;
+
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class Game implements Serializable {
+
     private Player thePlayer;
     private Map theMap;
     private Storehouse theStorehouse;
     private int currentPopulation;
     private int acresOwned;
     private int wheatInStorage;
-    
+    private int yearPlaying;
 
-   
-    
-    public Game(){
+    public Game() {
         // Empty constructor for bean
     }
 
@@ -69,22 +69,41 @@ public class Game implements Serializable {
     public void setWheatInStorage(int wheatInStorage) {
         this.wheatInStorage = wheatInStorage;
     }
-  
-     
-     
-    
+
+    public int getYear() {
+        return yearPlaying;
+    }
+
+    public void setYear(int yearPlaying) {
+        this.yearPlaying = yearPlaying;
+    }
+
     // toString method
     @Override
     public String toString() {
-        return "Game{\n" 
-                + "The Player: " + thePlayer 
-                + "\nThe Map: " + theMap 
-                + "\nThe Storehouse: " + theStorehouse 
-                + "\nCurrent Population: " + currentPopulation 
-                + "\nAcres Owned: " + acresOwned 
-                + "\nWheat in Storage: " + wheatInStorage 
+        return "Game{\n"
+                + "The Player: " + thePlayer
+                + "\nThe Map: " + theMap
+                + "\nThe Storehouse: " + theStorehouse
+                + "\nCurrent Population: " + currentPopulation
+                + "\nAcres Owned: " + acresOwned
+                + "\nWheat in Storage: " + wheatInStorage
                 + "\n}";
     }
-    
-    
+
 }
+
+/// AM: note using Lombok for building models:
+// import lombok.*
+//
+//@Data
+//@Builder
+//public class Game {
+//    private Player thePlayer;
+//    private Storehouse theStorehouse;
+//    private Map theMap;
+//    
+//    private int currentPopulation;
+//    private int acresOwned;
+//    private int wheatInStorage;
+//}

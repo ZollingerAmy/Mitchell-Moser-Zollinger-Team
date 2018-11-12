@@ -25,4 +25,11 @@ public class PeopleControl {
     return (currentPopulation - numberOfPeopleFed);
     
 }
+    public static int calculateNewMoveIns(int currentPopulation) {
+        int peopleMovedIn = 0;
+        
+        // AM: need calcuations here!!!
+        
+        return peopleMovedIn;
+    }
 }

@@ -1,5 +1,6 @@
 package control;
 
+import app.CityOfAaron;
 import java.util.ArrayList;
 import java.util.Random;
 import model.Animal;
@@ -20,29 +21,45 @@ public class GameControl {
 
     private static Random randomGenerator = new Random();
 
-
     public static Game createNewGame(String thePlayer) {
+        // set our player
         Player player = new Player();
         player.setName(thePlayer);
         player.setRound(1);
 
+        // set up our game object
         Game theGame = new Game();
         Storehouse theStorehouse = new Storehouse();
         theGame.setTheStorehouse(theStorehouse);
         theGame.setThePlayer(player);
         theGame.setCurrentPopulation(100);
         theGame.setAcresOwned(1000);
-        theGame.setWheatInStorage(2700);
+        theGame.setWheatInStorage(3000);
         theGame.setYear(1);
 
+        
+        //
+        // AM: fill up the Annual Report for use in the Game Menu
+        //
+        AnnualReport report = new AnnualReport();
+        // update the report
+        report.setBushelsPerAcre(3);
+        report.setBushelsHarvested(3000);
+        report.setTithingAmount(10);
+        report.setLostToRobbers(0);
+        report.setPeopleStarved(0);
+        report.setPeopleMovedIn(5);
+
+        report.setEndingWheatInStorage(theGame.getWheatInStorage());
+        report.setEndingPopulation(theGame.getCurrentPopulation());
+        report.setEndingAcresOwned(theGame.getAcresOwned());
+        
         // create the map (call MapControl)
         Map thisMap = new Map();
         thisMap = MapControl.createMap(thisMap);
         // set this map to this game
         theGame.setTheMap(thisMap);
 
-//        // set up theStorehouse, pull it from theGame
-        //Storehouse theStorehouse = theGame.getTheStorehouse();
 //
 //        // initialize Storehouse elements
         theStorehouse.setAnimals(new ArrayList<Animal>());
@@ -64,7 +81,7 @@ public class GameControl {
         cows.setName("Cows"); // InventoryItem class, or Animal class?
         animals.add(cows); // now add it to the Storehouse!
 //
-//        // set up a provision (one for now!)
+//        // set up a provision
         ArrayList<Provision> provisions = theStorehouse.getProvisions(); // this is for the Storehouse class
         Provision bread = new Provision(); // this is for the Provision class
         bread.setType(ItemType.Provision); // InventoryItem class...
@@ -75,14 +92,13 @@ public class GameControl {
         provisions.add(bread); // now add it to the Storehouse!
 //
 //        // SECOND provision
-//        // set up a provision (one for now!)
-//        Provision corn = new Provision(); // this is for the Provision class
-//        corn.setType(ItemType.Provision); // InventoryItem class...
-//        corn.setQuantity(500); // InventoryItem class...
-//        corn.setCondition(Condition.Good); // InventoryItem class...
-//        corn.setName("Corn Ears (dried)"); // Provision class...
-//        corn.setPerishable(false); // Provision class...
-//        provisions.add(corn); // now add it to the Storehouse!
+        Provision corn = new Provision(); // this is for the Provision class
+        corn.setType(ItemType.Provision); // InventoryItem class...
+        corn.setQuantity(500); // InventoryItem class...
+        corn.setCondition(Condition.Good); // InventoryItem class...
+        corn.setName("Corn Ears (dried)"); // Provision class...
+        corn.setPerishable(false); // Provision class...
+        provisions.add(corn); // now add it to the Storehouse!
 //        
 //        // set up a tool (one for now!)
         ArrayList<InventoryItem> tools = theStorehouse.getTools(); // this is for the Storehouse class
@@ -93,9 +109,15 @@ public class GameControl {
         tool.setCondition(Condition.Good); // InventoryItem class...
         tools.add(tool); // now add it to the Storehouse!
 
-        // AM: Now update the current land price for future annual reports
-        LandControl.updateYearlyLandPrice();
 
+        // now save all this to the app so it's easy to get in other places!
+        CityOfAaron.setCurrentGame(theGame);
+        CityOfAaron.setCurrentReport(report);
+
+        // set a year-2 land price
+        LandControl.setCurrentLandPrice();
+
+        
         return theGame;
     }
 
@@ -143,7 +165,6 @@ public class GameControl {
 
     }
 
-
     /**
      * Process the current year's results and update the Game Object.
      *
@@ -163,24 +184,35 @@ public class GameControl {
         }
 
         AnnualReport report = new AnnualReport();
+        
+        // first, let's get the current land price (random number generated in LandControl
         report.setLandPrice(LandControl.getCurrentLandPrice());
-
+        // next get the current total of wheat bushels in storage
         int totalWheat = game.getWheatInStorage();
-
-        int harvested = WheatControl.calcHarvest(tithesPercent, acresToPlant);
+        // now figure out our harvest
+        int perAcre = WheatControl.calcBushelsPerAcre(tithesPercent);
+        int harvested = WheatControl.calcHarvest(perAcre, acresToPlant);
         int tithingAmount = (int) (double) ((tithesPercent / 100.0) * harvested);
         int lostToRobbers = WheatControl.calcLossToRobbers(tithesPercent, totalWheat);
 
+        // now figure out what our population should be
         int peopleStarved = PeopleControl.calculateMortality(bushelsForFood, game.getCurrentPopulation());
         int peopleMovedIn = PeopleControl.calculateNewMoveIns(game.getCurrentPopulation());
 
+        /// Store the new number of wheat bushels in storage and new population as we end the year
         totalWheat = totalWheat + harvested - tithingAmount - lostToRobbers;
         game.setWheatInStorage(totalWheat);
         game.setCurrentPopulation(game.getCurrentPopulation() - peopleStarved + peopleMovedIn);
+        // advance the year by one
+        int newYear = game.getYear() + 1;
+        game.setYear(newYear);
 
+        // update the report
+        report.setBushelsPerAcre(perAcre);
         report.setBushelsHarvested(harvested);
         report.setTithingAmount(tithingAmount);
-        report.setLostToRobbers(peopleStarved);
+        report.setLostToRobbers(lostToRobbers);
+        report.setPeopleStarved(peopleStarved);
         report.setPeopleMovedIn(peopleMovedIn);
 
         report.setEndingWheatInStorage(game.getWheatInStorage());

@@ -1,21 +1,22 @@
 /*
- * New Game class. This view engages when the player chooses "N" from the Main Menu.
+ * Describe class. This view engages when...
+//Ask the user what percentage of their harvest they want to pay in tithes and offerings.
+//Get the user’s input.
+//Check to make sure that the value entered by the user is positive. If it is not, show a message and ask the user to enter a new value.
+//Check to make sure that the value entered by the user is not greater than 100. If it is, display a message and ask the user to enter a new value.
+//Save the value entered by the user in WheatControl.setTithingPercentToPay()
+
  */
 package view;
 
+import control.WheatControl;
 import java.util.Scanner;
-import app.CityOfAaron;
-import control.GameControl;
-import control.LandControl;
-import model.AnnualReport;
-import model.Player;
-import model.Game;
 
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class NewGameView {
+public class PayTithingView {
 
     /**
      * The message that will be displayed by this view.
@@ -25,10 +26,9 @@ public class NewGameView {
     /**
      * Constructor
      */
-    public NewGameView() {
-
-        message = "\n\nLet's get to playing!\n\n";
-
+    public PayTithingView() {
+        message = "\n\nPay Tithes and Offerings\n"
+                + "\n";
     }
 
     /**
@@ -82,12 +82,14 @@ public class NewGameView {
      */
     public String[] getInputs() {
 
-        // Declare the array to have the number of elements we get 
+        // Declare the array to have the number of elements we'll get 
         // from the user.
         String[] inputs = new String[1];
 
-        inputs[0] = getUserInput("Please enter your name, or press 'Enter' to return to the Main Menu", true);
+        inputs[0] = getUserInput("What percentage would you like to \n"
+                + "pay for tithes and offerings this year?");
 
+        // Repeat for each input we need, putting it into its proper slot in the array.
         return inputs;
     }
 
@@ -99,15 +101,20 @@ public class NewGameView {
      */
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        if (inputs[0] == null || inputs[0].equals("")) {
-            System.out.println("No player name entered. Returning to the Main Menu...");
-            return false;
+        // Validate input, use Try/Catch
+        // AM: remember that we have to have that many acres, and we have to have the people to work it
+        try {
+            int tithingPercentToPay = Integer.parseInt(inputs[0].trim());
+            payTithing(tithingPercentToPay);
+        } catch (NumberFormatException | NullPointerException e) {
+            System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
+        // 
 
-        String playerName = inputs[0];
-        createAndStartGame(playerName);
 
-        //return false so we don't loop.
+        // return false if we want this view to exit and return
+        // to the view that called it.
+        try {Thread.sleep(2000);} catch (InterruptedException e) {}
         return false;
     }
 
@@ -126,35 +133,10 @@ public class NewGameView {
         }
     }
 
-    // Define action handlers here. These are the methods that doAction()
+    // Define action handlers here. These are the methods that the doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void createAndStartGame(String playerName) {
-
-        GameControl.createNewGame(playerName);
-
-        Game thisGame = CityOfAaron.getCurrentGame();
-        AnnualReport thisReport = CityOfAaron.getCurrentReport();
-
-        System.out.println("\nWelcome to the game, " + thisGame.getThePlayer().getName() + "! \n");
-        System.out.println("Year: " + thisGame.getYear() + "\n");
-        System.out.println("Acres of wheat fields: " + thisReport.getEndingAcresOwned() + "\n");
-        System.out.println("Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n");
-        System.out.println("Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n");
-        System.out.println("Bushels paid in tithes and offerings: " + (thisReport.getTithingAmount() * thisReport.getBushelsHarvested())/100 + "\n");
-        System.out.println("Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n");
-        System.out.println("Bushels of wheat in store: " + thisReport.getEndingWheatInStorage() + "\n");
-        System.out.println("People starved: " + thisReport.getPeopleStarved() + "\n");
-        System.out.println("People arrived in city: " + thisReport.getPeopleMovedIn() + "\n");
-        System.out.println("Current population: " + thisReport.getEndingPopulation() + "\n");
-        
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
-
-        // now head over to the Game View!
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayView();
+    private void payTithing(int tithingPercentToPay) {
+        WheatControl.setTithingPercentToPay(tithingPercentToPay);
     }
 }

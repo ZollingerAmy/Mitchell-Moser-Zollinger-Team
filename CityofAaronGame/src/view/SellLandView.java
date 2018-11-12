@@ -1,21 +1,26 @@
 /*
- * New Game class. This view engages when the player chooses "N" from the Main Menu.
+ * Describe class. This view engages when...
+//Generate a random number between 17 and 27 for the price of an acre of land. Display the price to the user.
+//Ask the user “How many acres of land do you want to sell”?
+//The user enters a value.
+//Check to make sure the value is positive. If not, show a message and ask the user to enter the value again.
+//Make sure that the player has enough acres of land to sell. If not, show a message and ask the user to enter the value again.
+// save sell land number to LandControl.setLandToSell()
+// DURING LIVE THE YEAR >>>
+//Subtract the number of acres sold from the acres owned.
+//Add the bushels of wheat that was increased by the selling of land to the bushels of wheat in storage.
+
  */
 package view;
 
-import java.util.Scanner;
-import app.CityOfAaron;
-import control.GameControl;
 import control.LandControl;
-import model.AnnualReport;
-import model.Player;
-import model.Game;
+import java.util.Scanner;
 
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class NewGameView {
+public class SellLandView {
 
     /**
      * The message that will be displayed by this view.
@@ -25,10 +30,9 @@ public class NewGameView {
     /**
      * Constructor
      */
-    public NewGameView() {
-
-        message = "\n\nLet's get to playing!\n\n";
-
+    public SellLandView() {
+        message = "\n\nSell Land\n"
+                + "\n";
     }
 
     /**
@@ -82,12 +86,13 @@ public class NewGameView {
      */
     public String[] getInputs() {
 
-        // Declare the array to have the number of elements we get 
+        // Declare the array to have the number of elements we'll get 
         // from the user.
         String[] inputs = new String[1];
 
-        inputs[0] = getUserInput("Please enter your name, or press 'Enter' to return to the Main Menu", true);
+        inputs[0] = getUserInput("How much land would you like to sell?");
 
+        // Repeat for each input we need, putting it into its proper slot in the array.
         return inputs;
     }
 
@@ -99,15 +104,19 @@ public class NewGameView {
      */
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        if (inputs[0] == null || inputs[0].equals("")) {
-            System.out.println("No player name entered. Returning to the Main Menu...");
-            return false;
+        // Validate input, use Try/Catch
+        try {
+            int acresToSell = Integer.parseInt(inputs[0].trim());
+            sellLand(acresToSell);
+        } catch (NumberFormatException | NullPointerException e) {
+            System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
+        // 
 
-        String playerName = inputs[0];
-        createAndStartGame(playerName);
 
-        //return false so we don't loop.
+        // return false if we want this view to exit and return
+        // to the view that called it.
+        try {Thread.sleep(2000);} catch (InterruptedException e) {}
         return false;
     }
 
@@ -126,35 +135,10 @@ public class NewGameView {
         }
     }
 
-    // Define action handlers here. These are the methods that doAction()
+    // Define action handlers here. These are the methods that the doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void createAndStartGame(String playerName) {
-
-        GameControl.createNewGame(playerName);
-
-        Game thisGame = CityOfAaron.getCurrentGame();
-        AnnualReport thisReport = CityOfAaron.getCurrentReport();
-
-        System.out.println("\nWelcome to the game, " + thisGame.getThePlayer().getName() + "! \n");
-        System.out.println("Year: " + thisGame.getYear() + "\n");
-        System.out.println("Acres of wheat fields: " + thisReport.getEndingAcresOwned() + "\n");
-        System.out.println("Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n");
-        System.out.println("Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n");
-        System.out.println("Bushels paid in tithes and offerings: " + (thisReport.getTithingAmount() * thisReport.getBushelsHarvested())/100 + "\n");
-        System.out.println("Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n");
-        System.out.println("Bushels of wheat in store: " + thisReport.getEndingWheatInStorage() + "\n");
-        System.out.println("People starved: " + thisReport.getPeopleStarved() + "\n");
-        System.out.println("People arrived in city: " + thisReport.getPeopleMovedIn() + "\n");
-        System.out.println("Current population: " + thisReport.getEndingPopulation() + "\n");
-        
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
-
-        // now head over to the Game View!
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayView();
+    private void sellLand(int acresToSell) {
+        LandControl.setLandToSell(acresToSell);
     }
 }

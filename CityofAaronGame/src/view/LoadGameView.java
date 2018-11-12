@@ -1,170 +1,124 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
+
 import java.util.Scanner;
 
 /**
  *
- * @author Amy
+ * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class LoadGameView {
-    
-    /**
-     * The message that will be displayed by this view.
-     */
+
     protected String message;
-    
+
     /**
      * Constructor
      */
-    public LoadGameView(){
-        
-        message = "\n\nLoad a saved game.\n\n"
-                + "L - load saved game\n"
-                + "N - Start new game\n"
-                + "R - Return to Main Menu\n";
+    public LoadGameView() {
+        message = "Load a saved game.\n";
     }
-    
-    
+
     /**
      * Get the user's input. Keep prompting them until they enter a value.
+     *
      * @param prompt
      * @param allowEmpty - determine whether the user can enter no value (just a return key)
-     * @return 
+     * @return
      */
-    protected String getUserInput(String prompt, boolean allowEmpty){
-        
+    protected String getUserInput(String prompt, boolean allowEmpty) {
+
         Scanner keyboard = new Scanner(System.in);
         String input = "";
         boolean inputReceived = false;
-        
-        while(inputReceived == false){
-            
+
+        while (inputReceived == false) {
+
             System.out.println(prompt);
             input = keyboard.nextLine();
-            
+
             // Make sure we avoid a null-pointer error.
-            if (input == null){
+            if (input == null) {
                 input = "";
             }
-            
+
             // Trim any trailing whitespace, including the carriage return.
             input = input.trim();
-            
-            if (input.equals("") == false || allowEmpty == true){
+
+            if (input.equals("") == false || allowEmpty == true) {
                 inputReceived = true;
             }
         }
-        
+
         return input;
     }
-    
-    
+
     /**
-     * An overloaded version of getUserInput that sets allowEmpty to false so we don't have 
-     * to type it ourselves.
+     * An overloaded version of getUserInput that sets allowEmpty to false so we don't have to type it ourselves.
+     *
      * @param prompt
-     * @return 
+     * @return
      */
-    protected String getUserInput(String prompt){
+    protected String getUserInput(String prompt) {
         return getUserInput(prompt, false);
     }
-    
+
     /**
      * Get the set of inputs from the user.
-     * @return 
+     *
+     * @return
      */
     public String[] getInputs() {
-        
+
         // Declare the array to have the number of elements you intend to get 
         // from the user.
         String[] inputs = new String[1];
-        
-        inputs[0] = getUserInput("Please enter name of saved game you would like to play.");
-        
-        // Repeat for each input you need, putting it into its proper slot in the array.
-        
+
+        inputs[0] = getUserInput("Please enter the name of your saved game.");
+
         return inputs;
     }
-    
-    
+
     /**
      * Perform the action indicated by the user's input.
+     *
      * @param inputs
-     * @return true if the view should repeat itself, and false if the view
-     * should exit and return to the previous view.
+     * @return true if the view should repeat itself, and false if the view should exit and return to the previous view.
      */
-    public boolean doAction(String[] inputs){
-         if (inputs[0] == null || inputs[0].equals("")) {
-            System.out.println("No game entered. Returning to the Main Menu...");
+    public boolean doAction(String[] inputs) {
+
+        //if no input return to main menu
+        if (inputs[0] == null || inputs[0].equals("")) {
+            System.out.println("No game name entered. Returning to the Main Menu...");
             return false;
         }
-       // MainMenuView.loadSavedGame();
-        
+        loadGame(inputs[0]);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
         return false;
+        //this continues to loop if true or false?
     }
-//    public boolean doAction(String[] inputs) {
-//        // Act on the user's input.
-//        if (inputs[0] == null || inputs[0].equals("")) {
-//            System.out.println("No player name entered. Returning to the Main Menu...");
-//            return false;
-//        }
-//
-//        String playerName = inputs[0];
-//        createAndStartGame(playerName);
-//
-//        //return false so we don't loop.
-//        return false;
-//    }
-    
+
     /**
-     * Control this view's display/prompt/action loop until the user
-     * chooses and action that causes this view to close.
+     * Control this view's display/prompt/action loop until the user chooses and action that causes this view to close.
      */
-    public void displayView(){
-        
+    public void displayView() {
+
         boolean keepGoing = true;
-        
-        while(keepGoing == true){
-            
+
+        while (keepGoing == true) {
+
             System.out.println(message);
             String[] inputs = getInputs();
             keepGoing = doAction(inputs);
         }
     }
-    
-    
-    // Define your action handlers here. These are the methods that your doAction()
-    // method will call based on the user's input. We don't want to do a lot of 
-    // complex game stuff in our doAction() method. It will get messy very quickly.
-    
-    
-    private boolean loadSavedGame(){
-        // Define whatever code you need here to accomplish the action.
-        // You can make this a void method if you want. Whatever you need 
-        // here, you are free to do.
-        //
-        // Generally, though, this is where you will call into your Control
-        // classes to do the work of the application.
+    // First Try
+    private void loadGame(String filename) {
+        // AM: need to actually call function to load game data from a JSON file.
         
-        return true;
+        // AM: for now, just print success to user.
+        System.out.print("Loaded game: " + filename + "\n");
+        
     }
 }
-
-//doAction(inputs): boolean {
-//Convert input values to the appropriate datatype as needed
-//Call a Control Layer method to perform the action
-//IF the Control Layer method returns an error then
-// display an error message
-// RETURN false (Repeats the current view)
-//ENDIF
-//DISPLAY a success message
-//IF a new view is to be displayed THEN
-// Create the new View
-// Display the new view
-//ENDIF
-//RETURN true (Terminates the current view)
-//}

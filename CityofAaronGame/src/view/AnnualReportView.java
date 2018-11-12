@@ -1,14 +1,22 @@
 /*
- * StoreHouseView
+ * Describe class. This view engages when...
  */
 package view;
+
 import java.util.Scanner;
+import app.CityOfAaron;
+import control.GameControl;
+import control.LandControl;
+import model.AnnualReport;
+import model.Game;
+
 /**
  *
- * @author Amber Mitchell, Teresa Moser, Amy Zollinger
+ * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class StorehouseView {
-
+public class AnnualReportView {
+    
+    
     /**
      * The message that will be displayed by this view.
      */
@@ -17,18 +25,12 @@ public class StorehouseView {
     /**
      * Constructor
      */
-    public StorehouseView(){
-        
-        message = "\n\n--------------------\n"
-                + "The Storehouse\n"
-                + "--------------------\n"
-                + "1 - View Animal report \n"
-                + "2 - View Tool report \n"
-                + "3 - View Provisions report\n"
-                + "4 - View the authors of this game\n"            
-                + "X - Return to the Game Menu\n";              
+    public AnnualReportView(){
+        message = "Here is the current Annual Report:\n"
+                + "\n";
     }
-     
+    
+    
     /**
      * Get the user's input. Keep prompting them until they enter a value.
      * @param prompt
@@ -79,18 +81,18 @@ public class StorehouseView {
      */
     public String[] getInputs() {
         
-        // Declare the array to have the number of elements you intend to get 
+        // Declare the array to have the number of elements we'll get 
         // from the user.
         String[] inputs = new String[1];
         
-        inputs[0] = getUserInput("On the next line choose a letter from "
-                + "the StoreHouse Reports and press enter.");
+        inputs[0] = getUserInput("Press Enter to return to the Game Menu.", true);
         
-        // Repeat for each input you need, putting it into its proper slot in the array.
+        // Repeat for each input we need, putting it into its proper slot in the array.
         
         return inputs;
     }
- 
+    
+    
     /**
      * Perform the action indicated by the user's input.
      * @param inputs
@@ -103,32 +105,16 @@ public class StorehouseView {
         // other functions to call. You can use an if-, if-else,
         // or switch statement.
         
-        // return false if you want this view to exit and return
+
+        // return false if we want this view to exit and return
         // to the view that called it.
-        
-        switch(inputs[0].trim().toUpperCase()){
-            case "1":
-                animals();
-                break;
-            case "2":
-                tools();
-                break;
-            case "3":
-                provisions();
-                break;
-            case "4":
-                authors();
-                break;
-            case "X":
-                return false;
-        }
-      return true;
+        return false;
     }
     
     
     /**
      * Control this view's display/prompt/action loop until the user
-     * chooses and action that causes this view to close.
+     * chooses an action that causes this view to close.
      */
     public void displayView(){
         
@@ -137,31 +123,39 @@ public class StorehouseView {
         while(keepGoing == true){
             
             System.out.println(message);
+            viewReport();
+
             String[] inputs = getInputs();
             keepGoing = doAction(inputs);
         }
     }
     
     
-    // Define your action handlers here. These are the methods that your doAction()
+    // Define action handlers here. These are the methods that the doAction()
     // method will call based on the user's input. We don't want to do a lot of 
     // complex game stuff in our doAction() method. It will get messy very quickly.
     
     
-     private void animals(){
-         System.out.println("***Animal Reports coming soon. Please choose a different option");
+    private void viewReport(){
+
+        Game thisGame = CityOfAaron.getCurrentGame();
+        AnnualReport thisReport = CityOfAaron.getCurrentReport();
+
+        System.out.println("\nAnnual Report for " + thisGame.getThePlayer().getName() + "! \n");
+        System.out.println("Year: " + thisGame.getYear() + "\n");
+        System.out.println("Acres of wheat fields: " + thisReport.getEndingAcresOwned() + "\n");
+        System.out.println("Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n");
+        System.out.println("Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n");
+        System.out.println("Bushels paid in tithes and offerings: " + (thisReport.getTithingAmount() * thisReport.getBushelsHarvested())/100 + "\n");
+        System.out.println("Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n");
+        System.out.println("Bushels of wheat in store: " + thisReport.getEndingWheatInStorage() + "\n");
+        System.out.println("People starved: " + thisReport.getPeopleStarved() + "\n");
+        System.out.println("People arrived in city: " + thisReport.getPeopleMovedIn() + "\n");
+        System.out.println("Current population: " + thisReport.getEndingPopulation() + "\n");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
     }
-    
-    private void tools(){
-         System.out.println("***Tool Reports coming soon. Please choose a different option");
-    }
-    
-    private void provisions(){
-        System.out.println("***Provision Reports coming soon. Please choose a different option");
-    }
-    
-    private void authors(){
-        System.out.println("***Authors List coming soon. Please choose a different option");
-    }
-    
 }

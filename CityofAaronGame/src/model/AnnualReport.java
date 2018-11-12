@@ -17,85 +17,94 @@ public class AnnualReport implements Serializable {
 
     private int landPrice;
     private int bushelsHarvested;
+    private int bushelsPerAcre;
+
     private int tithingAmount;
     private int lostToRobbers;
     private int peopleStarved;
     private int peopleMovedIn;
 
-    public AnnualReport(){
+    public AnnualReport() {
     }
 
-	public int getEndingWheatInStorage() {
-		return endingWheatInStorage;
-	}
+    public int getEndingWheatInStorage() {
+        return endingWheatInStorage;
+    }
 
-	public void setEndingWheatInStorage(int endingWheatInStorage) {
-		this.endingWheatInStorage = endingWheatInStorage;
-	}
+    public void setEndingWheatInStorage(int endingWheatInStorage) {
+        this.endingWheatInStorage = endingWheatInStorage;
+    }
 
-	public int getEndingPopulation() {
-		return endingPopulation;
-	}
+    public int getEndingPopulation() {
+        return endingPopulation;
+    }
 
-	public void setEndingPopulation(int endingPopulation) {
-		this.endingPopulation = endingPopulation;
-	}
+    public void setEndingPopulation(int endingPopulation) {
+        this.endingPopulation = endingPopulation;
+    }
 
-	public int getEndingAcresOwned() {
-		return endingAcresOwned;
-	}
+    public int getEndingAcresOwned() {
+        return endingAcresOwned;
+    }
 
-	public void setEndingAcresOwned(int endingAcresOwned) {
-		this.endingAcresOwned = endingAcresOwned;
-	}
+    public void setEndingAcresOwned(int endingAcresOwned) {
+        this.endingAcresOwned = endingAcresOwned;
+    }
 
-	public int getLandPrice() {
-		return landPrice;
-	}
+    public int getLandPrice() {
+        return landPrice;
+    }
 
-	public void setLandPrice(int landPrice) {
-		this.landPrice = landPrice;
-	}
+    public void setLandPrice(int landPrice) {
+        this.landPrice = landPrice;
+    }
 
-	public int getBushelsHarvested() {
-		return bushelsHarvested;
-	}
+    public int getBushelsHarvested() {
+        return bushelsHarvested;
+    }
 
-	public void setBushelsHarvested(int bushelsHarvested) {
-		this.bushelsHarvested = bushelsHarvested;
-	}
+    public void setBushelsHarvested(int bushelsHarvested) {
+        this.bushelsHarvested = bushelsHarvested;
+    }
 
-	public int getTithingAmount() {
-		return tithingAmount;
-	}
+    public int getBushelsPerAcre() {
+        return bushelsPerAcre;
+    }
 
-	public void setTithingAmount(int tithingAmount) {
-		this.tithingAmount = tithingAmount;
-	}
+    public void setBushelsPerAcre(int bushelsPerAcre) {
+        this.bushelsPerAcre = bushelsPerAcre;
+    }
 
-	public int getLostToRobbers() {
-		return lostToRobbers;
-	}
+    public int getTithingAmount() {
+        return tithingAmount;
+    }
 
-	public void setLostToRobbers(int lostToRobbers) {
-		this.lostToRobbers = lostToRobbers;
-	}
+    public void setTithingAmount(int tithingAmount) {
+        this.tithingAmount = tithingAmount;
+    }
 
-	public int getPeopleStarved() {
-		return peopleStarved;
-	}
+    public int getLostToRobbers() {
+        return lostToRobbers;
+    }
 
-	public void setPeopleStarved(int peopleStarved) {
-		this.peopleStarved = peopleStarved;
-	}
+    public void setLostToRobbers(int lostToRobbers) {
+        this.lostToRobbers = lostToRobbers;
+    }
 
-	public int getPeopleMovedIn() {
-		return peopleMovedIn;
-	}
+    public int getPeopleStarved() {
+        return peopleStarved;
+    }
 
-	public void setPeopleMovedIn(int peopleMovedIn) {
-		this.peopleMovedIn = peopleMovedIn;
-	}
+    public void setPeopleStarved(int peopleStarved) {
+        this.peopleStarved = peopleStarved;
+    }
 
+    public int getPeopleMovedIn() {
+        return peopleMovedIn;
+    }
+
+    public void setPeopleMovedIn(int peopleMovedIn) {
+        this.peopleMovedIn = peopleMovedIn;
+    }
 
 }

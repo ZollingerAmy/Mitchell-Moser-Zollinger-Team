@@ -18,38 +18,6 @@ public class Game implements Serializable {
     private int wheatInStorage;
     private int yearPlaying;
 
-    public static class builder {
-
-        private int acresOwned;
-        private int currentPopulation;
-        private int wheatInStorage;
-
-        public builder acresOwned(int acresOwned) {
-            this.acresOwned = acresOwned;
-            return this;
-        }
-
-        public builder currentPopulation(int currentPopulation) {
-            this.currentPopulation = currentPopulation;
-            return this;
-        }
-
-        public builder wheatInStorage(int wheatInStorage) {
-            this.wheatInStorage = wheatInStorage;
-            return this;
-        }
-
-        public Game build() {
-            Game game = new Game();
-            game.acresOwned = this.acresOwned;
-            game.currentPopulation = this.currentPopulation;
-            game.wheatInStorage = this.wheatInStorage;
-
-            return game;
-        }
-
-    }
-
     public Game() {
         // Empty constructor for bean
     }

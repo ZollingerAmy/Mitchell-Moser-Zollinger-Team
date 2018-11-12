@@ -4,6 +4,44 @@ package control;
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class WheatControl {
+    // here we store all the upcoming data from user inputs (mostly from ManageCropsView) - GOES WITH LANDCONTROL
+
+    private static int bushelsToFeedPeople;
+    private static int wheatToPlant;
+    private static int acresToPlant;
+    private static int tithingPercentToPay;
+
+    public static int getBushelsToFeedPeople() {
+        return bushelsToFeedPeople;
+    }
+
+    public static void setBushelsToFeedPeople(int bushelsToFeedPeople) {
+        WheatControl.bushelsToFeedPeople = bushelsToFeedPeople;
+    }
+
+    public static int getWheatToPlant() {
+        return wheatToPlant;
+    }
+
+    public static void setWheatToPlant(int wheatToPlant) {
+        WheatControl.wheatToPlant = wheatToPlant;
+    }
+
+    public static int getAcresToPlant() {
+        return acresToPlant;
+    }
+
+    public static void setAcresToPlant(int acresToPlant) {
+        WheatControl.acresToPlant = acresToPlant;
+    }
+
+    public static int getTithingPercentToPay() {
+        return tithingPercentToPay;
+    }
+
+    public static void setTithingPercentToPay(int tithingPercentToPay) {
+        WheatControl.tithingPercentToPay = tithingPercentToPay;
+    }
 
 //AMBER
     public static int calcLossToRobbers(int tithesPercent, int wheatInStorage) {
@@ -47,14 +85,22 @@ public class WheatControl {
     }
     
 // Teresa
-    public static int calcHarvest (int tithesPercent, int acresPlanted){
+    public static int calcHarvest (int perAcre, int acresPlanted){
         // Calculate the amount of wheat harvested, based on the percentage
-        // of tithing paid. Assume that GameControl.getRandomNumber(low, high)
-        // is available to be called.
+        // of tithing paid. This is meant to be returned to the Annual Report harvest number
      
-        if (acresPlanted < 0) {
+        if (acresPlanted < 0 || perAcre < 1) {
             return -1;
         }
+     
+        int yield = (perAcre * acresPlanted);
+        return yield;
+    }
+
+    public static int calcBushelsPerAcre (int tithesPercent){
+        // Calculate the amount of bushels per acre to be harvested, based on the percentage
+        // of tithing paid. Assume that GameControl.getRandomNumber(low, high)
+        // is available to be called. This is meant to be returned to the Annual Report bushels per acre number.
      
         if (tithesPercent < 0 || tithesPercent > 100) {
             return -2;
@@ -78,9 +124,9 @@ public class WheatControl {
             high = 5;
         }
         
-        int harvest = GameControl.getRandomNumber(low, high);
-        int yield = (harvest * acresPlanted);
-        return yield;
+        int perAcre = GameControl.getRandomNumber(low, high);
+        // store this number in the annual report
+        return perAcre;
     }
     
 }

@@ -52,7 +52,8 @@ public class MapControl extends Map {
         theVillages.setName("Village");
         theVillages.setDescription("There are four villages in the City of Aaron.");
         theVillages.setMapSymbol("\u04c2");
-        theVillages.setGameTip("When people in our villages are faithful, they are blessed of the Lord.");
+        theVillages.setGameTip("When people in our villages are faithful, they are blessed of the Lord. \n"
+                + "Each of our people can work 10 acres per year.");
         // set the locations in their spots in the 5x5 grid
         allLocations[1][2] = theVillages;
         allLocations[2][1] = theVillages;

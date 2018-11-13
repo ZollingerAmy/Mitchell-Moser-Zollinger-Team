@@ -161,7 +161,7 @@ public class GameMenuView extends ViewBase{
     }
 
     private void saveGame() {
-        SaveGameView save = new SaveGameView();
+        View save = new SaveGameView();
         save.displayView();
     }
 

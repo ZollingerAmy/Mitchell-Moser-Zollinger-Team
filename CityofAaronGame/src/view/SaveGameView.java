@@ -1,6 +1,6 @@
 package view;
 
-import java.util.Scanner;
+
 
 /**
  *
@@ -11,6 +11,8 @@ public class SaveGameView extends ViewBase{
     public SaveGameView(){
         super();
     }
+    
+    @Override
     protected String getMessage() {
         return "Save your current game.\n";
     }

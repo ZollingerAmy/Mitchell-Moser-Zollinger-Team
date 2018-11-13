@@ -6,59 +6,18 @@ import java.util.Scanner;
  *
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class LoadGameView {
-
-    protected String message;
+public class LoadGameView extends ViewBase {
 
     /**
      * Constructor
      */
     public LoadGameView() {
-        message = "Load a saved game.\n";
+        super();
     }
 
-    /**
-     * Get the user's input. Keep prompting them until they enter a value.
-     *
-     * @param prompt
-     * @param allowEmpty - determine whether the user can enter no value (just a return key)
-     * @return
-     */
-    protected String getUserInput(String prompt, boolean allowEmpty) {
-
-        Scanner keyboard = new Scanner(System.in);
-        String input = "";
-        boolean inputReceived = false;
-
-        while (inputReceived == false) {
-
-            System.out.println(prompt);
-            input = keyboard.nextLine();
-
-            // Make sure we avoid a null-pointer error.
-            if (input == null) {
-                input = "";
-            }
-
-            // Trim any trailing whitespace, including the carriage return.
-            input = input.trim();
-
-            if (input.equals("") == false || allowEmpty == true) {
-                inputReceived = true;
-            }
-        }
-
-        return input;
-    }
-
-    /**
-     * An overloaded version of getUserInput that sets allowEmpty to false so we don't have to type it ourselves.
-     *
-     * @param prompt
-     * @return
-     */
-    protected String getUserInput(String prompt) {
-        return getUserInput(prompt, false);
+    @Override
+    protected String getMessage() {
+        return "Load a saved game.\n";
     }
 
     /**
@@ -66,6 +25,7 @@ public class LoadGameView {
      *
      * @return
      */
+    @Override
     public String[] getInputs() {
 
         // Declare the array to have the number of elements you intend to get 
@@ -83,6 +43,7 @@ public class LoadGameView {
      * @param inputs
      * @return true if the view should repeat itself, and false if the view should exit and return to the previous view.
      */
+    @Override
     public boolean doAction(String[] inputs) {
 
         //if no input return to main menu
@@ -91,34 +52,15 @@ public class LoadGameView {
             return false;
         }
         loadGame(inputs[0]);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
+        pause(2000);
         return false;
-        //this continues to loop if true or false?
     }
 
-    /**
-     * Control this view's display/prompt/action loop until the user chooses and action that causes this view to close.
-     */
-    public void displayView() {
-
-        boolean keepGoing = true;
-
-        while (keepGoing == true) {
-
-            System.out.println(message);
-            String[] inputs = getInputs();
-            keepGoing = doAction(inputs);
-        }
-    }
-    // First Try
     private void loadGame(String filename) {
         // AM: need to actually call function to load game data from a JSON file.
-        
+
         // AM: for now, just print success to user.
         System.out.print("Loaded game: " + filename + "\n");
-        
+
     }
 }

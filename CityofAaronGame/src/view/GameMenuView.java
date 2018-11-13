@@ -13,19 +13,18 @@ import model.Game;
  *
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class GameMenuView {
-
-    /**
-     * The message that will be displayed by this view.
-     */
-    protected String message;
+public class GameMenuView extends ViewBase {
 
     /**
      * Constructor
      */
     public GameMenuView() {
+        super();
+    }
 
-        message = "\n\n--------------------\n"
+    @Override
+    protected String getMessage() {
+            return "\n\n--------------------\n"
                 + "Game Menu Options\n"
                 + "--------------------\n"
                 + "1 - Show Annual Report\n"
@@ -36,58 +35,14 @@ public class GameMenuView {
                 + "6 - View storehouse\n"
                 + "7 - Save game\n"
                 + "X - Exit to Main Menu\n";
-
     }
 
-    /**
-     * Get the user's input. Keep prompting them until they enter a value.
-     *
-     * @param prompt
-     * @param allowEmpty - determine whether the user can enter no value (just a return key)
-     * @return
-     */
-    protected String getUserInput(String prompt, boolean allowEmpty) {
-
-        Scanner keyboard = new Scanner(System.in);
-        String input = "";
-        boolean inputReceived = false;
-
-        while (inputReceived == false) {
-
-            System.out.println(prompt);
-            input = keyboard.nextLine();
-
-            // Make sure we avoid a null-pointer error.
-            if (input == null) {
-                input = "";
-            }
-
-            // Trim any trailing whitespace, including the carriage return.
-            input = input.trim();
-
-            if (input.equals("") == false || allowEmpty == true) {
-                inputReceived = true;
-            }
-        }
-
-        return input;
-    }
-
-    /**
-     * An overloaded version of getUserInput that sets allowEmpty to false so we don't have to type it ourselves.
-     *
-     * @param prompt
-     * @return
-     */
-    protected String getUserInput(String prompt) {
-        return getUserInput(prompt, false);
-    }
-
+    
     /**
      * Get the set of inputs from the user.
-     *
      * @return
      */
+    @Override
     public String[] getInputs() {
 
         String[] inputs = new String[1];
@@ -102,6 +57,7 @@ public class GameMenuView {
      * @param inputs
      * @return true if the view should repeat itself, and false if the view should exit and return to the previous view.
      */
+    @Override
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
         switch (inputs[0].trim().toUpperCase()) {
@@ -135,38 +91,23 @@ public class GameMenuView {
         return true;
     }
 
-    /**
-     * Control this view's display/prompt/action loop until the user chooses and action that causes this view to close.
-     */
-    public void displayView() {
-
-        boolean keepGoing = true;
-
-        while (keepGoing == true) {
-
-            System.out.println(message);
-            String[] inputs = getInputs();
-            keepGoing = doAction(inputs);
-        }
-    }
-
     private void displayAnnualReport() {
-        AnnualReportView report = new AnnualReportView();
+        View report = new AnnualReportView();
         report.displayView();
     }
 
     private void viewMap() {
-        MapView view = new MapView();
+        View view = new MapView();
         view.displayView();
     }
 
     private void moveLocation() {
-        MoveLocationView view = new MoveLocationView();
+        View view = new MoveLocationView();
         view.displayView();
     }
 
     private void manageCrops() {
-        ManageCropsView crops = new ManageCropsView();
+        View crops = new ManageCropsView();
         crops.displayView();
     }
 
@@ -201,20 +142,17 @@ public class GameMenuView {
                 + "Current population: " + thisReport.getEndingPopulation() + "\n"
         );
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
+        pause(2000);
 
     }
 
     private void viewStorehouse() {
-        StorehouseView storehouse = new StorehouseView();
+        View storehouse = new StorehouseView();
         storehouse.displayView();
     }
 
     private void saveGame() {
-        SaveGameView save = new SaveGameView();
+        View save = new SaveGameView();
         save.displayView();
     }
 

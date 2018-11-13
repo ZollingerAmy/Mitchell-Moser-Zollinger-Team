@@ -11,12 +11,8 @@ import model.Location;
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class MapView {
+public class MapView extends ViewBase {
 
-    /**
-     * The message that will be displayed by this view.
-     */
-    protected String message;
     // get the map from the model;
     Location[][] mapArray = CityOfAaron.getCurrentGame().getTheMap().getLocations();
 
@@ -24,54 +20,16 @@ public class MapView {
      * Constructor
      */
     public MapView() {
-        message = "\nThe City of Aaron is made up of villages, grasslands,"
+        super();
+    }
+
+    @Override
+    protected String getMessage() {
+        String messageMap = "\nThe City of Aaron is made up of villages, grasslands,"
                 + "\nwheat fields, a river, and other beautiful and functional areas."
                 + "\n";
-
-    }
-
-    /**
-     * Get the user's input. Keep prompting them until they enter a value.
-     *
-     * @param prompt
-     * @param allowEmpty - determine whether the user can enter no value (just a return key)
-     * @return
-     */
-    protected String getUserInput(String prompt, boolean allowEmpty) {
-
-        Scanner keyboard = new Scanner(System.in);
-        String input = "";
-        boolean inputReceived = false;
-
-        while (inputReceived == false) {
-
-            System.out.println(prompt);
-            input = keyboard.nextLine();
-
-            // Make sure we avoid a null-pointer error.
-            if (input == null) {
-                input = "";
-            }
-
-            // Trim any trailing whitespace, including the carriage return.
-            input = input.trim();
-
-            if (input.equals("") == false || allowEmpty == true) {
-                inputReceived = true;
-            }
-        }
-
-        return input;
-    }
-
-    /**
-     * An overloaded version of getUserInput that sets allowEmpty to false so we don't have to type it ourselves.
-     *
-     * @param prompt
-     * @return
-     */
-    protected String getUserInput(String prompt) {
-        return getUserInput(prompt, false);
+        messageMap += viewMap(mapArray);
+        return messageMap;
     }
 
     /**
@@ -79,6 +37,7 @@ public class MapView {
      *
      * @return
      */
+    @Override
     public String[] getInputs() {
 
         // Declare the array to have the number of elements we'll get 
@@ -97,13 +56,14 @@ public class MapView {
      * @param inputs
      * @return true if the view should repeat itself, and false if the view should exit and return to the previous view.
      */
+    @Override
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
         // This is a "dispatch" function that decides what
         // other functions to call. You can use an if-, if-else,
         // or switch statement.
         String go = inputs[0].trim().toUpperCase();
-        String first = go.substring(0,1);
+        String first = go.substring(0, 1);
 
         switch (first) {
             case "X":
@@ -128,32 +88,10 @@ public class MapView {
 
         // return false if we want this view to exit and return
         // to the view that called it.
-        try {Thread.sleep(2000);} catch (InterruptedException e) {}
+        pause(2000);
         return true;
     }
 
-    /**
-     * Control this view's display/prompt/action loop until the user chooses an action that causes this view to close.
-     */
-    public void displayView() {
-
-        boolean keepGoing = true;
-
-        while (keepGoing == true) {
-
-            System.out.println(message);
-            // here is where we'll print the WHOLE MAP (using handler??)
-            String printableMap = viewMap(mapArray);
-            System.out.println(printableMap);
-
-            String[] inputs = getInputs();
-            keepGoing = doAction(inputs);
-        }
-    }
-
-    // Define action handlers here. These are the methods that the doAction()
-    // method will call based on the user's input. We don't want to do a lot of 
-    // complex game stuff in our doAction() method. It will get messy very quickly.
     private void viewLocation(Location[][] mapArray, int row, int col) {
         // look up the location with above args
         row--;
@@ -179,11 +117,10 @@ public class MapView {
             }
 
             mapString += "\n###################################################################################################################################";
-            //System.out.println(string)
 
         }
 
-        // add prettiness to string?
+        // add prettiness to string
         mapString += "\n\n";
         return mapString;
     }

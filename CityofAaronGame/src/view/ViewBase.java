@@ -53,15 +53,6 @@ public abstract class ViewBase implements View {
         }
     }
     
-
-
-
-
-
-
-
-
-    
     /**
      * Get the user's input. Keep prompting them until they enter a value.
      * @param prompt

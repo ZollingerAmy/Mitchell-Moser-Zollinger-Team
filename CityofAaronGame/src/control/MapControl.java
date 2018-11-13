@@ -1,10 +1,7 @@
 package control;
 
-import app.CityOfAaron;
 import model.Location;
 import model.Map;
-import model.Point;
-import model.Game;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -101,27 +98,4 @@ public class MapControl extends Map {
         return mainMap;
     }
 
-    public Location moveLocation(Game game, Point newLocation) {
-        //get the map 
-        Map theMap = game.getTheMap();
-        Location[][] theLocations = theMap.getLocations();
-
-        //get the coordinates
-        int row = newLocation.getRow();
-        int col = newLocation.getColumn();
-        
-        //look up the new location details.
-        Location thisLocation = theLocations[row][col];
-
-        // set the new location Map.setCurrentLocation()
-        Point newPoint = new Point();
-        newPoint.setRow(row);
-        newPoint.setColumn(col);
-        theMap.setCurrentLocation(newPoint);
-                
-        
-        // Return location details for display to user.
-        return thisLocation;
-    }
-    
 }

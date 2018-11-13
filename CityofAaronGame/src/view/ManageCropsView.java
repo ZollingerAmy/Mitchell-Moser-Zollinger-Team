@@ -119,10 +119,10 @@ public class ManageCropsView {
                feedPeople();
                 break;
             case "4":
-                acresPlanted();
+                plantCrops();
                 break;
             case "5":
-                tithesPercent();
+                payTithes();
                 break;
             case "X":
                 return false;
@@ -167,12 +167,12 @@ public class ManageCropsView {
        view.displayView();
     }
     
-    private void acresPlanted(){
+    private void plantCrops(){
        PlantCropsView view= new PlantCropsView();
        view.displayView();
     }
     
-    private void tithesPercent(){
+    private void payTithes(){
        PayTithingView view= new PayTithingView();
        view.displayView();
     }   

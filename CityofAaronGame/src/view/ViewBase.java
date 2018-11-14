@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Amy
+ * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public abstract class ViewBase implements View {
     

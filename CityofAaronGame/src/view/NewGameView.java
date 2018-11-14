@@ -13,8 +13,7 @@ import model.Game;
 
 /**
  *
- * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
- */
+@author Amber Mitchell, Teresa Moser, Amy Zollinger */
 public class NewGameView extends ViewBase{
 
     public NewGameView(){

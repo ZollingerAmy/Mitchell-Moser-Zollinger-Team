@@ -16,7 +16,9 @@ public class StartProgramView extends ViewBase{
     }
     /**
      * The message that will be displayed by this view.
+     * @return 
      */
+    @Override
     protected String getMessage() {
 
 

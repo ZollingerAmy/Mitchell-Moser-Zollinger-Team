@@ -7,7 +7,7 @@ package view;
 
 /**
  *
- * @author Amy
+ * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public interface View {
     

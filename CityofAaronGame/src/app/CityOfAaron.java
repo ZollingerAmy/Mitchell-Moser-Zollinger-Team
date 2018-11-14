@@ -11,6 +11,7 @@ package app;
 import model.AnnualReport;
 import model.Game;
 import view.StartProgramView;
+import view.View;
 
 public class CityOfAaron {
 
@@ -38,7 +39,7 @@ public class CityOfAaron {
 
     public static void main(String[] args) {
 
-        StartProgramView startProgramView = new StartProgramView();
+        View startProgramView = new StartProgramView();
         startProgramView.displayView();
 
     }

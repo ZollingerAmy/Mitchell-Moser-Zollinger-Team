@@ -164,7 +164,9 @@ public class MoveLocationView {
         col--;
         Location thisLocation = mapArray[row][col];
 
-        // update current location
+        // update current location, make sure it's actual row/col, not index
+        row++;
+        col++;
         Point point = new Point();
         point.setRow(row);
         point.setColumn(col);

@@ -1,10 +1,7 @@
 package control;
 
-import app.CityOfAaron;
 import model.Location;
 import model.Map;
-import model.Point;
-import model.Game;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -55,7 +52,8 @@ public class MapControl extends Map {
         theVillages.setName("Village");
         theVillages.setDescription("There are four villages in the City of Aaron.");
         theVillages.setMapSymbol("\u04c2");
-        theVillages.setGameTip("When people in our villages are faithful, they are blessed of the Lord.");
+        theVillages.setGameTip("When people in our villages are faithful, they are blessed of the Lord. \n"
+                + "Each of our people can work 10 acres per year.");
         // set the locations in their spots in the 5x5 grid
         allLocations[1][2] = theVillages;
         allLocations[2][1] = theVillages;
@@ -101,27 +99,4 @@ public class MapControl extends Map {
         return mainMap;
     }
 
-    public Location moveLocation(Game game, Point newLocation) {
-        //get the map 
-        Map theMap = game.getTheMap();
-        Location[][] theLocations = theMap.getLocations();
-
-        //get the coordinates
-        int row = newLocation.getRow();
-        int col = newLocation.getColumn();
-        
-        //look up the new location details.
-        Location thisLocation = theLocations[row][col];
-
-        // set the new location Map.setCurrentLocation()
-        Point newPoint = new Point();
-        newPoint.setRow(row);
-        newPoint.setColumn(col);
-        theMap.setCurrentLocation(newPoint);
-                
-        
-        // Return location details for display to user.
-        return thisLocation;
-    }
-    
 }

@@ -75,18 +75,19 @@ public class NewGameView extends ViewBase{
         Game thisGame = CityOfAaron.getCurrentGame();
         AnnualReport thisReport = CityOfAaron.getCurrentReport();
 
-        System.out.println("\nWelcome to the game, " + thisGame.getThePlayer().getName() + "! \n");
-        System.out.println("Year: " + thisGame.getYear() + "\n");
-        System.out.println("Acres of wheat fields: " + thisReport.getEndingAcresOwned() + "\n");
-        System.out.println("Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n");
-        System.out.println("Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n");
-        System.out.println("Bushels paid in tithes and offerings: " + (thisReport.getTithingAmount() * thisReport.getBushelsHarvested())/100 + "\n");
-        System.out.println("Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n");
-        System.out.println("Bushels of wheat in store: " + thisReport.getEndingWheatInStorage() + "\n");
-        System.out.println("People starved: " + thisReport.getPeopleStarved() + "\n");
-        System.out.println("People arrived in city: " + thisReport.getPeopleMovedIn() + "\n");
-        System.out.println("Current population: " + thisReport.getEndingPopulation() + "\n");
-        
+        System.out.println(
+                "\nWelcome to the game, " + thisGame.getThePlayer().getName() + "! \n"
+                + "Year: " + thisGame.getYear() + "\n"
+                + "Acres of wheat fields: " + thisReport.getEndingAcresOwned() + "\n"
+                + "Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n"
+                + "Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n"
+                + "Bushels paid in tithes and offerings: " + thisReport.getTithingAmount() + "\n"
+                + "Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n"
+                + "Bushels of wheat in store: " + thisReport.getEndingWheatInStorage() + "\n"
+                + "People starved: " + thisReport.getPeopleStarved() + "\n"
+                + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
+                + "Current population: " + thisReport.getEndingPopulation() + "\n"
+        );
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

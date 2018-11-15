@@ -94,9 +94,7 @@ public class MapView extends ViewBase {
 
     private void viewLocation(Location[][] mapArray, int row, int col) {
         // look up the location with above args
-        row--;
-        col--;
-        Location thisLocation = mapArray[row][col];
+        Location thisLocation = mapArray[row-1][col-1];
         // print to user
         System.out.println(thisLocation.getMapSymbol() + " " + thisLocation.getName() + "\n"
                 + thisLocation.getDescription() + "\n" + thisLocation.getGameTip());
@@ -104,7 +102,7 @@ public class MapView extends ViewBase {
 
     private String viewMap(Location[][] mapArray) {
 
-// loop through and make it look pretty for the two dimensions
+        // loop through and make it look pretty for the two dimensions
         String mapString = "";
         for (int i = 0; i < mapArray.length; i++) {
             mapString += "\n###################################################################################################################################\n";

@@ -94,13 +94,9 @@ public class MoveLocationView extends ViewBase {
 
     private void moveLocation(Location[][] mapArray, int row, int col) {
         // look up the location with above args
-        row--;
-        col--;
-        Location thisLocation = mapArray[row][col];
+        Location thisLocation = mapArray[row-1][col-1];
 
         // update current location, make sure it's actual row/col, not index
-        row++;
-        col++;
         Point point = new Point();
         point.setRow(row);
         point.setColumn(col);
@@ -113,7 +109,7 @@ public class MoveLocationView extends ViewBase {
 
     private String viewMap(Location[][] mapArray) {
 
-// loop through and make it look pretty for the two dimensions
+        // loop through and make it look pretty for the two dimensions
         String mapString = "";
         for (int i = 0; i < mapArray.length; i++) {
             mapString += "\n###################################################################################################################################\n";

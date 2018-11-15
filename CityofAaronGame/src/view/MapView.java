@@ -88,7 +88,7 @@ public class MapView extends ViewBase {
 
         // return false if we want this view to exit and return
         // to the view that called it.
-        pause(2000);
+        pause(3000);
         return true;
     }
 

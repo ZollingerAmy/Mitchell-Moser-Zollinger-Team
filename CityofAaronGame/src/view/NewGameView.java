@@ -89,7 +89,7 @@ public class NewGameView extends ViewBase {
                 + "Current population: " + thisReport.getEndingPopulation() + "\n"
         );
         
-        pause(2000);
+        pause(3000);
         // now head over to the Game View!
         View gameMenu = new GameMenuView();
         gameMenu.displayView();

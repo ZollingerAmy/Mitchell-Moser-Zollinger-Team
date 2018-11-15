@@ -142,7 +142,7 @@ public class GameMenuView extends ViewBase {
                 + "Current population: " + thisReport.getEndingPopulation() + "\n"
         );
 
-        pause(2000);
+        pause(3000);
 
     }
 

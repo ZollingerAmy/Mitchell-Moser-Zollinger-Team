@@ -50,7 +50,7 @@ public class SaveGameView extends ViewBase {
             return false;
         }
         saveGame(inputs[0]);
-        pause(2000);
+        pause(3000);
         return false;
         //this continues to loop if true or false?
     }

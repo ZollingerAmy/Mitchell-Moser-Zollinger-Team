@@ -79,12 +79,12 @@ public class MoveLocationView extends ViewBase {
                 } catch (NumberFormatException | NullPointerException e) {
                     System.out.println("Please enter a row and column number such as: '2/4'.");
                 }
-                pause(2000);
+                pause(3000);
                 System.out.println("\nMove successful. Returning to Game Menu.");
                 return false;
             default:
                 System.out.println("\nPlease enter a row and column number such as: '2/4'\n or 'X' to exit to Game Menu.");
-                pause(2000);
+                pause(3000);
         }
 
         // return false if we want this view to exit and return

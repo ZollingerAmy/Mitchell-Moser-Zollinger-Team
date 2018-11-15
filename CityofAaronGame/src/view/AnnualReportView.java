@@ -86,7 +86,7 @@ public class AnnualReportView extends ViewBase {
                 + "People starved: " + thisReport.getPeopleStarved() + "\n"
                 + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
                 + "Current population: " + thisReport.getEndingPopulation() + "\n";
-        pause(2000);
+        pause(3000);
         
         return thisString;
     }

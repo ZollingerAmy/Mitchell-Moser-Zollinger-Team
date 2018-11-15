@@ -52,7 +52,7 @@ public class LoadGameView extends ViewBase {
             return false;
         }
         loadGame(inputs[0]);
-        pause(2000);
+        pause(3000);
         return false;
     }
 

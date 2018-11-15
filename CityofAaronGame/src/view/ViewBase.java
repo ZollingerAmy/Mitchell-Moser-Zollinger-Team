@@ -94,11 +94,14 @@ public abstract class ViewBase implements View {
         return getUserInput(prompt, false);
     }
 
-    protected static void pause(int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-        }
-    }
+    protected static void pause(int time) {
+     int i;
 
+      for (i = 0; i < 4; i++) {
+            try {
+                  Thread.sleep(time / 4);
+            } catch (InterruptedException e) {}
+            System.out.print(".");
+      }
+    }
 }

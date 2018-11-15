@@ -62,7 +62,7 @@ public class HelpMenuView extends ViewBase {
             case "4":
             case "5":
                 helpItemMessage(which);
-                pause(2000);
+                pause(3000);
 
                 break;
             case "X":

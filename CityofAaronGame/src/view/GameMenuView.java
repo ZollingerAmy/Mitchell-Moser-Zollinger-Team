@@ -17,6 +17,7 @@ public class GameMenuView extends ViewBase {
 
     /**
      * Constructor
+     *  @return
      */
     public GameMenuView() {
         super();

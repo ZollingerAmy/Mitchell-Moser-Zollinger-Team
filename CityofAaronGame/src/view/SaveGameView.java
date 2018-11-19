@@ -1,6 +1,6 @@
 package view;
 
-import java.util.Scanner;
+
 
 /**
  *
@@ -19,7 +19,7 @@ public class SaveGameView extends ViewBase {
         return "Save your current game.\n";
     }
 
-    /**
+       /**
      * Get the set of inputs from the user.
      * @return
      */
@@ -52,7 +52,7 @@ public class SaveGameView extends ViewBase {
         saveGame(inputs[0]);
         pause(3000);
         return false;
-        //this continues to loop if true or false?
+        
     }
 
     private void saveGame(String filename) {

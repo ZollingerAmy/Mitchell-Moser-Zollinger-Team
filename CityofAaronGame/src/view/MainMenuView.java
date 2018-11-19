@@ -8,12 +8,13 @@ import java.util.Scanner;
 
 /**
  *
- * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
+ * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class MainMenuView extends ViewBase {
 
     /**
      * Constructor
+     * @return 
      */
     public MainMenuView() {
         super();

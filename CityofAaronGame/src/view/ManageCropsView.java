@@ -2,8 +2,8 @@
  * Manage Crops View 
  */
 package view;
-import java.util.Scanner;
 
+import java.util.Scanner;
 
 /**
  *
@@ -33,20 +33,20 @@ public class ManageCropsView extends ViewBase {
     
     /**
      * Get the set of inputs from the user.
-     * @return 
+     *
+     * @return
      */
     @Override
     public String[] getInputs() {
-        
+
         // Declare the array to have the number of elements you intend to get 
         // from the user.
         String[] inputs = new String[1];
-        
+
         inputs[0] = getUserInput("Choose the number of the next action you want to"
                 + " take from the Menu.");
-        
+
         // Repeat for each input you need, putting it into its proper slot in the array.
-        
         return inputs;
     }  
     /**
@@ -61,11 +61,10 @@ public class ManageCropsView extends ViewBase {
         // This is a "dispatch" function that decides what
         // other functions to call. You can use an if-, if-else,
         // or switch statement.
-        
+
         // return false if you want this view to exit and return
         // to the view that called it.
-        
-        switch(inputs[0].trim().toUpperCase()){
+        switch (inputs[0].trim().toUpperCase()) {
             case "1":
                 buyLand();
                 break;
@@ -73,7 +72,7 @@ public class ManageCropsView extends ViewBase {
                 sellLand();
                 break;
             case "3":
-               feedPeople();
+                feedPeople();
                 break;
             case "4":
                 plantCrops();
@@ -84,7 +83,7 @@ public class ManageCropsView extends ViewBase {
             case "X":
                 return false;
         }
-      return true;
+        return true;
     }
   
     private void buyLand(){

@@ -1,6 +1,6 @@
 package view;
 
-import java.util.Scanner;
+
 
 /**
  *
@@ -20,7 +20,7 @@ public class LoadGameView extends ViewBase {
         return "Load a saved game.\n";
     }
 
-    /**
+       /**
      * Get the set of inputs from the user.
      *
      * @return

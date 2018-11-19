@@ -10,14 +10,13 @@ import java.util.Scanner;
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class ManageCropsView extends ViewBase {
-
+      
     /**
      * Constructor
      */
-    public ManageCropsView() {
-
+    public ManageCropsView(){
+        super();
     }
-
     @Override
     protected String getMessage() {
         return "\n\n--------------------\n"
@@ -28,9 +27,10 @@ public class ManageCropsView extends ViewBase {
                 + "3 - Feed your People\n"
                 + "4 - Plant Crops \n"
                 + "5 - Pay Tithes and Offereings \n"
-                + "X - Return to the Game Menu \n";
+                + "X - Return to the Game Menu \n";               
+        
     }
-
+    
     /**
      * Get the set of inputs from the user.
      *
@@ -48,10 +48,15 @@ public class ManageCropsView extends ViewBase {
 
         // Repeat for each input you need, putting it into its proper slot in the array.
         return inputs;
-    }
-
+    }  
+    /**
+     * Perform the action indicated by the user's input.
+     * @param inputs
+     * @return true if the view should repeat itself, and false if the view
+     * should exit and return to the previous view.
+     */
     @Override
-    public boolean doAction(String[] inputs) {
+    public boolean doAction(String[] inputs){
         // Act on the user's input.
         // This is a "dispatch" function that decides what
         // other functions to call. You can use an if-, if-else,
@@ -80,33 +85,30 @@ public class ManageCropsView extends ViewBase {
         }
         return true;
     }
-
-    // Define your action handlers here. These are the methods that your doAction()
-    // method will call based on the user's input. We don't want to do a lot of 
-    // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void buyLand() {
-        BuyLandView view = new BuyLandView();
-        view.displayView();
+  
+    private void buyLand(){
+       View view = new BuyLandView();
+       view.displayView();
     }
-
-    private void sellLand() {
-        SellLandView view = new SellLandView();
-        view.displayView();
+    
+    private void sellLand(){
+       View view = new SellLandView();
+       view.displayView();
     }
-
-    private void feedPeople() {
-        FeedPeopleView view = new FeedPeopleView();
-        view.displayView();
+    
+    private void feedPeople(){
+       View view = new FeedPeopleView();
+       view.displayView();
     }
-
-    private void plantCrops() {
-        PlantCropsView view = new PlantCropsView();
-        view.displayView();
+    
+    private void plantCrops(){
+       View view= new PlantCropsView();
+       view.displayView();
     }
-
-    private void payTithes() {
-        PayTithingView view = new PayTithingView();
-        view.displayView();
-    }
-
+    
+    private void payTithes(){
+       View view= new PayTithingView();
+       view.displayView();
+    }   
+    
 }

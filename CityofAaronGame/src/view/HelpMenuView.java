@@ -9,18 +9,17 @@ package view;
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class HelpMenuView extends ViewBase{
+public class HelpMenuView extends ViewBase {
 
-    public HelpMenuView(){
+    /**
+     * Constructor
+     */
+    public HelpMenuView() {
         super();
     }
-    /*
-    Constructor
-    @return
-    */
+
     @Override
     protected String getMessage() {
-
         return "\n\n--------------------\n"
                 + "Help Menu\n"
                 + "--------------------\n"
@@ -30,12 +29,10 @@ public class HelpMenuView extends ViewBase{
                 + "4 - How to move to another location\n"
                 + "5 - How to display items in storehouse\n"
                 + "X - Exit to the Main Menu\n";
-
+        
     }
-
-        /**
+    /**
      * Get the set of inputs from the user.
-     *
      * @return
      */
     @Override
@@ -65,10 +62,7 @@ public class HelpMenuView extends ViewBase{
             case "4":
             case "5":
                 helpItemMessage(which);
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException exception) {
-                }
+                pause(3000);
 
                 break;
             case "X":
@@ -77,11 +71,6 @@ public class HelpMenuView extends ViewBase{
         return true;
     }
 
- 
-
-    // Define action handlers here. These are the methods that doAction()
-    // method will call based on the user's input. We don't want to do a lot of 
-    // complex game stuff in our doAction() method. It will get messy very quickly.
     private void helpItemMessage(String which) {
         switch (which) {
             case "1":

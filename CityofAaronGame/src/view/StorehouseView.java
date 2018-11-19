@@ -14,16 +14,11 @@ public class StorehouseView extends ViewBase {
     /**
      * Constructor
      */
-    public StorehouseView() {
-        super();
-    }
+    public StorehouseView(){
+    } 
 
-    /**
-     * The message that will be displayed by this view.
-     */
     @Override
     protected String getMessage() {
-
         return "\n\n--------------------\n"
                 + "The Storehouse\n"
                 + "--------------------\n"
@@ -34,7 +29,7 @@ public class StorehouseView extends ViewBase {
                 + "X - Return to the Game Menu\n";
     }
 
-    /**
+     /**
      * Get the set of inputs from the user.
      *
      * @return
@@ -60,10 +55,8 @@ public class StorehouseView extends ViewBase {
      * @return true if the view should repeat itself, and false if the view
      * should exit and return to the previous view.
      */
-    
-    
     @Override
-    public boolean doAction(String[] inputs) {
+    public boolean doAction(String[] inputs){
         // Act on the user's input.
         // This is a "dispatch" function that decides what
         // other functions to call. You can use an if-, if-else,
@@ -86,14 +79,12 @@ public class StorehouseView extends ViewBase {
             case "X":
                 return false;
         }
-        return true;
+      return true;
     }
-
-    // Define your action handlers here. These are the methods that your doAction()
-    // method will call based on the user's input. We don't want to do a lot of 
-    // complex game stuff in our doAction() method. It will get messy very quickly.
-    private void animals() {
-        System.out.println("***Animal Reports coming soon. Please choose a different option");
+    
+    
+     private void animals(){
+         System.out.println("***Animal Reports coming soon. Please choose a different option");
     }
 
     private void tools() {

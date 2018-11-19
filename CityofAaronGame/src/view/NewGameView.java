@@ -13,22 +13,26 @@ import model.Game;
 
 /**
  *
-@author Amber Mitchell, Teresa Moser, Amy Zollinger */
-public class NewGameView extends ViewBase{
+ * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
+ */
+public class NewGameView extends ViewBase {
 
-    public NewGameView(){
+    /**
+     * Constructor
+     */
+    public NewGameView() {
         super();
     }
-    
+
     @Override
     protected String getMessage() {
-
-        return "\n\nLet's get to playing!\n\n";
+                    return "\n\nLet's get to playing!\n\n";
+        
     }
+            
 
-        /**
+    /**
      * Get the set of inputs from the user.
-     *
      * @return
      */
     @Override
@@ -64,10 +68,6 @@ public class NewGameView extends ViewBase{
         return false;
     }
 
-   
-    // Define action handlers here. These are the methods that doAction()
-    // method will call based on the user's input. We don't want to do a lot of 
-    // complex game stuff in our doAction() method. It will get messy very quickly.
     private void createAndStartGame(String playerName) {
 
         GameControl.createNewGame(playerName);
@@ -88,11 +88,8 @@ public class NewGameView extends ViewBase{
                 + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
                 + "Current population: " + thisReport.getEndingPopulation() + "\n"
         );
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
-
+        
+        pause(3000);
         // now head over to the Game View!
         View gameMenu = new GameMenuView();
         gameMenu.displayView();

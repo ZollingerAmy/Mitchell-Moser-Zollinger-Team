@@ -13,22 +13,19 @@ import model.Game;
  *
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-
-public class GameMenuView extends ViewBase{
-    
-    public GameMenuView(){
-        super();
-    }
+public class GameMenuView extends ViewBase {
 
     /**
      * Constructor
      *  @return
      */
+    public GameMenuView() {
+        super();
+    }
 
     @Override
     protected String getMessage() {
-        return "\n\n--------------------\n"
-
+            return "\n\n--------------------\n"
                 + "Game Menu Options\n"
                 + "--------------------\n"
                 + "1 - Show Annual Report\n"
@@ -39,13 +36,11 @@ public class GameMenuView extends ViewBase{
                 + "6 - View storehouse\n"
                 + "7 - Save game\n"
                 + "X - Exit to Main Menu\n";
-
     }
 
-  
+    
     /**
      * Get the set of inputs from the user.
-     *
      * @return
      */
     @Override
@@ -97,25 +92,23 @@ public class GameMenuView extends ViewBase{
         return true;
     }
 
-    
-
     private void displayAnnualReport() {
-        AnnualReportView report = new AnnualReportView();
+        View report = new AnnualReportView();
         report.displayView();
     }
 
     private void viewMap() {
-        MapView view = new MapView();
+        View view = new MapView();
         view.displayView();
     }
 
     private void moveLocation() {
-        MoveLocationView view = new MoveLocationView();
+        View view = new MoveLocationView();
         view.displayView();
     }
 
     private void manageCrops() {
-        ManageCropsView crops = new ManageCropsView();
+        View crops = new ManageCropsView();
         crops.displayView();
     }
 
@@ -150,15 +143,12 @@ public class GameMenuView extends ViewBase{
                 + "Current population: " + thisReport.getEndingPopulation() + "\n"
         );
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
+        pause(3000);
 
     }
 
     private void viewStorehouse() {
-        StorehouseView storehouse = new StorehouseView();
+        View storehouse = new StorehouseView();
         storehouse.displayView();
     }
 

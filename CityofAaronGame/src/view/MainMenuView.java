@@ -10,20 +10,19 @@ import java.util.Scanner;
  *
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class MainMenuView extends ViewBase{
-
-    public MainMenuView(){
-        super();
-    }
-    
+public class MainMenuView extends ViewBase {
 
     /**
      * Constructor
      * @return 
      */
+    public MainMenuView() {
+        super();
+    }
+
     @Override
     protected String getMessage() {
-        return "\n\n--------------------\n"
+                return "\n\n--------------------\n"
                 + "Main Menu\n"
                 + "--------------------\n"
                 + "N - Start new game\n"
@@ -31,13 +30,10 @@ public class MainMenuView extends ViewBase{
                 + "H - Help menu\n"
                 + "Q - Quit game\n"
                 + "\n";
-
     }
 
-    
     /**
      * Get the set of inputs from the user.
-     *
      * @return
      */
     @Override
@@ -76,17 +72,13 @@ public class MainMenuView extends ViewBase{
         return true;
     }
 
-   
-    // Define action handlers here. These are the methods that doAction()
-    // method will call based on the user's input. We don't want to do a lot of 
-    // complex game stuff in our doAction() method. It will get messy very quickly.
     private void startNewGame() {
-        NewGameView view = new NewGameView();
+        View view = new NewGameView();
         view.displayView();
     }
 
     private void helpMenu() {
-        HelpMenuView help = new HelpMenuView();
+        View help = new HelpMenuView();
         help.displayView();
     }
 

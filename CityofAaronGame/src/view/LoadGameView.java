@@ -8,10 +8,13 @@ package view;
  */
 public class LoadGameView extends ViewBase {
 
-    public LoadGameView(){
+    /**
+     * Constructor
+     */
+    public LoadGameView() {
         super();
     }
-    
+
     @Override
     protected String getMessage() {
         return "Load a saved game.\n";
@@ -49,20 +52,15 @@ public class LoadGameView extends ViewBase {
             return false;
         }
         loadGame(inputs[0]);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
+        pause(3000);
         return false;
-        //this continues to loop if true or false?
     }
 
-   
     private void loadGame(String filename) {
         // AM: need to actually call function to load game data from a JSON file.
-        
+
         // AM: for now, just print success to user.
         System.out.print("Loaded game: " + filename + "\n");
-        
+
     }
 }

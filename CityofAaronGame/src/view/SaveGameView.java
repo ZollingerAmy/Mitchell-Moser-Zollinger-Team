@@ -6,20 +6,21 @@ package view;
  *
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class SaveGameView extends ViewBase{
+public class SaveGameView extends ViewBase {
 
-    public SaveGameView(){
+    /**
+     * Constructor
+     */
+    public SaveGameView() {
         super();
     }
-    
-    @Override
+        @Override
     protected String getMessage() {
         return "Save your current game.\n";
     }
 
        /**
      * Get the set of inputs from the user.
-     *
      * @return
      */
     @Override
@@ -49,18 +50,11 @@ public class SaveGameView extends ViewBase{
             return false;
         }
         saveGame(inputs[0]);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
+        pause(3000);
         return false;
         
     }
 
-    /**
-     * Control this view's display/prompt/action loop until the user chooses and action that causes this view to close.
-     */
-    
     private void saveGame(String filename) {
         // AM: need to actually call function to save game data to JSON.
         

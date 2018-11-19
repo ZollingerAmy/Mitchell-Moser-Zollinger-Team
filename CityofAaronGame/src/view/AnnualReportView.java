@@ -62,7 +62,6 @@ public class AnnualReportView extends ViewBase {
         // other functions to call. You can use an if-, if-else,
         // or switch statement.
         
-
         // return false if we want this view to exit and return
         // to the view that called it.
         return false;
@@ -86,7 +85,6 @@ public class AnnualReportView extends ViewBase {
                 + "People starved: " + thisReport.getPeopleStarved() + "\n"
                 + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
                 + "Current population: " + thisReport.getEndingPopulation() + "\n";
-        pause(3000);
         
         return thisString;
     }

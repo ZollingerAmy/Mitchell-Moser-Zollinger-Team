@@ -1,5 +1,7 @@
 package control;
 
+import model.Storehouse;
+
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
@@ -43,7 +45,23 @@ public class WheatControl {
         WheatControl.tithingPercentToPay = tithingPercentToPay;
     }
 
-//AMBER
+    public static void sortStorehouse(Storehouse storehouse) {
+        // work on this
+//        for (int i=0; i < items.length-1; i++) {
+//            
+//            for (int j=i+1; j < items.length; j++) {
+//                
+//                // If items[i] > items[j] then swap them
+//                if (items[i].getDescription().compareTo( items[j].getDescription() ) >0) {
+//                    Item temp = items[i];
+//                    items[i] = items[j];
+//                    items[j] = temp;
+//                }
+//            }
+//        }
+    }
+
+    //AMBER
     public static int calcLossToRobbers(int tithesPercent, int wheatInStorage) {
         // Calculate the amount of wheat in storage lost to robbers, based on
         // the percentage of tithing paid. Assume that GameControl.getRandomNumber(low, high) is available to be called.
@@ -84,7 +102,7 @@ public class WheatControl {
 
     }
     
-// Teresa
+    // Teresa
     public static int calcHarvest (int perAcre, int acresPlanted){
         // Calculate the amount of wheat harvested, based on the percentage
         // of tithing paid. This is meant to be returned to the Annual Report harvest number

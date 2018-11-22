@@ -13,6 +13,10 @@ import model.Map;
 import model.Player;
 import model.Provision;
 import model.Storehouse;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -20,6 +24,7 @@ import model.Storehouse;
 public class GameControl {
 
     private static Random randomGenerator = new Random();
+    private static String filepath = "";
 
     public static Game createNewGame(String thePlayer) {
         // set our player
@@ -37,7 +42,6 @@ public class GameControl {
         theGame.setWheatInStorage(3000);
         theGame.setYear(1);
 
-        
         //
         // AM: fill up the Annual Report for use in the Game Menu
         //
@@ -53,7 +57,7 @@ public class GameControl {
         report.setEndingWheatInStorage(theGame.getWheatInStorage());
         report.setEndingPopulation(theGame.getCurrentPopulation());
         report.setEndingAcresOwned(theGame.getAcresOwned());
-        
+
         // create the map (call MapControl)
         Map thisMap = new Map();
         thisMap = MapControl.createMap(thisMap);
@@ -102,13 +106,8 @@ public class GameControl {
 //        
 //        // set up a tool (one for now!)
         ArrayList<InventoryItem> tools = theStorehouse.getTools(); // this is for the Storehouse class
-        InventoryItem tool = new InventoryItem(); // this is for the InventoryItem class
-        tool.setName("Shovel"); // InventoryItem class...
-        tool.setType(ItemType.Tool); // InventoryItem class...
-        tool.setQuantity(26); // InventoryItem class...
-        tool.setCondition(Condition.Good); // InventoryItem class...
+        InventoryItem tool = new InventoryItem("Shovel", ItemType.Tool, 26, Condition.Good);
         tools.add(tool); // now add it to the Storehouse!
-
 
         // now save all this to the app so it's easy to get in other places!
         CityOfAaron.setCurrentGame(theGame);
@@ -117,18 +116,45 @@ public class GameControl {
         // set a year-2 land price
         LandControl.setCurrentLandPrice();
 
-        
         return theGame;
     }
 
-    public static Game loadGameFromFile(String filename) {
-        Game game = new Game();
-        return game;
-    }
-    
-    public static void saveGameToFile(String filename) {
+    public static boolean loadGameFromFile(String filename) {
+        boolean worked = false;
+        String filepathA = filepath + filename + ".txt";
+        Object obj;
+        Object obj2;
+        try (FileInputStream fi = new FileInputStream(filepathA); ObjectInputStream oi = new ObjectInputStream(fi)) {
+            obj = oi.readObject();
+            obj2 = oi.readObject();
+            Game game = (Game) obj;
+            AnnualReport report = (AnnualReport) obj2;
+            CityOfAaron.setCurrentGame(game);
+            CityOfAaron.setCurrentReport(report);
+            worked = true;
+            return worked;
+        } catch (Exception e) {
+            return worked;
+        }
+
     }
 
+    public static void saveGameToFile(String filename, Game game, AnnualReport report) {
+        try {
+            // make the game a regular object
+            Object obj = (Object) game;
+            Object obj2 = (Object) report;
+            String filepathB = filepath + filename + ".txt";
+            FileOutputStream f = new FileOutputStream(filepathB);
+            ObjectOutputStream o = new ObjectOutputStream(f);
+            o.writeObject(obj);
+            o.writeObject(obj2);
+            o.close();
+            f.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static boolean gameShouldEnd(Game game, int PreviousPopulation) {
         boolean ended = false;
@@ -142,8 +168,7 @@ public class GameControl {
         double rating = 0;
         return rating;
     }
-    
-    
+
     /**
      * Process the current year's results and update the Game Object.
      *
@@ -163,7 +188,7 @@ public class GameControl {
         }
 
         AnnualReport report = new AnnualReport();
-        
+
         // first, let's get the current land price (random number generated in LandControl
         report.setLandPrice(LandControl.getCurrentLandPrice());
         // next get the current total of wheat bushels in storage
@@ -201,7 +226,6 @@ public class GameControl {
         return report;
     }
 
-
     /**
      * Generates a random integer between lowValue and highValue, inclusive.
      * <ul>Requirements:
@@ -214,7 +238,6 @@ public class GameControl {
      * @param highValue
      * @return The random number
      */
-
     public static int getRandomNumber(int lowValue, int highValue) {
         // if low < 0 or high < 0 then return -1
         if (lowValue < 0 || highValue < 0) {

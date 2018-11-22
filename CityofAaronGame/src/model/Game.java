@@ -22,6 +22,16 @@ public class Game implements Serializable {
         // Empty constructor for bean
     }
 
+    public Game(Game game) {
+        setThePlayer(game.getThePlayer());
+        setTheMap(game.getTheMap());
+        setTheStorehouse(game.getTheStorehouse());
+        setCurrentPopulation(game.getCurrentPopulation());
+        setAcresOwned(game.getAcresOwned());
+        setWheatInStorage(game.getWheatInStorage());
+        setYear(game.getYear());
+    }
+
     public Player getThePlayer() {
         return thePlayer;
     }

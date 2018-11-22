@@ -1,5 +1,10 @@
 package view;
 
+import app.CityOfAaron;
+import control.GameControl;
+import model.AnnualReport;
+import model.Game;
+
 
 
 /**
@@ -56,10 +61,13 @@ public class SaveGameView extends ViewBase {
     }
 
     private void saveGame(String filename) {
-        // AM: need to actually call function to save game data to JSON.
-        
-        // AM: for now, just print success to user.
-        System.out.print("Saved game: " + filename + "\n");
+        // AM: need to actually call function to save game data to file.
+        Game game = CityOfAaron.getCurrentGame();
+        AnnualReport report = CityOfAaron.getCurrentReport();
+        GameControl.saveGameToFile(filename, game, report);
+
+        // AM: print success to user.
+        System.out.print("Game saved: " + filename + "\n");
         
     }
 }

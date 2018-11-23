@@ -1,4 +1,7 @@
 package control;
+
+import app.CityOfAaron;
+
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
@@ -26,9 +29,9 @@ public class PeopleControl {
     
 }
     public static int calculateNewMoveIns(int currentPopulation) {
-        int peopleMovedIn = 0;
-        
-        // AM: need calcuations here!!!
+        int peopleMovedIn;
+        int rand = GameControl.getRandomNumber(1,5);
+        peopleMovedIn = currentPopulation * rand / 100;
         
         return peopleMovedIn;
     }

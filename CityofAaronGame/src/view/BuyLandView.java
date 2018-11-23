@@ -9,18 +9,19 @@
 // DURING LIVE THE YEAR >>>
 //Add the number of acres purchased to the acres owned
 //Subtract the wheat used to purchase the land from the wheat in storage
-
  */
 package view;
 
+import app.CityOfAaron;
 import control.LandControl;
-import java.util.Scanner;
 
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class BuyLandView extends ViewBase {
+
+    int currentPrice = LandControl.getUpcomingLandPrice();
 
     /**
      * Constructor
@@ -31,8 +32,9 @@ public class BuyLandView extends ViewBase {
 
     @Override
     protected String getMessage() {
+
         return "\n\nBuy Land\n"
-                + "\n";
+                + "Current Price per Acre: $" + currentPrice + "\n";
     }
 
     /**
@@ -47,7 +49,7 @@ public class BuyLandView extends ViewBase {
         // from the user.
         String[] inputs = new String[1];
 
-        inputs[0] = getUserInput("How much land would you like to buy?");
+        inputs[0] = getUserInput("How many acres of land would you like to buy?");
 
         // Repeat for each input we need, putting it into its proper slot in the array.
         return inputs;
@@ -65,7 +67,19 @@ public class BuyLandView extends ViewBase {
         // Validate input, use Try/Catch
         try {
             int acresToBuy = Integer.parseInt(inputs[0].trim());
-            buyLand(acresToBuy);
+            int cost = acresToBuy * currentPrice;
+            int wheat = CityOfAaron.getCurrentGame().getWheatInStorage();
+            if (acresToBuy < 0) {
+                System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+            } else if (cost > wheat) {
+                System.out.println("You don't have enough wheat to buy that much land!\n"
+                        + "You have " + wheat + " in storage.\n"
+                        + "Please enter a valid number of acres to buy at the current price of $" + currentPrice + " per acre."
+                );
+                return true;
+            } else {
+                buyLand(acresToBuy);
+            }
         } catch (NumberFormatException | NullPointerException e) {
             System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
@@ -79,5 +93,6 @@ public class BuyLandView extends ViewBase {
 
     private void buyLand(int acresToBuy) {
         LandControl.setLandToBuy(acresToBuy);
+        System.out.println("Success! You will add " + acresToBuy + " to your acreage when you live the year.");
     }
 }

@@ -16,8 +16,9 @@
  */
 package view;
 
+import app.CityOfAaron;
+import control.LandControl;
 import control.WheatControl;
-import java.util.Scanner;
 
 /**
  *
@@ -70,7 +71,35 @@ public class PlantCropsView extends ViewBase {
         // AM: remember that we have to have that many acres, and we have to have the people to work it
         try {
             int acresToPlant = Integer.parseInt(inputs[0].trim());
-            plantCrops(acresToPlant);
+            int land = CityOfAaron.getCurrentGame().getAcresOwned();
+            int acresToBuyNext = LandControl.getLandToBuy();
+            int wheat = CityOfAaron.getCurrentGame().getWheatInStorage();
+            int people = CityOfAaron.getCurrentGame().getCurrentPopulation();
+            int totalLand = land + acresToBuyNext;
+
+            if (acresToPlant < 0) {
+                System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+            } else if (acresToPlant > totalLand) {
+                System.out.println("You don't own that much land!\n"
+                        + "You have " + land + " acres of wheat fields.\n"
+                        + "Please enter a valid number of acres to plant."
+                );
+                return true;
+            } else if ((acresToPlant/2) > wheat) {
+                System.out.println("You don't have enough wheat in storage to plant that much acreage!\n"
+                        + "It takes a bushel of wheat to plant two acres.\n"
+                        + "Please enter a valid number of acres to plant."
+                );
+                return true;
+            } else if ((acresToPlant/10) > people) {
+                System.out.println("You don't have enough people to tend that much land!\n"
+                        + "One person can tend 10 acres of wheat and you have " + people + " people.\n"
+                        + "Please enter a valid number of acres to plant."
+                );
+                return true;
+            } else {
+                plantCrops(acresToPlant);
+            }
         } catch (NumberFormatException | NullPointerException e) {
             System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
@@ -84,5 +113,6 @@ public class PlantCropsView extends ViewBase {
 
     private void plantCrops(int acresToPlant) {
         WheatControl.setAcresToPlant(acresToPlant);
+        System.out.println("Success! You will plant " + acresToPlant + " acres when you live the year.");
     }
 }

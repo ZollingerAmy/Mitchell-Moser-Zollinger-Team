@@ -1,22 +1,36 @@
 package model;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-public class Storehouse implements Serializable{
+public class Storehouse implements Serializable {
+
     private Author[] authors = new Author[3];
     private ArrayList<Animal> animals = new ArrayList<>();
     private ArrayList<InventoryItem> tools = new ArrayList<>();
     private ArrayList<Provision> provisions = new ArrayList<>();
-    
-       public Storehouse(){
+
+    public Storehouse() {
         // Empty constructor for bean
+    }
+    
+    public Storehouse(Author[] aAuthors, ArrayList<Animal> aAnimals, ArrayList<InventoryItem> aTools, ArrayList<Provision> aProvisions) {
+        setAuthors(aAuthors);
+        setAnimals(aAnimals);
+        setTools(aTools);
+        setProvisions(aProvisions);
     }
 
     public Author[] getAuthors() {
         return authors;
+    }
+    
+    public void setAuthors(Author[] authors) {
+        this.authors = authors;
     }
 
     public ArrayList<Animal> getAnimals() {
@@ -43,13 +57,12 @@ public class Storehouse implements Serializable{
         this.provisions = provisions;
     }
 
-
     // toString method
     @Override
     public String toString() {
-        return "Storehouse{\n" 
+        return "Storehouse{\n"
                 + Author.Amber.toString()
-                + "\nAnimals: " + animals 
+                + "\nAnimals: " + animals
                 + "\nProvisions: " + provisions
                 + "\nTools: " + tools
                 + "\n}";

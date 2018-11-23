@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This model holds the in-between stuff that tells us what happened just in the previous round
  */
 package model;
 
@@ -9,13 +7,8 @@ import java.io.Serializable;
 
 public class AnnualReport implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
-    private int endingWheatInStorage;
-    private int endingPopulation;
-    private int endingAcresOwned;
-
     private int landPrice;
+    private int acresPlanted;
     private int bushelsHarvested;
     private int bushelsPerAcre;
 
@@ -27,28 +20,15 @@ public class AnnualReport implements Serializable {
     public AnnualReport() {
     }
 
-    public int getEndingWheatInStorage() {
-        return endingWheatInStorage;
-    }
-
-    public void setEndingWheatInStorage(int endingWheatInStorage) {
-        this.endingWheatInStorage = endingWheatInStorage;
-    }
-
-    public int getEndingPopulation() {
-        return endingPopulation;
-    }
-
-    public void setEndingPopulation(int endingPopulation) {
-        this.endingPopulation = endingPopulation;
-    }
-
-    public int getEndingAcresOwned() {
-        return endingAcresOwned;
-    }
-
-    public void setEndingAcresOwned(int endingAcresOwned) {
-        this.endingAcresOwned = endingAcresOwned;
+    public AnnualReport(int aLandPrice, int aAcresPlanted, int aBushelsHarvested, int aBushelsPerAcre, int aTithingAmount, int aLostToRobbers, int aPeopleStarved, int aPeopleMovedIn) {
+        setLandPrice(aLandPrice);
+        setAcresPlanted(aAcresPlanted);
+        setBushelsHarvested(aBushelsHarvested);
+        setBushelsPerAcre(aBushelsPerAcre);
+        setTithingAmount(aTithingAmount);
+        setLostToRobbers(aLostToRobbers);
+        setPeopleStarved(aPeopleStarved);
+        setPeopleMovedIn(aPeopleMovedIn);
     }
 
     public int getLandPrice() {
@@ -57,6 +37,14 @@ public class AnnualReport implements Serializable {
 
     public void setLandPrice(int landPrice) {
         this.landPrice = landPrice;
+    }
+
+    public int getAcresPlanted() {
+        return acresPlanted;
+    }
+
+    public void setAcresPlanted(int acresPlanted) {
+        this.acresPlanted = acresPlanted;
     }
 
     public int getBushelsHarvested() {

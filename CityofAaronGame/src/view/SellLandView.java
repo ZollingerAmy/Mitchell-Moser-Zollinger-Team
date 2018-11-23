@@ -13,6 +13,7 @@
  */
 package view;
 
+import app.CityOfAaron;
 import control.LandControl;
 import java.util.Scanner;
 
@@ -21,6 +22,8 @@ import java.util.Scanner;
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class SellLandView extends ViewBase {
+
+    int currentPrice = LandControl.getUpcomingLandPrice();
 
     /**
      * Constructor
@@ -32,7 +35,7 @@ public class SellLandView extends ViewBase {
     @Override
     protected String getMessage() {
         return "\n\nSell Land\n"
-                + "\n";
+                + "Current Price per Acre: $" + currentPrice + "\n";
     }
 
     /**
@@ -47,7 +50,7 @@ public class SellLandView extends ViewBase {
         // from the user.
         String[] inputs = new String[1];
 
-        inputs[0] = getUserInput("How much land would you like to sell?");
+        inputs[0] = getUserInput("How many acres of land would you like to sell?");
 
         // Repeat for each input we need, putting it into its proper slot in the array.
         return inputs;
@@ -65,7 +68,18 @@ public class SellLandView extends ViewBase {
         // Validate input, use Try/Catch
         try {
             int acresToSell = Integer.parseInt(inputs[0].trim());
-            sellLand(acresToSell);
+            int land = CityOfAaron.getCurrentGame().getAcresOwned();
+            if (acresToSell < 0) {
+                System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+            } else if (acresToSell > land) {
+                System.out.println("You don't have enough land to sell that much!\n"
+                        + "You have " + land + " acres of land.\n"
+                        + "Please enter a valid number of acres to sell."
+                );
+                return true;
+            } else {
+                sellLand(acresToSell);
+            }
         } catch (NumberFormatException | NullPointerException e) {
             System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
@@ -79,5 +93,9 @@ public class SellLandView extends ViewBase {
 
     private void sellLand(int acresToSell) {
         LandControl.setLandToSell(acresToSell);
+        int income = acresToSell * currentPrice;
+        System.out.println("Success! You will sell " + acresToSell + " from your acreage when you live the year.\n"
+                + "This will profit you " + income + " bushels of wheat."
+        );
     }
 }

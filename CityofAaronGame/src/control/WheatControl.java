@@ -8,10 +8,10 @@ import model.Storehouse;
 public class WheatControl {
     // here we store all the upcoming data from user inputs (mostly from ManageCropsView) - GOES WITH LANDCONTROL
 
-    private static int bushelsToFeedPeople;
-    private static int wheatToPlant;
-    private static int acresToPlant;
-    private static int tithingPercentToPay;
+    private static int bushelsToFeedPeople = 0;
+    private static int wheatToPlant = 0;
+    private static int acresToPlant = 0;
+    private static int tithingPercentToPay = 0;
 
     public static int getBushelsToFeedPeople() {
         return bushelsToFeedPeople;

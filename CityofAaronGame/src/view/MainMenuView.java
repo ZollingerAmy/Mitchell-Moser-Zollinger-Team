@@ -83,6 +83,7 @@ public class MainMenuView extends ViewBase {
     }
 
     private void loadSavedGame() {
-        System.out.println("***Saved game coming soon. Please choose a different option");//AZ
+        View view = new LoadGameView();
+        view.displayView();
     }
 }

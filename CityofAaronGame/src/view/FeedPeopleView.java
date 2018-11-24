@@ -12,6 +12,7 @@
  */
 package view;
 
+import app.CityOfAaron;
 import control.WheatControl;
 import java.util.Scanner;
 
@@ -65,7 +66,20 @@ public class FeedPeopleView extends ViewBase {
         // Validate input, use Try/Catch
         try {
             int bushelsToFeedPeople = Integer.parseInt(inputs[0].trim());
-            feedPeople(bushelsToFeedPeople);
+            int wheat = CityOfAaron.getCurrentGame().getWheatInStorage();
+            
+            if (bushelsToFeedPeople < 0) {
+                System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+            } else if (bushelsToFeedPeople > wheat) {
+                System.out.println("You don't have enough wheat to feed your people that much!\n"
+                        + "You have " + wheat + " bushels in storage.\n"
+                        + "Please enter a valid number of bushels."
+                );
+                return true;
+            } else {
+                feedPeople(bushelsToFeedPeople);
+            }
+            
         } catch (NumberFormatException | NullPointerException e) {
             System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
@@ -79,5 +93,6 @@ public class FeedPeopleView extends ViewBase {
 
     private void feedPeople(int bushelsToFeedPeople) {
         WheatControl.setBushelsToFeedPeople(bushelsToFeedPeople);
+        System.out.println("Success! You will feel your people " + bushelsToFeedPeople + " bushels when you live the year.");
     }
 }

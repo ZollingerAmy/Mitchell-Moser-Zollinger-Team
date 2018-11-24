@@ -76,15 +76,17 @@ public class AnnualReportView extends ViewBase {
         String thisString = 
                 "\nAnnual Report for " + thisGame.getThePlayer().getName() + "! \n"
                 + "Year: " + thisGame.getYear() + "\n"
-                + "Acres of wheat fields: " + thisReport.getEndingAcresOwned() + "\n"
+                + "Acres of wheat fields owned: " + thisGame.getAcresOwned() + "\n"
+                + "Acres of wheat fields planted: " + thisReport.getAcresPlanted() + "\n"
                 + "Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n"
                 + "Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n"
                 + "Bushels paid in tithes and offerings: " + thisReport.getTithingAmount() + "\n"
                 + "Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n"
-                + "Bushels of wheat in store: " + thisReport.getEndingWheatInStorage() + "\n"
+                + "Bushels of wheat in store: " + thisGame.getWheatInStorage() + "\n"
                 + "People starved: " + thisReport.getPeopleStarved() + "\n"
                 + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
-                + "Current population: " + thisReport.getEndingPopulation() + "\n";
+                + "Current population: " + thisGame.getCurrentPopulation() + "\n"
+        ;
         
         return thisString;
     }

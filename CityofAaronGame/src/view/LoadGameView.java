@@ -1,6 +1,8 @@
 package view;
 
-
+import app.CityOfAaron;
+import control.GameControl;
+import model.Game;
 
 /**
  *
@@ -20,7 +22,7 @@ public class LoadGameView extends ViewBase {
         return "Load a saved game.\n";
     }
 
-       /**
+    /**
      * Get the set of inputs from the user.
      *
      * @return
@@ -32,7 +34,7 @@ public class LoadGameView extends ViewBase {
         // from the user.
         String[] inputs = new String[1];
 
-        inputs[0] = getUserInput("Please enter the name of your saved game.");
+        inputs[0] = getUserInput("Please enter the name of your saved game (no extension, just the name).");
 
         return inputs;
     }
@@ -48,7 +50,7 @@ public class LoadGameView extends ViewBase {
 
         //if no input return to main menu
         if (inputs[0] == null || inputs[0].equals("")) {
-            System.out.println("No game name entered. Returning to the Main Menu...");
+            System.out.println("No valid game name entered. Returning to the Main Menu...");
             return false;
         }
         loadGame(inputs[0]);
@@ -57,10 +59,18 @@ public class LoadGameView extends ViewBase {
     }
 
     private void loadGame(String filename) {
-        // AM: need to actually call function to load game data from a JSON file.
+        // AM: calling function to load saved object and cast it into a Game type object.
+        boolean success = GameControl.loadGameFromFile(filename);
 
-        // AM: for now, just print success to user.
-        System.out.print("Loaded game: " + filename + "\n");
+        if (success) {
+            System.out.print("Loaded game: \n" + filename + "\n");
+            // now head over to the Game View!
+            View gameMenu = new GameMenuView();
+            gameMenu.displayView();
+        } else {
+            System.out.println("No valid game name entered. Returning to the Main Menu...");
+
+        }
 
     }
 }

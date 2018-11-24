@@ -16,6 +16,12 @@ public class Player implements Serializable {
     public Player(){
         // Empty constructor for bean
     }
+    
+    public Player(String aName, int aRound) {
+        setName(aName);
+        setRound(aRound);
+    }
+    
     public String getName(){
         return name;
     }

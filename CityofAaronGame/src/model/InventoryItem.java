@@ -17,6 +17,13 @@ public class InventoryItem implements Serializable {
         // Empty constructor for bean
     }
 
+    public InventoryItem(String aName, ItemType aType, int aQuantity, Condition aCondition) {
+        setName(aName);
+        setType(aType);
+        setQuantity(aQuantity);
+        setCondition(aCondition);
+    }
+
     public String getName() {
         return name;
     }

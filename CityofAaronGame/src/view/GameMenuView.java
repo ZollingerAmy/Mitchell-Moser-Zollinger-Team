@@ -113,34 +113,32 @@ public class GameMenuView extends ViewBase {
     }
 
     private void liveYear() {
-        // we better check that we have all the data to live the year properly (tithesPercent, bushelsForFood, acresToPlant)
+        Game oldGame = CityOfAaron.getCurrentGame();
 
+        // live the year
+        GameControl.liveTheYear(oldGame);
+
+        // get new report and game
         Game thisGame = CityOfAaron.getCurrentGame();
-        int tithesPercent = WheatControl.getTithingPercentToPay();
-        int bushelsForFood = WheatControl.getBushelsToFeedPeople();
-        int acresToPlant = WheatControl.getAcresToPlant();
-
-        // live the year and return a report 
-        AnnualReport thisReport = GameControl.liveTheYear(thisGame, tithesPercent,
-                bushelsForFood, acresToPlant);
-
-        // update the main report
-        CityOfAaron.setCurrentReport(thisReport);
+        AnnualReport thisReport = CityOfAaron.getCurrentReport();
 
         // this may be a good place to check GameControl.gameShouldEnd();
+
+
         // now display the report
         System.out.println(
-                "\nAnnual Report for " + thisGame.getThePlayer().getName() + "! \n"
+                "\nAnnual Report for: " + thisGame.getThePlayer().getName() + "! \n"
                 + "Year: " + thisGame.getYear() + "\n"
-                + "Acres of wheat fields: " + thisReport.getEndingAcresOwned() + "\n"
+                + "Acres of wheat fields owned: " + thisGame.getAcresOwned() + "\n"
+                + "Acres of wheat fields planted: " + thisReport.getAcresPlanted() + "\n"
                 + "Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n"
                 + "Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n"
                 + "Bushels paid in tithes and offerings: " + thisReport.getTithingAmount() + "\n"
                 + "Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n"
-                + "Bushels of wheat in store: " + thisReport.getEndingWheatInStorage() + "\n"
+                + "Bushels of wheat in store: " + thisGame.getWheatInStorage() + "\n"
                 + "People starved: " + thisReport.getPeopleStarved() + "\n"
                 + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
-                + "Current population: " + thisReport.getEndingPopulation() + "\n"
+                + "Current population: " + thisGame.getCurrentPopulation() + "\n"
         );
 
         pause(3000);

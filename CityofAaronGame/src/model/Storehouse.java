@@ -12,23 +12,25 @@ public class Storehouse implements Serializable {
     private Author[] authors = new Author[3];
     private ArrayList<Animal> animals = new ArrayList<>();
     private ArrayList<InventoryItem> tools = new ArrayList<>();
+    private ArrayList<InventoryItem> poorCondition = new ArrayList<>();
     private ArrayList<Provision> provisions = new ArrayList<>();
 
     public Storehouse() {
         // Empty constructor for bean
     }
-    
-    public Storehouse(Author[] aAuthors, ArrayList<Animal> aAnimals, ArrayList<InventoryItem> aTools, ArrayList<Provision> aProvisions) {
-        setAuthors(aAuthors);
+
+    public Storehouse(Author[] aAuthors, ArrayList<Animal> aAnimals, ArrayList<InventoryItem> aTools, ArrayList<InventoryItem> aPoorCondition,ArrayList<Provision> aProvisions) {
+        setAuthors(aAuthors); 
         setAnimals(aAnimals);
         setTools(aTools);
+        setPoorCondition(aPoorCondition);
         setProvisions(aProvisions);
     }
 
     public Author[] getAuthors() {
         return authors;
     }
-    
+
     public void setAuthors(Author[] authors) {
         this.authors = authors;
     }
@@ -49,6 +51,14 @@ public class Storehouse implements Serializable {
         this.tools = tools;
     }
 
+    public ArrayList<InventoryItem> getPoorCondition() {
+        return poorCondition;
+    }
+
+    public void setPoorCondition(ArrayList<InventoryItem> poorCondition) {
+        this.poorCondition = poorCondition;
+    }
+
     public ArrayList<Provision> getProvisions() {
         return provisions;
     }
@@ -60,11 +70,12 @@ public class Storehouse implements Serializable {
     // toString method
     @Override
     public String toString() {
-        return "Storehouse{\n"
+        return "Storehouse\n"
                 + Author.Amber.toString()
                 + "\nAnimals: " + animals
                 + "\nProvisions: " + provisions
                 + "\nTools: " + tools
-                + "\n}";
+                + "\nTools in poor condition: " + poorCondition
+                + "\n";
     }
 }

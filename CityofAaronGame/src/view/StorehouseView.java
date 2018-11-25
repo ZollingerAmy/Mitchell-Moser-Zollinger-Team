@@ -3,7 +3,13 @@
  */
 package view;
 
-import java.util.Scanner;
+import app.CityOfAaron;
+import control.GameControl;
+import java.util.ArrayList;
+import model.Condition;
+import model.Game;
+import model.Storehouse;
+import model.InventoryItem;
 
 /**
  *
@@ -14,8 +20,8 @@ public class StorehouseView extends ViewBase {
     /**
      * Constructor
      */
-    public StorehouseView(){
-    } 
+    public StorehouseView() {
+    }
 
     @Override
     protected String getMessage() {
@@ -29,7 +35,7 @@ public class StorehouseView extends ViewBase {
                 + "X - Return to the Game Menu\n";
     }
 
-     /**
+    /**
      * Get the set of inputs from the user.
      *
      * @return
@@ -56,7 +62,7 @@ public class StorehouseView extends ViewBase {
      * should exit and return to the previous view.
      */
     @Override
-    public boolean doAction(String[] inputs){
+    public boolean doAction(String[] inputs) {
         // Act on the user's input.
         // This is a "dispatch" function that decides what
         // other functions to call. You can use an if-, if-else,
@@ -79,16 +85,17 @@ public class StorehouseView extends ViewBase {
             case "X":
                 return false;
         }
-      return true;
+        return true;
     }
-    
-    
-     private void animals(){
-         System.out.println("***Animal Reports coming soon. Please choose a different option");
+
+    Game thisGame = CityOfAaron.getCurrentGame();
+
+    private void animals() {
+        System.out.println("***Animal Reports coming soon. Please choose a different option");
     }
 
     private void tools() {
-        System.out.println("***Tool Reports coming soon. Please choose a different option");
+        System.out.println(thisGame.getTheStorehouse());
     }
 
     private void provisions() {

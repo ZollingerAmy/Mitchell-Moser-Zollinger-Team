@@ -17,7 +17,8 @@ public class GameMenuView extends ViewBase {
 
     /**
      * Constructor
-     *  @return
+     *
+     * @return
      */
     public GameMenuView() {
         super();
@@ -25,7 +26,7 @@ public class GameMenuView extends ViewBase {
 
     @Override
     protected String getMessage() {
-            return "\n\n--------------------\n"
+        return "\n\n--------------------\n"
                 + "Game Menu Options\n"
                 + "--------------------\n"
                 + "1 - Show Annual Report\n"
@@ -38,9 +39,9 @@ public class GameMenuView extends ViewBase {
                 + "X - Exit to Main Menu\n";
     }
 
-    
     /**
      * Get the set of inputs from the user.
+     *
      * @return
      */
     @Override
@@ -56,7 +57,8 @@ public class GameMenuView extends ViewBase {
      * Perform the action indicated by the user's input.
      *
      * @param inputs
-     * @return true if the view should repeat itself, and false if the view should exit and return to the previous view.
+     * @return true if the view should repeat itself, and false if the view
+     * should exit and return to the previous view.
      */
     @Override
     public boolean doAction(String[] inputs) {
@@ -123,8 +125,6 @@ public class GameMenuView extends ViewBase {
         AnnualReport thisReport = CityOfAaron.getCurrentReport();
 
         // this may be a good place to check GameControl.gameShouldEnd();
-
-
         // now display the report
         System.out.println(
                 "\nAnnual Report for: " + thisGame.getThePlayer().getName() + "! \n"
@@ -139,6 +139,7 @@ public class GameMenuView extends ViewBase {
                 + "People starved: " + thisReport.getPeopleStarved() + "\n"
                 + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
                 + "Current population: " + thisGame.getCurrentPopulation() + "\n"
+                + "Tools: " + thisGame.getTheStorehouse() + "/n"
         );
 
         pause(3000);

@@ -26,13 +26,13 @@ public class NewGameView extends ViewBase {
 
     @Override
     protected String getMessage() {
-                    return "\n\nLet's get to playing!\n\n";
-        
+        return "\n\nLet's get to playing!\n\n";
+
     }
-            
 
     /**
      * Get the set of inputs from the user.
+     *
      * @return
      */
     @Override
@@ -51,7 +51,8 @@ public class NewGameView extends ViewBase {
      * Perform the action indicated by the user's input.
      *
      * @param inputs
-     * @return true if the view should repeat itself, and false if the view should exit and return to the previous view.
+     * @return true if the view should repeat itself, and false if the view
+     * should exit and return to the previous view.
      */
     @Override
     public boolean doAction(String[] inputs) {
@@ -88,8 +89,9 @@ public class NewGameView extends ViewBase {
                 + "People starved: " + thisReport.getPeopleStarved() + "\n"
                 + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
                 + "Current population: " + thisGame.getCurrentPopulation() + "\n"
+                + "Tools: " + thisGame.getTheStorehouse() + "/n"
         );
-        
+
         pause(3000);
         // now head over to the Game View!
         View gameMenu = new GameMenuView();

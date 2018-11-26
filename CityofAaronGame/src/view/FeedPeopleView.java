@@ -1,6 +1,6 @@
 /*
  * Describe class. This view engages when...
-//Ask the user “How many bushels of grain do you want to give to the people?”
+//Ask the user "How many bushels of grain do you want to give to the people?"
 //User enters a value.
 //Check to make sure that the value is positive. If it is not, show a message and ask the user to enter the value again.
 //Make sure that the city has this much wheat in storage. If not, show a message and ask the user to enter the value again.

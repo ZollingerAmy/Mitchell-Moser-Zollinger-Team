@@ -1,7 +1,7 @@
 /*
  * Describe class. This view engages when...
 //Generate a random number between 17 and 27 for the price of an acre of land. Display the price to the user.
-//Ask the user “How many acres of new land do you want buy”?
+//Ask the user "How many acres of new land do you want buy?"
 //The user enters a value
 //Check to make sure the value is positive. If not, show a message and ask the user to enter the value again.
 //Make sure that the player has enough wheat to make the purchase. If not, show a message and ask the user to enter the value again.

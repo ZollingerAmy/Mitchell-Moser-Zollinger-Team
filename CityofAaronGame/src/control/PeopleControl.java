@@ -57,7 +57,7 @@ public class PeopleControl {
 
         int userRating = 0;
         // grab a random for use
-        int rand = GameControl.getRandomNumber(0,4);
+        int rand = GameControl.getRandomNumber(0, 4);
         int pop = game.getCurrentPopulation();
         int wheat = game.getWheatInStorage();
         int land = game.getAcresOwned();
@@ -76,6 +76,52 @@ public class PeopleControl {
         }
 
         return userRating;
+    }
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
+    public static String prettyPrint(String text, String color) {
+        // example
+        // System.out.println(ANSI_RED + "This text has red text!" + ANSI_RESET);
+        switch (color) {
+            case "black":
+                color = ANSI_BLACK;
+                break;
+            case "red":
+                color = ANSI_RED;
+                break;
+            case "green":
+                color = ANSI_GREEN;
+                break;
+            case "yellow":
+                color = ANSI_YELLOW;
+                break;
+            case "blue":
+                color = ANSI_BLUE;
+                break;
+            case "purple":
+                color = ANSI_PURPLE;
+                break;
+            case "cyan":
+                color = ANSI_CYAN;
+                break;
+            case "white":
+                color = ANSI_WHITE;
+                break;
+            default:
+                break;
+        }
+        
+        text = color + " " + text + " " + ANSI_RESET;
+        return text;
     }
 
     public static String getUserMessage() {

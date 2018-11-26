@@ -1,6 +1,6 @@
 /*
  * Describe class. This view engages when...
-//Ask the user “How many acres of land do you want to plant?”
+//Ask the user "How many acres of land do you want to plant?"
 //User enters a value.
 //Check to make sure that the value is positive. If it is not, show a message and ask the user to enter the value again.
 //Check to make sure the city has this much land. If not, show a message and ask the user to enter a new value.

@@ -3,6 +3,7 @@
  */
 package view;
 import app.CityOfAaron;
+import control.PeopleControl;
 import java.util.Arrays;
 import model.Game;
 
@@ -77,6 +78,9 @@ public class StorehouseView extends ViewBase {
             case "4":
                 authors();
                 break;
+            case "5":
+                easterEgg();
+                break;
             case "X":
                 return false;
         }
@@ -98,6 +102,11 @@ public class StorehouseView extends ViewBase {
 
     private void authors() {
         System.out.println(Arrays.toString(thisGame.getTheStorehouse().getAuthors()));
+    }
+
+    private void easterEgg() {
+        String str = PeopleControl.prettyPrint("You found the easter egg!", "cyan");
+        System.out.println(str);
     }
 
 }

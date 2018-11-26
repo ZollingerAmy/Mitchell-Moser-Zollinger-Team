@@ -97,13 +97,9 @@ public class FinalView extends ViewBase {
     }
 
     private void continueGame() {
-        // advance the player's round
+        // advance the player's round, reset the year
         int round = CityOfAaron.getCurrentGame().getThePlayer().getRound();
         CityOfAaron.getCurrentGame().getThePlayer().setRound(round + 1);
-
-        pause(3000);
-        // head over to the Game View!
-        View gameMenu = new GameMenuView();
-        gameMenu.displayView();
+        CityOfAaron.getCurrentGame().setYear(1);
     }
 }

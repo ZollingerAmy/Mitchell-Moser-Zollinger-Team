@@ -181,10 +181,15 @@ public class GameControl {
         int landToBuy = LandControl.getLandToBuy();
         int landToSell = LandControl.getLandToSell();
 
+        // ERROR here
         if (game == null || tithesPercent < 0 || tithesPercent > 100
                 || bushelsForFood < 0 || acresToPlant < 0) {
             return;
         }
+        // ERROR now note if the most important ones are zero and kick back
+//        if (acresToPlant == 0 || bushelsForFood == 0) {
+//            return;
+//        }
 
         // next get the current total of wheat bushels in storage and acres owned
         int totalWheat = game.getWheatInStorage();
@@ -204,7 +209,7 @@ public class GameControl {
         // Subtract the bushels to feed people from total.
         totalWheat = totalWheat - bushelsForFood;
         
-        // if totalWheat < 0 at this point, need an error!! Means player didn't plan enough.
+        // ERROR if totalWheat < 0 at this point, need an error!! Means player didn't plan enough.
 
         // now figure out our harvest
         int perAcre = WheatControl.calcBushelsPerAcre(tithesPercent);
@@ -233,7 +238,12 @@ public class GameControl {
 
         // let's update the land price for next year, needs no argument
         LandControl.setUpcomingLandPrice();
-
+        // and reset the manage crops variables for next year
+        WheatControl.setTithingPercentToPay(0);
+        WheatControl.setBushelsToFeedPeople(0);
+        WheatControl.setAcresToPlant(0);
+        LandControl.setLandToBuy(0);
+        LandControl.setLandToSell(0);
     }
 
     /**

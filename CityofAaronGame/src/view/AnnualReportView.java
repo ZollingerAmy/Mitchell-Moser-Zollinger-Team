@@ -71,6 +71,7 @@ public class AnnualReportView extends ViewBase {
 
         String thisString = 
                 "\nAnnual Report for " + thisGame.getThePlayer().getName() + "! \n"
+                + "Term: " + thisGame.getThePlayer().getRound() + "\n"
                 + "Year: " + thisGame.getYear() + "\n"
                 + "Acres of wheat fields owned: " + thisGame.getAcresOwned() + "\n"
                 + "Acres of wheat fields planted: " + thisReport.getAcresPlanted() + "\n"

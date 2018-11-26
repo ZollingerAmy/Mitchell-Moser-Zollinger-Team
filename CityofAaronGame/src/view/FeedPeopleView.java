@@ -93,6 +93,6 @@ public class FeedPeopleView extends ViewBase {
 
     private void feedPeople(int bushelsToFeedPeople) {
         WheatControl.setBushelsToFeedPeople(bushelsToFeedPeople);
-        System.out.println("Success! You will feel your people " + bushelsToFeedPeople + " bushels when you live the year.");
+        System.out.println("Success! You will feed your people " + bushelsToFeedPeople + " bushels when you live the year.");
     }
 }

@@ -24,7 +24,7 @@ public class ManageCropsView extends ViewBase {
                 + "2 - Sell Land \n"
                 + "3 - Feed your People\n"
                 + "4 - Plant Crops \n"
-                + "5 - Pay Tithes and Offereings \n"
+                + "5 - Pay Tithes and Offerings \n"
                 + "X - Return to the Game Menu \n";               
         
     }

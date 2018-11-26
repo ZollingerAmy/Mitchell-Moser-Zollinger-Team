@@ -137,7 +137,7 @@ public class WheatControl {
         }
      
         if (tithesPercent > 12) {
-            low = 2;
+            low = 3;
             high = 5;
         }
         

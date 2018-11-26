@@ -139,16 +139,10 @@ public class GameMenuView extends ViewBase {
             end.displayView();
             return;
         }
-        // now head over to the final view if we've hit a new decade of play
-        if (thisGame.getYear() % 10 == 1 && thisGame.getYear() != 1) {
-            View end = new FinalView();
-            end.displayView();
-            return;
-        }
-
         // now display the report
         System.out.println(
                 "\nAnnual Report for: " + thisGame.getThePlayer().getName() + "! \n"
+                + "Term: " + thisGame.getThePlayer().getRound() + "\n"
                 + "Year: " + thisGame.getYear() + "\n"
                 + "Acres of wheat fields owned: " + thisGame.getAcresOwned() + "\n"
                 + "Acres of wheat fields planted: " + thisReport.getAcresPlanted() + "\n"
@@ -162,6 +156,14 @@ public class GameMenuView extends ViewBase {
                 + "Current population: " + thisGame.getCurrentPopulation() + "\n"
         );
 
+        // now head over to the final view if we've hit a new decade of play
+        if (thisGame.getYear() == 11) {
+            View end = new FinalView();
+            end.displayView();
+            return;
+        }
+
+        
         pause(3000);
 
     }

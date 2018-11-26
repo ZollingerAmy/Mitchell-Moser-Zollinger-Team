@@ -39,6 +39,7 @@ public class GameControl {
 
         // set up animals
         // let's have 4 ages of cows/oxen, as follows (5 of each age)
+        // I added 3 more types of animals: horse, pig, and chicken--Teresa Mo
         ArrayList<Integer> ages = new ArrayList<>();
         ages.add(1);
         ages.add(2);
@@ -47,8 +48,14 @@ public class GameControl {
         ArrayList<Animal> animals = new ArrayList<>();
         Animal cows = new Animal("Dairy Cows", ItemType.Animal, 20, Condition.Good, ages);
         Animal oxen = new Animal("Oxen", ItemType.Animal, 20, Condition.Good, ages);
+        Animal horse = new Animal("Horse", ItemType.Animal, 20, Condition.Good, ages);
+        Animal pig = new Animal("Pig", ItemType.Animal, 20, Condition.Good, ages);
+        Animal chicken = new Animal("Chicken", ItemType.Animal, 20, Condition.Good, ages);
         animals.add(cows);
         animals.add(oxen);
+        animals.add(horse);
+        animals.add(pig);
+        animals.add(chicken);
 
         // set up provisions
         ArrayList<Provision> provisions = new ArrayList<>();
@@ -63,11 +70,36 @@ public class GameControl {
         ArrayList<InventoryItem> tools = new ArrayList<>();
         InventoryItem tool = new InventoryItem("Shovel", ItemType.Tool, 26, Condition.Good);
         InventoryItem tool2 = new InventoryItem("Plow", ItemType.Tool, 10, Condition.Good);
+        InventoryItem tool3 = new InventoryItem("Shovel", ItemType.Tool, 5, Condition.Poor);
+        InventoryItem tool4 = new InventoryItem("Spade", ItemType.Tool, 7, Condition.Good);
+        InventoryItem tool5 = new InventoryItem("Rake", ItemType.Tool, 10, Condition.Fair);
+        InventoryItem tool6 = new InventoryItem("Hoe", ItemType.Tool, 8, Condition.Poor);
+        InventoryItem tool7 = new InventoryItem("Plow", ItemType.Tool, 3, Condition.Poor);
+        InventoryItem tool8 = new InventoryItem("Hoe", ItemType.Tool, 1, Condition.Fair);
+        InventoryItem tool9 = new InventoryItem("Rake", ItemType.Tool, 5, Condition.Poor);
+        InventoryItem tool10 = new InventoryItem("Spade", ItemType.Tool, 8, Condition.Poor);
         tools.add(tool);
         tools.add(tool2);
+        tools.add(tool3);
+        tools.add(tool4);
+        tools.add(tool5);
+        tools.add(tool6);
+        tools.add(tool7);
+        tools.add(tool8);
+        tools.add(tool9);
+        tools.add(tool10);
+
+        // Create an array of items that are in poor condition and need to be replaced. 
+        ArrayList<InventoryItem> poorCondition = new ArrayList<>();
+
+        for (InventoryItem myTool : tools) {
+            if (myTool.getCondition() == Condition.Poor) {
+                poorCondition.add(myTool);
+            }
+        }
 
         // initialize Storehouse elements
-        Storehouse storehouse = new Storehouse(authors, animals, tools, provisions);
+        Storehouse storehouse = new Storehouse(authors, animals, tools, poorCondition, provisions);
 
         // create the map (call MapControl for this job)
         Map map = new Map();
@@ -79,9 +111,9 @@ public class GameControl {
         // now fill up the Annual Report for use in the Game Menu
         AnnualReport report = new AnnualReport(23, 1000, 3000, 3, 300, 0, 0, 5);
 
-        
         // now save all this to the app so it's easy to get in other places!
         CityOfAaron.setCurrentGame(theGame);
+
         CityOfAaron.setCurrentReport(report);
 
         // set a year-2 land price
@@ -142,7 +174,8 @@ public class GameControl {
      *
      * @param game The current Game object (pass by reference)
      * @param tithesPercent The percentage of tithing selected for the year
-     * @param bushelsForFood The number of bushels of wheat allocated as food for the year
+     * @param bushelsForFood The number of bushels of wheat allocated as food
+     * for the year
      * @param acresToPlant The number of acres to be used for planting
      *
      * @return The year's Annual Report data
@@ -194,7 +227,7 @@ public class GameControl {
         game.setCurrentPopulation(game.getCurrentPopulation() - peopleStarved + peopleMovedIn);
 
         // advance the year by one
-        game.setYear(game.getYear()+1);
+        game.setYear(game.getYear() + 1);
 
         // update our game
         CityOfAaron.setCurrentGame(game);
@@ -210,7 +243,8 @@ public class GameControl {
     /**
      * Generates a random integer between lowValue and highValue, inclusive.
      * <ul>Requirements:
-     * <li>lowValue and highValue must be positive int (&gt;= 0) (return -1)</li>
+     * <li>lowValue and highValue must be positive int (&gt;= 0) (return
+     * -1)</li>
      * <li>highValue must be greater than lowValue (return -2) </li>
      * <li>highValue cannot be equal to the max value for int (return -3)</li>
      * </ul>

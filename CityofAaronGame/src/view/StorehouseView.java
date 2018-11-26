@@ -2,20 +2,16 @@
  * StoreHouseView
  */
 package view;
-
 import app.CityOfAaron;
-import control.GameControl;
-import java.util.ArrayList;
-import model.Condition;
+import java.util.Arrays;
 import model.Game;
-import model.Storehouse;
-import model.InventoryItem;
 
 /**
  *
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class StorehouseView extends ViewBase {
+    Game thisGame = CityOfAaron.getCurrentGame();
 
     /**
      * Constructor
@@ -47,8 +43,7 @@ public class StorehouseView extends ViewBase {
         // from the user.
         String[] inputs = new String[1];
 
-        inputs[0] = getUserInput("On the next line choose a letter from "
-                + "the StoreHouse Reports and press enter.");
+        inputs[0] = getUserInput("Which report would you like?");
 
         // Repeat for each input you need, putting it into its proper slot in the array.
         return inputs;
@@ -88,22 +83,21 @@ public class StorehouseView extends ViewBase {
         return true;
     }
 
-    Game thisGame = CityOfAaron.getCurrentGame();
 
     private void animals() {
-        System.out.println("***Animal Reports coming soon. Please choose a different option");
+        System.out.println(thisGame.getTheStorehouse().getAnimals());
     }
 
     private void tools() {
-        System.out.println(thisGame.getTheStorehouse());
+        System.out.println(thisGame.getTheStorehouse().getTools());
     }
 
     private void provisions() {
-        System.out.println("***Provision Reports coming soon. Please choose a different option");
+        System.out.println(thisGame.getTheStorehouse().getProvisions());
     }
 
     private void authors() {
-        System.out.println("***Authors List coming soon. Please choose a different option");
+        System.out.println(Arrays.toString(thisGame.getTheStorehouse().getAuthors()));
     }
 
 }

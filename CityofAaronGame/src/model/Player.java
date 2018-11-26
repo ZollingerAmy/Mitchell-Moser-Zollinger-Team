@@ -1,13 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This model holds player details
  */
 package model;
 import java.io.Serializable;
+
 /**
  *
- * @author metauser
+ * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class Player implements Serializable {
     private String name;

@@ -63,9 +63,9 @@ public class PeopleControl {
         int land = game.getAcresOwned();
 
         // first look at current population for GameControl.gameShouldEnd()
-        if (pop <= 0) {
+        if (pop <= 10) {
             return userRating;
-        } else if (pop < 100 && wheat < 3000 && land < 1000) {
+        } else if (pop < 100 || wheat < 3000 || land < 1000) {
             // VILLAIN message
             userMessage = villains[rand];
             userRating = 1;

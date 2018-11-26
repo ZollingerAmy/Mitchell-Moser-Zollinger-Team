@@ -35,7 +35,7 @@ public class GameControl {
         Player player = new Player(thePlayer, 1);
 
         // add our authors
-        Author[] authors = {Author.Amber, Author.Teresa, Author.Amy};
+        String[] authors = new String[] {Author.Amber.getValue(), Author.Teresa.getValue(), Author.Amy.getValue()};
 
         // set up animals
         // let's have 4 ages of cows/oxen, as follows (5 of each age)
@@ -89,17 +89,8 @@ public class GameControl {
         tools.add(tool9);
         tools.add(tool10);
 
-        // Create an array of items that are in poor condition and need to be replaced. 
-        ArrayList<InventoryItem> poorCondition = new ArrayList<>();
-
-        for (InventoryItem myTool : tools) {
-            if (myTool.getCondition() == Condition.Poor) {
-                poorCondition.add(myTool);
-            }
-        }
-
         // initialize Storehouse elements
-        Storehouse storehouse = new Storehouse(authors, animals, tools, poorCondition, provisions);
+        Storehouse storehouse = new Storehouse(authors, animals, tools, provisions);
 
         // create the map (call MapControl for this job)
         Map map = new Map();
@@ -207,14 +198,19 @@ public class GameControl {
         acres = acres - landToSell;
         //Add the bushels of wheat that was increased by the selling of land to the bushels of wheat in storage.
         totalWheat = totalWheat + (landToSell * landPrice);
+        
+        // Subtract the bushels to plant crops from total.
+        totalWheat = totalWheat - (acresToPlant/2);
         // Subtract the bushels to feed people from total.
         totalWheat = totalWheat - bushelsForFood;
+        
+        // if totalWheat < 0 at this point, need an error!! Means player didn't plan enough.
 
         // now figure out our harvest
         int perAcre = WheatControl.calcBushelsPerAcre(tithesPercent);
         int harvested = WheatControl.calcHarvest(perAcre, acresToPlant);
         int tithingAmount = (int) (double) ((tithesPercent / 100.0) * harvested);
-        int lostToRobbers = WheatControl.calcLossToRobbers(tithesPercent, totalWheat);
+        int lostToRobbers = WheatControl.calcLossToRobbers(tithesPercent, harvested);
 
         // now figure out what our population should be
         int peopleStarved = PeopleControl.calculateMortality(bushelsForFood, game.getCurrentPopulation());

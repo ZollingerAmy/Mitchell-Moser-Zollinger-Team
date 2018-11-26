@@ -1,12 +1,8 @@
 /*
- * Describe class. This view engages when...
+ * Describe class. This view engages when the player selects Display Annual Report from the Game Menu
  */
 package view;
-
-import java.util.Scanner;
 import app.CityOfAaron;
-import control.GameControl;
-import control.LandControl;
 import model.AnnualReport;
 import model.Game;
 

@@ -3,12 +3,9 @@
  */
 package view;
 
-import java.util.Scanner;
 import app.CityOfAaron;
 import control.GameControl;
-import control.LandControl;
 import model.AnnualReport;
-import model.Player;
 import model.Game;
 
 /**
@@ -89,7 +86,6 @@ public class NewGameView extends ViewBase {
                 + "People starved: " + thisReport.getPeopleStarved() + "\n"
                 + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
                 + "Current population: " + thisGame.getCurrentPopulation() + "\n"
-                + "Tools: " + thisGame.getTheStorehouse() + "/n"
         );
 
         pause(3000);

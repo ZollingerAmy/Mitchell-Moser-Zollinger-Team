@@ -2,7 +2,6 @@
  * This model holds the in-between stuff that tells us what happened just in the previous round
  */
 package model;
-
 import java.io.Serializable;
 
 public class AnnualReport implements Serializable {

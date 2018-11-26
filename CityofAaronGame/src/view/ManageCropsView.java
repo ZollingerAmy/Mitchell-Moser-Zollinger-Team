@@ -3,8 +3,6 @@
  */
 package view;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger

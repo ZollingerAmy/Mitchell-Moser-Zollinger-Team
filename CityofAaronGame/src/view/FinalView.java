@@ -30,7 +30,7 @@ public class FinalView extends ViewBase {
 
         switch (rating) {
             case 0:
-                message += "Your population has all starved!\n";
+                message += "Too many of your people have starved!\n";
                 break;
             case 1:
                 message += "Your term is complete! You have been ranked\n"
@@ -82,7 +82,6 @@ public class FinalView extends ViewBase {
     @Override
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
-        // Act on the user's input.
         switch (inputs[0].trim().toUpperCase()) {
             case "Y":
                 continueGame();
@@ -98,6 +97,10 @@ public class FinalView extends ViewBase {
     }
 
     private void continueGame() {
+        // advance the player's round
+        int round = CityOfAaron.getCurrentGame().getThePlayer().getRound();
+        CityOfAaron.getCurrentGame().getThePlayer().setRound(round + 1);
+
         pause(3000);
         // head over to the Game View!
         View gameMenu = new GameMenuView();

@@ -21,23 +21,4 @@ public enum Author {
         return value;
     }
     
-    // toString method
-    @Override
-    public String toString() {
-        String allValues = "";
-        boolean firstRun = true;
-        for (Author info : Author.values()){
-            if (firstRun) {
-                firstRun = false;
-                allValues += info.getValue();
-            } else {
-                allValues += ", " + info.getValue();
-            }
-        }
-
-        return "Authors: " 
-                + allValues
-                ;
-    }
-    
 }

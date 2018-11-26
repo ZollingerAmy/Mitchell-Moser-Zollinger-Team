@@ -30,9 +30,9 @@ public class GameMenuView extends ViewBase {
         return "\n\n--------------------\n"
                 + "Game Menu Options\n"
                 + "--------------------\n"
-                + "1 - Show Annual Report\n"
-                + "2 - View Map\n"
-                + "3 - Move Location\n"
+                + "1 - Show annual report\n"
+                + "2 - View map\n"
+                + "3 - Move location\n"
                 + "4 - Manage crops\n"
                 + "5 - Live year\n"
                 + "6 - View storehouse\n"
@@ -160,7 +160,6 @@ public class GameMenuView extends ViewBase {
                 + "People starved: " + thisReport.getPeopleStarved() + "\n"
                 + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
                 + "Current population: " + thisGame.getCurrentPopulation() + "\n"
-                + "Tools: " + thisGame.getTheStorehouse() + "/n"
         );
 
         pause(3000);

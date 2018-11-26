@@ -2,9 +2,6 @@ package view;
 
 import app.CityOfAaron;
 import control.GameControl;
-import control.LandControl;
-import control.WheatControl;
-import java.util.Scanner;
 import model.AnnualReport;
 import model.Game;
 
@@ -17,7 +14,8 @@ public class GameMenuView extends ViewBase {
 
     /**
      * Constructor
-     *  @return
+     *
+     * @return
      */
     public GameMenuView() {
         super();
@@ -25,7 +23,11 @@ public class GameMenuView extends ViewBase {
 
     @Override
     protected String getMessage() {
-            return "\n\n--------------------\n"
+        if (GameControl.exit) {
+            return "";
+        }
+
+        return "\n\n--------------------\n"
                 + "Game Menu Options\n"
                 + "--------------------\n"
                 + "1 - Show Annual Report\n"
@@ -38,16 +40,20 @@ public class GameMenuView extends ViewBase {
                 + "X - Exit to Main Menu\n";
     }
 
-    
     /**
      * Get the set of inputs from the user.
+     *
      * @return
      */
     @Override
     public String[] getInputs() {
 
         String[] inputs = new String[1];
-        inputs[0] = getUserInput("Which game menu option would you like?");
+        if (GameControl.exit) {
+            inputs[0] = "";
+        } else {
+            inputs[0] = getUserInput("Which game menu option would you like?");
+        }
 
         return inputs;
     }
@@ -60,6 +66,10 @@ public class GameMenuView extends ViewBase {
      */
     @Override
     public boolean doAction(String[] inputs) {
+        if (GameControl.exit) {
+            return false;
+        }
+
         // Act on the user's input.
         switch (inputs[0].trim().toUpperCase()) {
 
@@ -123,7 +133,17 @@ public class GameMenuView extends ViewBase {
         AnnualReport thisReport = CityOfAaron.getCurrentReport();
 
         // this may be a good place to check GameControl.gameShouldEnd();
-
+        if (GameControl.gameShouldEnd(thisGame)) {
+            View end = new FinalView();
+            end.displayView();
+            return;
+        }
+        // now head over to the final view if we've hit a new decade of play
+        if (thisGame.getYear() % 10 == 1 && thisGame.getYear() != 1) {
+            View end = new FinalView();
+            end.displayView();
+            return;
+        }
 
         // now display the report
         System.out.println(

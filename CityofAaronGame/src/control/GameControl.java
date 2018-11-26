@@ -26,8 +26,11 @@ public class GameControl {
 
     private static Random randomGenerator = new Random();
     private static String filepath = "";
+    public static boolean exit = false;
 
     public static Game createNewGame(String thePlayer) {
+        // reset our exit boolean;
+        exit = false;
         // set our player
         Player player = new Player(thePlayer, 1);
 
@@ -124,18 +127,15 @@ public class GameControl {
         }
     }
 
-    public static boolean gameShouldEnd(Game game, int PreviousPopulation) {
+    public static boolean gameShouldEnd(Game game) {
         boolean ended = false;
-        // AM: need logic here...
-
-        // game should not end
+        int rating = PeopleControl.calculateUserRating(game);
+        if (rating == 0) {
+            ended = true;
+        }
         return ended;
     }
 
-    public static double calcFinalUserRating(Game game) {
-        double rating = 0;
-        return rating;
-    }
 
     /**
      * Process the current year's results and update the Game Object.
@@ -192,6 +192,7 @@ public class GameControl {
         game.setWheatInStorage(totalWheat);
         game.setAcresOwned(acres);
         game.setCurrentPopulation(game.getCurrentPopulation() - peopleStarved + peopleMovedIn);
+
         // advance the year by one
         game.setYear(game.getYear()+1);
 

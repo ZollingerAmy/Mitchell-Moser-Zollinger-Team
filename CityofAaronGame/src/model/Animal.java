@@ -15,12 +15,12 @@ public class Animal extends InventoryItem implements Serializable {
     }
     
 
-    public Animal(String Name, ItemType Type, int Quantity, Condition Condition, ArrayList<Integer> Ages) {
-        setName(Name);
-        setType(Type);
-        setQuantity(Quantity);
-        setCondition(Condition);
-        setAge(Ages);
+    public Animal(String aName, ItemType aType, int aQuantity, Condition aCondition, ArrayList<Integer> aAges) {
+        setName(aName);
+        setType(aType);
+        setQuantity(aQuantity);
+        setCondition(aCondition);
+        setAge(aAges);
     }
 
     public ArrayList<Integer> getAge() {

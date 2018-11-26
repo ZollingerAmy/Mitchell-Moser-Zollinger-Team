@@ -10,7 +10,6 @@
 package view;
 
 import control.WheatControl;
-import java.util.Scanner;
 
 /**
  *

@@ -4,7 +4,6 @@
 package view;
 
 import app.CityOfAaron;
-import java.util.Scanner;
 import model.Location;
 
 /**

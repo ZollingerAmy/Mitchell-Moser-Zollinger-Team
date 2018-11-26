@@ -1,11 +1,10 @@
-
 package model;
+import java.io.Serializable;
 
 /**
  *
- * @author Amber
+ * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
-import java.io.Serializable;
 
 public class InventoryItem implements Serializable {
     protected String name;

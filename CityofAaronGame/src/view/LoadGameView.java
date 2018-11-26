@@ -1,8 +1,6 @@
 package view;
 
-import app.CityOfAaron;
 import control.GameControl;
-import model.Game;
 
 /**
  *

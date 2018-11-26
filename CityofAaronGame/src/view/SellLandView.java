@@ -15,7 +15,6 @@ package view;
 
 import app.CityOfAaron;
 import control.LandControl;
-import java.util.Scanner;
 
 /**
  *

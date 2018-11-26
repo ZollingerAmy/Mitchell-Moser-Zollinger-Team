@@ -33,7 +33,7 @@ public class PeopleControl {
 
     public static int calculateNewMoveIns(int currentPopulation) {
         int peopleMovedIn;
-        int rand = GameControl.getRandomNumber(3, 8);
+        int rand = GameControl.getRandomNumber(1, 5);
         peopleMovedIn = currentPopulation * rand / 100;
 
         return peopleMovedIn;

@@ -40,7 +40,7 @@ public class PeopleControl {
         return peopleMovedIn;
     }
 
-    public static int calculateUserRating(Game game) {
+    public static int calculateUserRating(Game game) throws GameControlException {
         String[] heroes = {
             "You have the wisdom of King Benjamin and have led your people well!",
             "As strategic as Captain Moroni you have been able to provide for the people and keep your city safe.",

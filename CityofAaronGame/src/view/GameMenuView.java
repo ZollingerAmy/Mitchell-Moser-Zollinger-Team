@@ -2,6 +2,7 @@ package view;
 
 import app.CityOfAaron;
 import control.GameControl;
+import exceptions.GameControlException;
 import model.AnnualReport;
 import model.Game;
 
@@ -15,7 +16,6 @@ public class GameMenuView extends ViewBase {
     /**
      * Constructor
      *
-     * @return
      */
     public GameMenuView() {
         super();
@@ -62,8 +62,7 @@ public class GameMenuView extends ViewBase {
      * Perform the action indicated by the user's input.
      *
      * @param inputs
-     * @return true if the view should repeat itself, and false if the view
-     * should exit and return to the previous view.
+     * @return true if the view should repeat itself, and false if the view should exit and return to the previous view.
      */
     @Override
     public boolean doAction(String[] inputs) {
@@ -124,48 +123,50 @@ public class GameMenuView extends ViewBase {
     }
 
     private void liveYear() {
-        Game oldGame = CityOfAaron.getCurrentGame();
+        try {
+            Game oldGame = CityOfAaron.getCurrentGame();
 
-        // live the year
-        GameControl.liveTheYear(oldGame);
+            // live the year
+            GameControl.liveTheYear(oldGame);
 
-        // get new report and game
-        Game thisGame = CityOfAaron.getCurrentGame();
-        AnnualReport thisReport = CityOfAaron.getCurrentReport();
+            // get new report and game
+            Game thisGame = CityOfAaron.getCurrentGame();
+            AnnualReport thisReport = CityOfAaron.getCurrentReport();
 
-        // this may be a good place to check GameControl.gameShouldEnd();
-        if (GameControl.gameShouldEnd(thisGame)) {
-            View end = new FinalView();
-            end.displayView();
-            return;
+            // this may be a good place to check GameControl.gameShouldEnd();
+            if (GameControl.gameShouldEnd(thisGame)) {
+                View end = new FinalView();
+                end.displayView();
+                return;
+            }
+            // now display the report
+            System.out.println(
+                    "\nAnnual Report for: " + thisGame.getThePlayer().getName() + "! \n"
+                    + "Term: " + thisGame.getThePlayer().getRound() + "\n"
+                    + "Year: " + thisGame.getYear() + "\n"
+                    + "Acres of wheat fields owned: " + thisGame.getAcresOwned() + "\n"
+                    + "Acres of wheat fields planted: " + thisReport.getAcresPlanted() + "\n"
+                    + "Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n"
+                    + "Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n"
+                    + "Bushels paid in tithes and offerings: " + thisReport.getTithingAmount() + "\n"
+                    + "Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n"
+                    + "Bushels of wheat in store: " + thisGame.getWheatInStorage() + "\n"
+                    + "People starved: " + thisReport.getPeopleStarved() + "\n"
+                    + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
+                    + "Current population: " + thisGame.getCurrentPopulation() + "\n"
+            );
+
+            // now head over to the final view if we've hit a new decade of play
+            if (thisGame.getYear() == 11) {
+                View end = new FinalView();
+                end.displayView();
+                return;
+            }
+
+            pause(3000);
+        } catch (GameControlException gce) {
+            System.out.println(gce.getMessage());
         }
-        // now display the report
-        System.out.println(
-                "\nAnnual Report for: " + thisGame.getThePlayer().getName() + "! \n"
-                + "Term: " + thisGame.getThePlayer().getRound() + "\n"
-                + "Year: " + thisGame.getYear() + "\n"
-                + "Acres of wheat fields owned: " + thisGame.getAcresOwned() + "\n"
-                + "Acres of wheat fields planted: " + thisReport.getAcresPlanted() + "\n"
-                + "Bushels per acre harvested: " + thisReport.getBushelsPerAcre() + "\n"
-                + "Total bushels harvested: " + thisReport.getBushelsHarvested() + "\n"
-                + "Bushels paid in tithes and offerings: " + thisReport.getTithingAmount() + "\n"
-                + "Bushels stolen by robbers: " + thisReport.getLostToRobbers() + "\n"
-                + "Bushels of wheat in store: " + thisGame.getWheatInStorage() + "\n"
-                + "People starved: " + thisReport.getPeopleStarved() + "\n"
-                + "People arrived in city: " + thisReport.getPeopleMovedIn() + "\n"
-                + "Current population: " + thisGame.getCurrentPopulation() + "\n"
-        );
-
-        // now head over to the final view if we've hit a new decade of play
-        if (thisGame.getYear() == 11) {
-            View end = new FinalView();
-            end.displayView();
-            return;
-        }
-
-        
-        pause(3000);
-
     }
 
     private void viewStorehouse() {

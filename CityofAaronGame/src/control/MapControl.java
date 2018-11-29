@@ -1,6 +1,7 @@
 package control;
 
 import app.CityOfAaron;
+import exceptions.MapControlException;
 import model.Location;
 import model.Map;
 import model.Point;
@@ -98,28 +99,53 @@ public class MapControl extends Map {
         allLocations[4][1] = theBorder;
 
         mainMap.setLocations(allLocations);
+        // update current location to Ruler's Court
+        Point point = new Point();
+        point.setRow(3);
+        point.setColumn(3);
+        mainMap.setCurrentLocation(point);
         return mainMap;
     }
-    
-    public static boolean moveLocation (int newRow, int newColumn){
+
+    public static boolean moveLocation(int newRow, int newColumn) throws MapControlException {
         boolean moved = false;
         // update current location, make sure it's actual row/col, not index
         Point point = new Point();
         point.setRow(newRow);
         point.setColumn(newColumn);
-        
+
         Map map = CityOfAaron.getCurrentGame().getTheMap();
         map.setCurrentLocation(point);
         Location[][] mapArray = CityOfAaron.getCurrentGame().getTheMap().getLocations();
-        
-        if (newRow < 1 | newRow > mapArray[].length | newColumn < 1 | newColumn > mapArray[][].length) {
-             throw MapControlException;
-             
-          }
-            else {
-                moved = true;
+
+        if (!(newRow < 1 | newRow > mapArray.length | newColumn < 1 | newColumn > mapArray[0].length)) {
+            moved = true;
+        } else {
+            throw new MapControlException("Point is not on map.");
+        }
+        return moved;
+    }
+
+    public static String viewMap(Location[][] mapArray) throws MapControlException {
+        // loop through and make it look pretty for the two dimensions
+        String mapString = "";
+        for (Location[] mapArray1 : mapArray) {
+            mapString += "\n###################################################################################################################################\n";
+            for (Location item : mapArray1) {
+                if (!item.getName().equals("")) {
+                    String symbol = item.getMapSymbol();
+                    String name = item.getName();
+                    mapString += "##    " + symbol + "  " + name + "    ##";
+                } else {
+                    throw new MapControlException("Map not created.");
                 }
-        return moved;                     
+            }
+            mapString += "\n###################################################################################################################################";
+        }
+
+        // add prettiness to string
+        mapString += "\n\n";
+        return mapString;
     }
 
 }

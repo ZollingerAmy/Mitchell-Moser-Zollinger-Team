@@ -151,7 +151,7 @@ public class GameControl {
         }
     }
 
-    public static boolean gameShouldEnd(Game game) {
+    public static boolean gameShouldEnd(Game game) throws GameControlException {
         boolean ended = false;
         int rating = PeopleControl.calculateUserRating(game);
         if (rating == 0) {
@@ -172,7 +172,7 @@ public class GameControl {
      *
      * @return The year's Annual Report data
      */
-    public static void liveTheYear(Game game) {
+    public static void liveTheYear(Game game) throws GameControlException {
 
         // get all our upcoming numbers
         int tithesPercent = WheatControl.getTithingPercentToPay();

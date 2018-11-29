@@ -4,6 +4,8 @@
 package view;
 
 import app.CityOfAaron;
+import control.MapControl;
+import exceptions.MapControlException;
 import model.Location;
 
 /**
@@ -27,7 +29,11 @@ public class MapView extends ViewBase {
         String messageMap = "\nThe City of Aaron is made up of villages, grasslands,"
                 + "\nwheat fields, a river, and other beautiful and functional areas."
                 + "\n";
-        messageMap += viewMap(mapArray);
+        try {
+            messageMap += MapControl.viewMap(mapArray);
+        } catch (MapControlException mce) {
+            System.out.println(mce.getMessage());
+        }
         return messageMap;
     }
 
@@ -76,10 +82,9 @@ public class MapView extends ViewBase {
                 try {
                     int row = Integer.parseInt(first);
                     int col = Integer.parseInt(go.substring(go.length() - 1));
-                    viewLocation(mapArray, row, col);
-                } catch (NumberFormatException | NullPointerException | MapControlException MCE) {
-                    System.out.println(MCE.getMessage());
-                    //"Please enter a row and column number such as: '2/4'."
+                    viewLocation(row, col);
+                } catch (NumberFormatException | NullPointerException e) {
+                    System.out.println("Please enter a row and column number such as: '2/4'.");
                 }
                 break;
             default:
@@ -92,34 +97,11 @@ public class MapView extends ViewBase {
         return true;
     }
 
-    private void viewLocation(Location[][] mapArray, int row, int col) {
+    private void viewLocation(int row, int col) {
         // look up the location with above args
-        Location thisLocation = mapArray[row-1][col-1];
+        Location thisLocation = mapArray[row - 1][col - 1];
         // print to user
         System.out.println(thisLocation.getMapSymbol() + " " + thisLocation.getName() + "\n"
                 + thisLocation.getDescription() + "\n" + thisLocation.getGameTip());
-    }
-
-    private String viewMap(Location[][] mapArray) {
-
-        // loop through and make it look pretty for the two dimensions
-        String mapString = "";
-        for (int i = 0; i < mapArray.length; i++) {
-            mapString += "\n###################################################################################################################################\n";
-
-            for (int j = 0; j < mapArray[i].length; j++) {
-                String symbol = mapArray[i][j].getMapSymbol();
-                String name = mapArray[i][j].getName();
-
-                mapString += "##    " + symbol + "  " + name + "    ##";
-            }
-
-            mapString += "\n###################################################################################################################################";
-
-        }
-
-        // add prettiness to string
-        mapString += "\n\n";
-        return mapString;
     }
 }

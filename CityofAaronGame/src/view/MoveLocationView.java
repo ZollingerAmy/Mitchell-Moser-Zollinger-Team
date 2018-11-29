@@ -5,7 +5,9 @@ package view;
 
 import app.CityOfAaron;
 import control.MapControl;
+import exceptions.MapControlException;
 import model.Location;
+import model.Map;
 import model.Point;
 
 /**
@@ -15,7 +17,8 @@ import model.Point;
 public class MoveLocationView extends ViewBase {
 
     // get the map from the model;
-    Location[][] mapArray = CityOfAaron.getCurrentGame().getTheMap().getLocations();
+    Map map = CityOfAaron.getCurrentGame().getTheMap();
+    Location[][] mapArray = map.getLocations();
 
     /**
      * Constructor
@@ -26,9 +29,21 @@ public class MoveLocationView extends ViewBase {
 
     @Override
     protected String getMessage() {
-        return "\nMove to a new location in the City of Aaron."
-                + "\n";
+        // look up the current location
+        Point point = map.getCurrentLocation();
+        int row = point.getRow();
+        int col = point.getColumn();
+        Location thisLocation = mapArray[row - 1][col - 1];
 
+        String messageMap = "You are currently at " + thisLocation.getName() + "\n\n"
+                + "\nMove to a new location in the City of Aaron."
+                + "\n";
+        try {
+            messageMap += MapControl.viewMap(mapArray);
+        } catch (MapControlException mce) {
+            System.out.println(mce.getMessage());
+        }
+        return messageMap;
     }
 
     /**
@@ -75,8 +90,8 @@ public class MoveLocationView extends ViewBase {
                 try {
                     int row = Integer.parseInt(first);
                     int col = Integer.parseInt(go.substring(go.length() - 1));
-                    moveLocation(mapArray, row, col);
-                } catch (NumberFormatException | NullPointerException |MapControlException MCE) {
+                    moveLocation(row, col);
+                } catch (NumberFormatException | NullPointerException e) {
                     System.out.println("Please enter a row and column number such as: '2/4'.");
                 }
                 pause(3000);
@@ -92,40 +107,16 @@ public class MoveLocationView extends ViewBase {
         return true;
     }
 
-    private void moveLocation(Location[][] mapArray, int row, int col) {
-        // look up the location with above args
-        Location thisLocation = mapArray[row-1][col-1];
-
-     boolean moved = MapControl.moveLocation(row, col);
-
-        // print to user
-        System.out.println("\nYou have moved to:\n" + thisLocation.getMapSymbol() + " " + thisLocation.getName() + "\n"
-                + thisLocation.getDescription() + "\n" + thisLocation.getGameTip());
-    }
-
-    private String viewMap(Location[][] mapArray) {
-
-        // loop through and make it look pretty for the two dimensions
-        String mapString = "";
-        for (int i = 0; i < mapArray.length; i++) {
-            mapString += "\n###################################################################################################################################\n";
-
-            // AM: while loop for individual assignment week 8, change back to FOR loop later.
-            int j = 0;
-            while (j < mapArray[i].length) {
-                String symbol = mapArray[i][j].getMapSymbol();
-                String name = mapArray[i][j].getName();
-                mapString += "##    " + symbol + "  " + name + "    ##";
-                j++;
-            }
-
-            mapString += "\n###################################################################################################################################";
-            //System.out.println(string)
-
+    private void moveLocation(int row, int col) {
+        try {
+            boolean moved = MapControl.moveLocation(row, col);
+            // look up the location with above args
+            Location newLocation = mapArray[row - 1][col - 1];
+            // print to user
+            System.out.println("\nYou have moved to:\n" + newLocation.getMapSymbol() + " " + newLocation.getName() + "\n"
+                    + newLocation.getDescription() + "\n" + newLocation.getGameTip());
+        } catch (MapControlException mce) {
+            System.out.println(mce.getMessage());
         }
-
-        // add prettiness to string?
-        mapString += "\n\n";
-        return mapString;
     }
 }

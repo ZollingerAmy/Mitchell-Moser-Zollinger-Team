@@ -6,6 +6,7 @@ package view;
 import app.CityOfAaron;
 import control.GameControl;
 import control.PeopleControl;
+import exceptions.GameControlException;
 
 /**
  *
@@ -13,15 +14,17 @@ import control.PeopleControl;
  */
 public class FinalView extends ViewBase {
 
-    int rating = PeopleControl.calculateUserRating(CityOfAaron.getCurrentGame());
-    String userMessage = PeopleControl.getUserMessage();
+    int rating;
+    String userMessage;
 
     /**
      * Constructor
+     * @throws exceptions.GameControlException
      */
-    public FinalView() {
+    public FinalView() throws GameControlException {
         super();
-
+        rating = PeopleControl.calculateUserRating(CityOfAaron.getCurrentGame());
+        userMessage = PeopleControl.getUserMessage();
     }
 
     @Override

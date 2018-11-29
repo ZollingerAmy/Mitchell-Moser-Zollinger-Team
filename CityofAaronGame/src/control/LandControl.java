@@ -1,5 +1,7 @@
 package control;
 
+import exceptions.GameControlException;
+
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
  */
@@ -14,7 +16,7 @@ public class LandControl {
         return upcomingLandPrice;
     }
 
-    public static void setUpcomingLandPrice() {
+    public static void setUpcomingLandPrice() throws GameControlException {
         int price = GameControl.getRandomNumber(17, 27);
         upcomingLandPrice = price;
     }

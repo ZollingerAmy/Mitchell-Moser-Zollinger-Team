@@ -4,6 +4,7 @@
 package view;
 
 import app.CityOfAaron;
+import control.MapControl;
 import model.Location;
 import model.Point;
 
@@ -75,7 +76,7 @@ public class MoveLocationView extends ViewBase {
                     int row = Integer.parseInt(first);
                     int col = Integer.parseInt(go.substring(go.length() - 1));
                     moveLocation(mapArray, row, col);
-                } catch (NumberFormatException | NullPointerException e) {
+                } catch (NumberFormatException | NullPointerException |MapControlException MCE) {
                     System.out.println("Please enter a row and column number such as: '2/4'.");
                 }
                 pause(3000);
@@ -95,11 +96,7 @@ public class MoveLocationView extends ViewBase {
         // look up the location with above args
         Location thisLocation = mapArray[row-1][col-1];
 
-        // update current location, make sure it's actual row/col, not index
-        Point point = new Point();
-        point.setRow(row);
-        point.setColumn(col);
-        CityOfAaron.getCurrentGame().getTheMap().setCurrentLocation(point);
+     boolean moved = MapControl.moveLocation(row, col);
 
         // print to user
         System.out.println("\nYou have moved to:\n" + thisLocation.getMapSymbol() + " " + thisLocation.getName() + "\n"

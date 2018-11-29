@@ -1,6 +1,7 @@
 package control;
 
 import model.Game;
+import exceptions.GameControlException;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -10,16 +11,16 @@ public class PeopleControl {
     // store the user rating message
     private static String userMessage = "";
 
-    public static int calculateMortality(int bushelsSetAside, int currentPopulation) {
+    public static int calculateMortality(int bushelsSetAside, int currentPopulation) throws GameControlException {
 
 // Calculate the number of people who are not fed the amount required to
 // sustain life (20 bushels per person). They die. It is very sad.
         if (bushelsSetAside < 0) {
-            return -1;
+            throw new GameControlException("Bushels set aside cannot be less than 0");
         }
 
         if (currentPopulation < 0) {
-            return -1;
+            throw new GameControlException("Current Population cannot be less than 0");
         }
 
         int numberOfPeopleFed = bushelsSetAside / 20;
@@ -31,7 +32,7 @@ public class PeopleControl {
 
     }
 
-    public static int calculateNewMoveIns(int currentPopulation) {
+    public static int calculateNewMoveIns(int currentPopulation) throws GameControlException {
         int peopleMovedIn;
         int rand = GameControl.getRandomNumber(1, 5);
         peopleMovedIn = currentPopulation * rand / 100;

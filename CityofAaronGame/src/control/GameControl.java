@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import model.Author;
+import exceptions.GameControlException;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -259,19 +260,19 @@ public class GameControl {
      * @param highValue
      * @return The random number
      */
-    public static int getRandomNumber(int lowValue, int highValue) {
+    public static int getRandomNumber(int lowValue, int highValue) throws GameControlException {
         // if low < 0 or high < 0 then return -1
         if (lowValue < 0 || highValue < 0) {
-            return -1;
+            throw new GameControlException("The value cannot be less than 0.");
         }
         // if high <= low then return -2
         if (highValue <= lowValue) {
-            return -2;
+            throw new GameControlException("The high value cannot be less than or equal to the low value");
         }
 
         // if high is the max val for int, then return -3
         if (highValue == Integer.MAX_VALUE) {
-            return -3;
+            throw new GameControlException("The high equals the max value for the integer.");
         }
 
         // calc the size of the range; add one so Random() includes high val

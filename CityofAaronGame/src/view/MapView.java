@@ -77,8 +77,9 @@ public class MapView extends ViewBase {
                     int row = Integer.parseInt(first);
                     int col = Integer.parseInt(go.substring(go.length() - 1));
                     viewLocation(mapArray, row, col);
-                } catch (NumberFormatException | NullPointerException e) {
-                    System.out.println("Please enter a row and column number such as: '2/4'.");
+                } catch (NumberFormatException | NullPointerException | MapControlException MCE) {
+                    System.out.println(MCE.getMessage());
+                    //"Please enter a row and column number such as: '2/4'."
                 }
                 break;
             default:

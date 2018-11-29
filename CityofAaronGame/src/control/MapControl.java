@@ -1,7 +1,9 @@
 package control;
 
+import app.CityOfAaron;
 import model.Location;
 import model.Map;
+import model.Point;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -97,6 +99,27 @@ public class MapControl extends Map {
 
         mainMap.setLocations(allLocations);
         return mainMap;
+    }
+    
+    public static boolean moveLocation (int newRow, int newColumn){
+        boolean moved = false;
+        // update current location, make sure it's actual row/col, not index
+        Point point = new Point();
+        point.setRow(newRow);
+        point.setColumn(newColumn);
+        
+        Map map = CityOfAaron.getCurrentGame().getTheMap();
+        map.setCurrentLocation(point);
+        Location[][] mapArray = CityOfAaron.getCurrentGame().getTheMap().getLocations();
+        
+        if (newRow < 1 | newRow > mapArray[].length | newColumn < 1 | newColumn > mapArray[][].length) {
+             throw MapControlException;
+             
+          }
+            else {
+                moved = true;
+                }
+        return moved;                     
     }
 
 }

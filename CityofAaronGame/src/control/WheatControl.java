@@ -1,6 +1,7 @@
 package control;
 
 import model.Storehouse;
+import exceptions.GameControlException;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -61,14 +62,14 @@ public class WheatControl {
     }
 
     //AMBER
-    public static int calcLossToRobbers(int tithesPercent, int wheatInStorage) {
+    public static int calcLossToRobbers(int tithesPercent, int wheatInStorage) throws GameControlException {
         // Calculate the amount of wheat in storage lost to robbers, based on
         // the percentage of tithing paid. Assume that GameControl.getRandomNumber(low, high) is available to be called.
         if (wheatInStorage < 0) {
-            return -1;
+            throw new GameControlException("Wheat in Storage cannot be less than 0");
         }
         if (tithesPercent < 0 || tithesPercent > 100) {
-            return -2;
+            throw new GameControlException("Tithes percent cannot be less than 0 or more than 100");
         }
 
         int low = 1;
@@ -102,25 +103,25 @@ public class WheatControl {
     }
     
     // Teresa
-    public static int calcHarvest (int perAcre, int acresPlanted){
+    public static int calcHarvest (int perAcre, int acresPlanted) throws GameControlException{
         // Calculate the amount of wheat harvested, based on the percentage
         // of tithing paid. This is meant to be returned to the Annual Report harvest number
      
         if (acresPlanted < 0 || perAcre < 1) {
-            return -1;
+            throw new GameControlException("Acres planted cannot be less than 0 or per Acre cannot be less than 1");
         }
      
         int yield = (perAcre * acresPlanted);
         return yield;
     }
 
-    public static int calcBushelsPerAcre (int tithesPercent){
+    public static int calcBushelsPerAcre (int tithesPercent) throws GameControlException{
         // Calculate the amount of bushels per acre to be harvested, based on the percentage
         // of tithing paid. Assume that GameControl.getRandomNumber(low, high)
         // is available to be called. This is meant to be returned to the Annual Report bushels per acre number.
      
         if (tithesPercent < 0 || tithesPercent > 100) {
-            return -2;
+            throw new GameControlException("Tithes Percent cannot be less than 0 or more than 100");
         }
         
         int low = 1;

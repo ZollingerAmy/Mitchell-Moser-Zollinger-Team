@@ -29,7 +29,7 @@ public class GameControl {
     private static String filepath = "";
     public static boolean exit = false;
 
-    public static Game createNewGame(String thePlayer) {
+    public static Game createNewGame(String thePlayer) throws GameControlException {
         // reset our exit boolean;
         exit = false;
         // set our player
@@ -169,8 +169,6 @@ public class GameControl {
      * @param bushelsForFood The number of bushels of wheat allocated as food
      * for the year
      * @param acresToPlant The number of acres to be used for planting
-     *
-     * @return The year's Annual Report data
      */
     public static void liveTheYear(Game game) throws GameControlException {
 
@@ -211,6 +209,10 @@ public class GameControl {
         totalWheat = totalWheat - bushelsForFood;
         
         // ERROR if totalWheat < 0 at this point, need an error!! Means player didn't plan enough.
+        if (totalWheat < 0) {
+            throw new GameControlException("You used more wheat than was in your storehouse!\n"
+                    + "Please adjust your numbers in the 'Manage Crops' area and then live the year again.");
+        }
 
         // now figure out our harvest
         int perAcre = WheatControl.calcBushelsPerAcre(tithesPercent);

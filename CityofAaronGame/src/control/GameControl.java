@@ -19,6 +19,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import model.Author;
 import exceptions.GameControlException;
+import exceptions.WheatControlException;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -29,14 +30,14 @@ public class GameControl {
     private static String filepath = "";
     public static boolean exit = false;
 
-    public static Game createNewGame(String thePlayer) {
+    public static Game createNewGame(String thePlayer) throws GameControlException {
         // reset our exit boolean;
         exit = false;
         // set our player
         Player player = new Player(thePlayer, 1);
 
         // add our authors
-        String[] authors = new String[] {Author.Amber.getValue(), Author.Teresa.getValue(), Author.Amy.getValue()};
+        String[] authors = new String[]{Author.Amber.getValue(), Author.Teresa.getValue(), Author.Amy.getValue()};
 
         // set up animals
         // let's have 4 ages of cows/oxen, as follows (5 of each age)
@@ -160,7 +161,6 @@ public class GameControl {
         return ended;
     }
 
-
     /**
      * Process the current year's results and update the Game Object.
      *
@@ -172,7 +172,7 @@ public class GameControl {
      *
      * @return The year's Annual Report data
      */
-    public static void liveTheYear(Game game) throws GameControlException {
+    public static void liveTheYear(Game game) throws GameControlException, WheatControlException {
 
         // get all our upcoming numbers
         int tithesPercent = WheatControl.getTithingPercentToPay();
@@ -204,14 +204,13 @@ public class GameControl {
         acres = acres - landToSell;
         //Add the bushels of wheat that was increased by the selling of land to the bushels of wheat in storage.
         totalWheat = totalWheat + (landToSell * landPrice);
-        
+
         // Subtract the bushels to plant crops from total.
-        totalWheat = totalWheat - (acresToPlant/2);
+        totalWheat = totalWheat - (acresToPlant / 2);
         // Subtract the bushels to feed people from total.
         totalWheat = totalWheat - bushelsForFood;
-        
-        // ERROR if totalWheat < 0 at this point, need an error!! Means player didn't plan enough.
 
+        // ERROR if totalWheat < 0 at this point, need an error!! Means player didn't plan enough.
         // now figure out our harvest
         int perAcre = WheatControl.calcBushelsPerAcre(tithesPercent);
         int harvested = WheatControl.calcHarvest(perAcre, acresToPlant);

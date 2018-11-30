@@ -38,9 +38,13 @@ public class CityOfAaron {
     }
 
     public static void main(String[] args) {
-
+        try{
         View startProgramView = new StartProgramView();
         startProgramView.displayView();
+        }
+       catch (Throwable e){
+           System.out.println(e.getMessage());
+       }
 
     }
 

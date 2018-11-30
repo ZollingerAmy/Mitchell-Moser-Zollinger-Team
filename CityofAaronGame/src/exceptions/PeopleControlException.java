@@ -3,7 +3,7 @@ package exceptions;
 
 /**
  *
- * @author Amber Mitchell
+ * @author Amy Zollinger
  */
 public class PeopleControlException extends Exception {
 

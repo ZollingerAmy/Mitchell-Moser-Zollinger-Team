@@ -3,6 +3,9 @@ package view;
 import app.CityOfAaron;
 import control.GameControl;
 import exceptions.GameControlException;
+import exceptions.WheatControlException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.AnnualReport;
 import model.Game;
 
@@ -66,40 +69,45 @@ public class GameMenuView extends ViewBase {
      */
     @Override
     public boolean doAction(String[] inputs) {
-        if (GameControl.exit) {
-            return false;
-        }
-
-        // Act on the user's input.
-        switch (inputs[0].trim().toUpperCase()) {
-
-            case "1":
-                displayAnnualReport();
-                break;
-            case "2":
-                viewMap();
-                break;
-            case "3":
-                moveLocation();
-                break;
-            case "4":
-                manageCrops();
-                break;
-            case "5":
-                liveYear();
-                break;
-            case "6":
-                viewStorehouse();
-                break;
-            case "7":
-                saveGame();
-                break;
-            case "X":
-                System.out.println("Returning to Main Menu.");
+        try {
+            if (GameControl.exit) {
                 return false;
+            }
+            
+            // Act on the user's input.
+            switch (inputs[0].trim().toUpperCase()) {
+                
+                case "1":
+                    displayAnnualReport();
+                    break;
+                case "2":
+                    viewMap();
+                    break;
+                case "3":
+                    moveLocation();
+                    break;
+                case "4":
+                    manageCrops();
+                    break;
+                case "5":
+                    liveYear();
+                    break;
+                case "6":
+                    viewStorehouse();
+                    break;
+                case "7":
+                    saveGame();
+                    break;
+                case "X":
+                    System.out.println("Returning to Main Menu.");
+                    return false;
+            }
+            
+            return true;
+        } catch (WheatControlException ex) {
+            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return true;
+        return false;
     }
 
     private void displayAnnualReport() {
@@ -122,7 +130,7 @@ public class GameMenuView extends ViewBase {
         crops.displayView();
     }
 
-    private void liveYear() {
+    private void liveYear() throws WheatControlException {
         try {
             Game oldGame = CityOfAaron.getCurrentGame();
 

@@ -5,6 +5,9 @@ package view;
 
 import app.CityOfAaron;
 import control.GameControl;
+import exceptions.GameControlException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.AnnualReport;
 import model.Game;
 
@@ -68,7 +71,11 @@ public class NewGameView extends ViewBase {
 
     private void createAndStartGame(String playerName) {
 
-        GameControl.createNewGame(playerName);
+        try {
+            GameControl.createNewGame(playerName);
+        } catch (GameControlException ex) {
+            Logger.getLogger(NewGameView.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         Game thisGame = CityOfAaron.getCurrentGame();
         AnnualReport thisReport = CityOfAaron.getCurrentReport();

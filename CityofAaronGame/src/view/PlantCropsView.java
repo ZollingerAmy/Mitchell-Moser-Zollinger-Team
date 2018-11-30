@@ -103,7 +103,6 @@ public class PlantCropsView extends ViewBase {
         } catch (NumberFormatException | NullPointerException e) {
             System.out.println("Not a valid number. Returning to Manage Crops Menu.");
         }
-        // 
 
         // return false if we want this view to exit and return
         // to the view that called it.

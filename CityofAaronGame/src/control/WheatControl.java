@@ -9,8 +9,8 @@ import exceptions.GameControlException;
 public class WheatControl {
     // here we store all the upcoming data from user inputs (mostly from ManageCropsView) - GOES WITH LANDCONTROL
     private static int bushelsToFeedPeople = 0;
-    private static int wheatToPlant = 0;
-    private static int acresToPlant = 0;
+    private static int wheatToPlant = 0; // this is how many bushels of wheat we'll use as seed
+    private static int acresToPlant = 0; // this is how many acres we actually want to plant
     private static int tithingPercentToPay = 0;
 
     public static int getBushelsToFeedPeople() {

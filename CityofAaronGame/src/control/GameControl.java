@@ -176,6 +176,7 @@ public class GameControl {
         int tithesPercent = WheatControl.getTithingPercentToPay();
         int bushelsForFood = WheatControl.getBushelsToFeedPeople();
         int acresToPlant = WheatControl.getAcresToPlant();
+        int wheatToPlant = WheatControl.getWheatToPlant();
         int landPrice = LandControl.getUpcomingLandPrice();
         int landToBuy = LandControl.getLandToBuy();
         int landToSell = LandControl.getLandToSell();
@@ -204,7 +205,7 @@ public class GameControl {
         totalWheat = totalWheat + (landToSell * landPrice);
         
         // Subtract the bushels to plant crops from total.
-        totalWheat = totalWheat - (acresToPlant/2);
+        totalWheat = totalWheat - (wheatToPlant);
         // Subtract the bushels to feed people from total.
         totalWheat = totalWheat - bushelsForFood;
         
@@ -245,6 +246,7 @@ public class GameControl {
         WheatControl.setTithingPercentToPay(0);
         WheatControl.setBushelsToFeedPeople(0);
         WheatControl.setAcresToPlant(0);
+        WheatControl.setWheatToPlant(0);
         LandControl.setLandToBuy(0);
         LandControl.setLandToSell(0);
     }

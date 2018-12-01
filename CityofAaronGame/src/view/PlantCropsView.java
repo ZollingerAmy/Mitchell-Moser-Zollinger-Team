@@ -17,7 +17,6 @@
 package view;
 
 import app.CityOfAaron;
-import control.LandControl;
 import control.WheatControl;
 
 /**
@@ -115,6 +114,7 @@ public class PlantCropsView extends ViewBase {
 
     private void plantCrops(int acresToPlant) {
         WheatControl.setAcresToPlant(acresToPlant);
+        WheatControl.setWheatToPlant(acresToPlant/2);
         System.out.println("Success! You will plant " + acresToPlant + " acres when you live the year.");
     }
 }

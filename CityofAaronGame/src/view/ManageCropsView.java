@@ -26,8 +26,8 @@ public class ManageCropsView extends ViewBase {
     protected String getMessage() {
         buy = LandControl.getLandToBuy();
         sell = LandControl.getLandToSell();
-        crops = WheatControl.getWheatToPlant();
         feed = WheatControl.getBushelsToFeedPeople();
+        crops = WheatControl.getAcresToPlant();
         tithes = WheatControl.getTithingPercentToPay();
         return "\n\n--------------------\n"
                 + "Manage Crops\n"

@@ -19,6 +19,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import model.Author;
 import exceptions.GameControlException;
+import exceptions.WheatControlException;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -36,7 +37,7 @@ public class GameControl {
         Player player = new Player(thePlayer, 1);
 
         // add our authors
-        String[] authors = new String[] {Author.Amber.getValue(), Author.Teresa.getValue(), Author.Amy.getValue()};
+        String[] authors = new String[]{Author.Amber.getValue(), Author.Teresa.getValue(), Author.Amy.getValue()};
 
         // set up animals
         // let's have 4 ages of cows/oxen, as follows (5 of each age)
@@ -160,7 +161,6 @@ public class GameControl {
         return ended;
     }
 
-
     /**
      * Process the current year's results and update the Game Object.
      *
@@ -170,7 +170,7 @@ public class GameControl {
      * for the year
      * @param acresToPlant The number of acres to be used for planting
      */
-    public static void liveTheYear(Game game) throws GameControlException {
+    public static void liveTheYear(Game game) throws GameControlException, WheatControlException {
 
         // get all our upcoming numbers
         int tithesPercent = WheatControl.getTithingPercentToPay();
@@ -203,7 +203,7 @@ public class GameControl {
         acres = acres - landToSell;
         //Add the bushels of wheat that was increased by the selling of land to the bushels of wheat in storage.
         totalWheat = totalWheat + (landToSell * landPrice);
-        
+
         // Subtract the bushels to plant crops from total.
         totalWheat = totalWheat - (wheatToPlant);
         // Subtract the bushels to feed people from total.
@@ -214,7 +214,6 @@ public class GameControl {
             throw new GameControlException("You used more wheat than was in your storehouse!\n"
                     + "Please adjust your numbers in the 'Manage Crops' area and then live the year again.");
         }
-
         // now figure out our harvest
         int perAcre = WheatControl.calcBushelsPerAcre(tithesPercent);
         int harvested = WheatControl.calcHarvest(perAcre, acresToPlant);

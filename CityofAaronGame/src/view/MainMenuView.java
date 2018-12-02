@@ -52,6 +52,7 @@ public class MainMenuView extends ViewBase {
     @Override
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
+        try{
         switch (inputs[0].trim().toUpperCase()) {
             case "N":
                 startNewGame();
@@ -66,7 +67,9 @@ public class MainMenuView extends ViewBase {
                 System.out.println("Thank you for playing. Good-bye.");
                 return false;
         }
-
+        }catch (NullPointerException e){
+        System.out.println("A choice must be made.");
+        }
         return true;
     }
 

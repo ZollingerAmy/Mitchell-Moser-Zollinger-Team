@@ -17,7 +17,6 @@
 package view;
 
 import app.CityOfAaron;
-import control.LandControl;
 import control.WheatControl;
 
 /**
@@ -72,14 +71,16 @@ public class PlantCropsView extends ViewBase {
         try {
             int acresToPlant = Integer.parseInt(inputs[0].trim());
             int land = CityOfAaron.getCurrentGame().getAcresOwned();
-            int acresToBuyNext = LandControl.getLandToBuy();
             int wheat = CityOfAaron.getCurrentGame().getWheatInStorage();
             int people = CityOfAaron.getCurrentGame().getCurrentPopulation();
-            int totalLand = land + acresToBuyNext;
+            // AM: trying to decide if people can plant the acres they just bought (same year) or not...
+            // .... and if so, must also NOT let them plant acres they just sold (same year)
+            //int acresToBuyNext = LandControl.getLandToBuy();
+            //int totalLand = land + acresToBuyNext;
 
             if (acresToPlant < 0) {
                 System.out.println("Not a valid number. Returning to Manage Crops Menu.");
-            } else if (acresToPlant > totalLand) {
+            } else if (acresToPlant > land) {
                 System.out.println("You don't own that much land!\n"
                         + "You have " + land + " acres of wheat fields.\n"
                         + "Please enter a valid number of acres to plant."
@@ -112,6 +113,7 @@ public class PlantCropsView extends ViewBase {
 
     private void plantCrops(int acresToPlant) {
         WheatControl.setAcresToPlant(acresToPlant);
+        WheatControl.setWheatToPlant(acresToPlant/2);
         System.out.println("Success! You will plant " + acresToPlant + " acres when you live the year.");
     }
 }

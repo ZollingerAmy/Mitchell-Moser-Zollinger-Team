@@ -3,12 +3,19 @@
  */
 package view;
 
+import control.LandControl;
+import control.WheatControl;
+
 /**
  *
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class ManageCropsView extends ViewBase {
-      
+    int buy = 0;
+    int sell = 0;
+    int crops = 0;
+    int feed = 0;
+    int tithes = 0;
     /**
      * Constructor
      */
@@ -17,14 +24,19 @@ public class ManageCropsView extends ViewBase {
     }
     @Override
     protected String getMessage() {
+        buy = LandControl.getLandToBuy();
+        sell = LandControl.getLandToSell();
+        feed = WheatControl.getBushelsToFeedPeople();
+        crops = WheatControl.getAcresToPlant();
+        tithes = WheatControl.getTithingPercentToPay();
         return "\n\n--------------------\n"
                 + "Manage Crops\n"
                 + "--------------------\n"
-                + "1 - Buy Land \n"
-                + "2 - Sell Land \n"
-                + "3 - Feed your People\n"
-                + "4 - Plant Crops \n"
-                + "5 - Pay Tithes and Offerings \n"
+                + "1 - Buy Land: " + buy + " acres\n"
+                + "2 - Sell Land: " + sell + " acres \n"
+                + "3 - Feed your People: " + feed + " bushels of wheat\n"
+                + "4 - Plant Crops: " + crops + " acres\n"
+                + "5 - Pay Tithes and Offerings: " + tithes + "%\n"
                 + "X - Return to the Game Menu \n";               
         
     }
@@ -41,8 +53,10 @@ public class ManageCropsView extends ViewBase {
         // from the user.
         String[] inputs = new String[1];
 
-        inputs[0] = getUserInput("Choose the number of the next action you want to"
-                + " take from the Menu.");
+        inputs[0] = getUserInput("This is where you plan all your actions for the year.\n"
+                + "You may keep adjusting these numbers as you see fit until you are ready to\n"
+                + "return to the Game Menu and 'Live the Year'. Be sure your calculations are correct!\n\n"
+                + "Which option do you choose?");
 
         // Repeat for each input you need, putting it into its proper slot in the array.
         return inputs;

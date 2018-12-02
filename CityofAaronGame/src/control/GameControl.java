@@ -169,8 +169,6 @@ public class GameControl {
      * @param bushelsForFood The number of bushels of wheat allocated as food
      * for the year
      * @param acresToPlant The number of acres to be used for planting
-     *
-     * @return The year's Annual Report data
      */
     public static void liveTheYear(Game game) throws GameControlException, WheatControlException {
 
@@ -178,6 +176,7 @@ public class GameControl {
         int tithesPercent = WheatControl.getTithingPercentToPay();
         int bushelsForFood = WheatControl.getBushelsToFeedPeople();
         int acresToPlant = WheatControl.getAcresToPlant();
+        int wheatToPlant = WheatControl.getWheatToPlant();
         int landPrice = LandControl.getUpcomingLandPrice();
         int landToBuy = LandControl.getLandToBuy();
         int landToSell = LandControl.getLandToSell();
@@ -206,11 +205,15 @@ public class GameControl {
         totalWheat = totalWheat + (landToSell * landPrice);
 
         // Subtract the bushels to plant crops from total.
-        totalWheat = totalWheat - (acresToPlant / 2);
+        totalWheat = totalWheat - (wheatToPlant);
         // Subtract the bushels to feed people from total.
         totalWheat = totalWheat - bushelsForFood;
-
+        
         // ERROR if totalWheat < 0 at this point, need an error!! Means player didn't plan enough.
+        if (totalWheat < 0) {
+            throw new GameControlException("You used more wheat than was in your storehouse!\n"
+                    + "Please adjust your numbers in the 'Manage Crops' area and then live the year again.");
+        }
         // now figure out our harvest
         int perAcre = WheatControl.calcBushelsPerAcre(tithesPercent);
         int harvested = WheatControl.calcHarvest(perAcre, acresToPlant);
@@ -242,6 +245,7 @@ public class GameControl {
         WheatControl.setTithingPercentToPay(0);
         WheatControl.setBushelsToFeedPeople(0);
         WheatControl.setAcresToPlant(0);
+        WheatControl.setWheatToPlant(0);
         LandControl.setLandToBuy(0);
         LandControl.setLandToSell(0);
     }

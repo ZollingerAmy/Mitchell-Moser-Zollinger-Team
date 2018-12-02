@@ -3,6 +3,7 @@ package view;
 import app.CityOfAaron;
 import control.GameControl;
 import exceptions.GameControlException;
+import exceptions.PeopleControlException;
 import exceptions.WheatControlException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -172,8 +173,8 @@ public class GameMenuView extends ViewBase {
             }
 
             pause(3000);
-        } catch (GameControlException gce) {
-            System.out.println(gce.getMessage());
+        } catch (GameControlException | PeopleControlException | WheatControlException e) {
+            System.out.println(e.getMessage());
         }
     }
 

@@ -19,6 +19,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import model.Author;
 import exceptions.GameControlException;
+import exceptions.PeopleControlException;
 import exceptions.WheatControlException;
 
 /**
@@ -117,6 +118,7 @@ public class GameControl {
 
     public static boolean loadGameFromFile(String filename) {
         boolean worked = false;
+        // make the game a regular object
         String filepathA = filepath + filename + ".txt";
         Object obj;
         Object obj2;
@@ -130,23 +132,22 @@ public class GameControl {
             worked = true;
             return worked;
         } catch (Exception e) {
+            e.printStackTrace();
             return worked;
         }
 
     }
 
     public static void saveGameToFile(String filename, Game game, AnnualReport report) {
-        try {
-            // make the game a regular object
-            Object obj = (Object) game;
-            Object obj2 = (Object) report;
-            String filepathB = filepath + filename + ".txt";
-            FileOutputStream f = new FileOutputStream(filepathB);
+        // make the game a regular object
+        String filepathB = filepath + filename + ".txt";
+        Object obj = (Object) game;
+        Object obj2 = (Object) report;
+        try (FileOutputStream f = new FileOutputStream(filepathB)) {
             ObjectOutputStream o = new ObjectOutputStream(f);
             o.writeObject(obj);
             o.writeObject(obj2);
             o.close();
-            f.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -166,11 +167,10 @@ public class GameControl {
      *
      * @param game The current Game object (pass by reference)
      * @param tithesPercent The percentage of tithing selected for the year
-     * @param bushelsForFood The number of bushels of wheat allocated as food
-     * for the year
+     * @param bushelsForFood The number of bushels of wheat allocated as food for the year
      * @param acresToPlant The number of acres to be used for planting
      */
-    public static void liveTheYear(Game game) throws GameControlException, WheatControlException {
+    public static void liveTheYear(Game game) throws GameControlException, WheatControlException, PeopleControlException {
 
         // get all our upcoming numbers
         int tithesPercent = WheatControl.getTithingPercentToPay();
@@ -208,7 +208,7 @@ public class GameControl {
         totalWheat = totalWheat - (wheatToPlant);
         // Subtract the bushels to feed people from total.
         totalWheat = totalWheat - bushelsForFood;
-        
+
         // ERROR if totalWheat < 0 at this point, need an error!! Means player didn't plan enough.
         if (totalWheat < 0) {
             throw new GameControlException("You used more wheat than was in your storehouse!\n"
@@ -253,8 +253,7 @@ public class GameControl {
     /**
      * Generates a random integer between lowValue and highValue, inclusive.
      * <ul>Requirements:
-     * <li>lowValue and highValue must be positive int (&gt;= 0) (return
-     * -1)</li>
+     * <li>lowValue and highValue must be positive int (&gt;= 0) (return -1)</li>
      * <li>highValue must be greater than lowValue (return -2) </li>
      * <li>highValue cannot be equal to the max value for int (return -3)</li>
      * </ul>

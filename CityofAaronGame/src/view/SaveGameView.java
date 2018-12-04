@@ -51,7 +51,7 @@ public class SaveGameView extends ViewBase {
 
         //if no input return to main menu
         if (inputs[0] == null || inputs[0].equals("")) {
-            System.out.println("No game name entered. Returning to the Main Menu...");
+            ErrorView.display(this.getClass().getName(), "No game name entered. Returning to the Main Menu...");
             return false;
         }
         saveGame(inputs[0]);
@@ -67,7 +67,7 @@ public class SaveGameView extends ViewBase {
         GameControl.saveGameToFile(filename, game, report);
 
         // AM: print success to user.
-        System.out.print("Game saved: " + filename + "\n");
+        this.console.print("Game saved: " + filename + "\n");
         
     }
 }

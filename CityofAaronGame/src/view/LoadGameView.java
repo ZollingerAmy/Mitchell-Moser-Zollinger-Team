@@ -48,7 +48,7 @@ public class LoadGameView extends ViewBase {
 
         //if no input return to main menu
         if (inputs[0] == null || inputs[0].equals("")) {
-            System.out.println("No valid game name entered. Returning to the Main Menu...");
+            ErrorView.display(this.getClass().getName(), "No valid game name entered. Returning to the Main Menu...");
             return false;
         }
         loadGame(inputs[0]);
@@ -61,12 +61,12 @@ public class LoadGameView extends ViewBase {
         boolean success = GameControl.loadGameFromFile(filename);
 
         if (success) {
-            System.out.print("Loaded game: \n" + filename + "\n");
+            this.console.println("Loaded game: \n" + filename + "\n");
             // now head over to the Game View!
             View gameMenu = new GameMenuView();
             gameMenu.displayView();
         } else {
-            System.out.println("No valid game name entered. Returning to the Main Menu...");
+            ErrorView.display(this.getClass().getName(), "No valid game name entered. Returning to the Main Menu...");
 
         }
 

@@ -41,7 +41,7 @@ public class MoveLocationView extends ViewBase {
         try {
             messageMap += MapControl.viewMap(mapArray);
         } catch (MapControlException mce) {
-            System.out.println(mce.getMessage());
+            ErrorView.display(this.getClass().getName(), "Error: " + mce.getMessage());
         }
         return messageMap;
     }
@@ -80,7 +80,7 @@ public class MoveLocationView extends ViewBase {
 
         switch (first) {
             case "X":
-                System.out.println("Returning to Game Menu.");
+                this.console.println("Returning to Game Menu.");
                 return false;
             case "1":
             case "2":
@@ -92,13 +92,13 @@ public class MoveLocationView extends ViewBase {
                     int col = Integer.parseInt(go.substring(go.length() - 1));
                     moveLocation(row, col);
                 } catch (NumberFormatException | NullPointerException e) {
-                    System.out.println("Please enter a row and column number such as: '2/4'.");
+                    ErrorView.display(this.getClass().getName(), "Please enter a row and column number such as: '2/4'.");
                 }
                 pause(3000);
-                System.out.println("\nMove successful. Returning to Game Menu.");
+                this.console.println("\nMove successful. Returning to Game Menu.");
                 return false;
             default:
-                System.out.println("\nPlease enter a row and column number such as: '2/4'\n or 'X' to exit to Game Menu.");
+                this.console.println("\nPlease enter a row and column number such as: '2/4'\n or 'X' to exit to Game Menu.");
                 pause(3000);
         }
 
@@ -113,10 +113,10 @@ public class MoveLocationView extends ViewBase {
             // look up the location with above args
             Location newLocation = mapArray[row - 1][col - 1];
             // print to user
-            System.out.println("\nYou have moved to:\n" + newLocation.getMapSymbol() + " " + newLocation.getName() + "\n"
+            this.console.println("\nYou have moved to:\n" + newLocation.getMapSymbol() + " " + newLocation.getName() + "\n"
                     + newLocation.getDescription() + "\n" + newLocation.getGameTip());
         } catch (MapControlException mce) {
-            System.out.println(mce.getMessage());
+            ErrorView.display(this.getClass().getName(), "Error: " + mce.getMessage());
         }
     }
 }

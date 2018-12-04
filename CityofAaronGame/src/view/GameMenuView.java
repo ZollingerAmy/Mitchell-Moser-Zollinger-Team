@@ -100,7 +100,7 @@ public class GameMenuView extends ViewBase {
                     saveGame();
                     break;
                 case "X":
-                    System.out.println("Returning to Main Menu.");
+                    this.console.println("Returning to Main Menu.");
                     return false;
             }
             
@@ -149,7 +149,7 @@ public class GameMenuView extends ViewBase {
                 return;
             }
             // now display the report
-            System.out.println(
+            this.console.println(
                     "\nAnnual Report for: " + thisGame.getThePlayer().getName() + "! \n"
                     + "Term: " + thisGame.getThePlayer().getRound() + "\n"
                     + "Year: " + thisGame.getYear() + "\n"
@@ -174,7 +174,7 @@ public class GameMenuView extends ViewBase {
 
             pause(3000);
         } catch (GameControlException | PeopleControlException | WheatControlException e) {
-            System.out.println(e.getMessage());
+            this.console.println(e.getMessage());
         }
     }
 

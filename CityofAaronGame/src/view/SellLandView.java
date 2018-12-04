@@ -69,9 +69,9 @@ public class SellLandView extends ViewBase {
             int acresToSell = Integer.parseInt(inputs[0].trim());
             int land = CityOfAaron.getCurrentGame().getAcresOwned();
             if (acresToSell < 0) {
-                System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+                ErrorView.display(this.getClass().getName(), "Not a valid number. Returning to Manage Crops Menu.");
             } else if (acresToSell > land) {
-                System.out.println("You don't have enough land to sell that much!\n"
+                ErrorView.display(this.getClass().getName(), "You don't have enough land to sell that much!\n"
                         + "You have " + land + " acres of land.\n"
                         + "Please enter a valid number of acres to sell."
                 );
@@ -80,7 +80,7 @@ public class SellLandView extends ViewBase {
                 sellLand(acresToSell);
             }
         } catch (NumberFormatException | NullPointerException e) {
-            System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+            ErrorView.display(this.getClass().getName(), "Not a valid number. Returning to Manage Crops Menu.");
         }
         // 
 
@@ -93,7 +93,7 @@ public class SellLandView extends ViewBase {
     private void sellLand(int acresToSell) {
         LandControl.setLandToSell(acresToSell);
         int income = acresToSell * currentPrice;
-        System.out.println("Success! You will sell " + acresToSell + " from your acreage when you live the year.\n"
+        this.console.println("Success! You will sell " + acresToSell + " from your acreage when you live the year.\n"
                 + "This will profit you " + income + " bushels of wheat."
         );
     }

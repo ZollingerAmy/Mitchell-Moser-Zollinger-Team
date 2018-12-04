@@ -113,7 +113,7 @@ public class HelpMenuView extends ViewBase {
                 break;
 
         }
-        System.out.println(which);
+        this.console.println(which);
     }
 
 }

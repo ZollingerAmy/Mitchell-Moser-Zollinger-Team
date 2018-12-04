@@ -70,9 +70,10 @@ public class BuyLandView extends ViewBase {
             int cost = acresToBuy * currentPrice;
             int wheat = CityOfAaron.getCurrentGame().getWheatInStorage();
             if (acresToBuy < 0) {
-                System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+                ErrorView.display(this.getClass().getName(),"Not a valid number. Returning to Manage Crops Menu.");
+                //System.out.println("Not a valid number. Returning to Manage Crops Menu.");
             } else if (cost > wheat) {
-                System.out.println("You don't have enough wheat to buy that much land!\n"
+                ErrorView.display(this.getClass().getName(), "You don't have enough wheat to buy that much land!\n"
                         + "You have " + wheat + " in storage.\n"
                         + "Please enter a valid number of acres to buy at the current price of $" + currentPrice + " per acre."
                 );
@@ -81,7 +82,7 @@ public class BuyLandView extends ViewBase {
                 buyLand(acresToBuy);
             }
         } catch (NumberFormatException | NullPointerException e) {
-            System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+            ErrorView.display(this.getClass().getName(), "Not a valid number. Returning to Manage Crops Menu.");
         }
         // 
 
@@ -93,6 +94,6 @@ public class BuyLandView extends ViewBase {
 
     private void buyLand(int acresToBuy) {
         LandControl.setLandToBuy(acresToBuy);
-        System.out.println("Success! You will add " + acresToBuy + " to your acreage when you live the year.");
+        this.console.println("Success! You will add " + acresToBuy + " to your acreage when you live the year.");
     }
 }

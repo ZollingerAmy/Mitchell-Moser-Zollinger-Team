@@ -90,7 +90,7 @@ public class FinalView extends ViewBase {
                 continueGame();
                 break;
             default:
-                System.out.println("Thank you for playing. Returning to Main Menu.");
+                this.console.println("Thank you for playing. Returning to Main Menu.");
                 GameControl.exit = true;
                 break;
         }

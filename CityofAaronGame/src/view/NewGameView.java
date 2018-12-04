@@ -6,6 +6,7 @@ package view;
 import app.CityOfAaron;
 import control.GameControl;
 import exceptions.GameControlException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.AnnualReport;
@@ -58,7 +59,7 @@ public class NewGameView extends ViewBase {
     public boolean doAction(String[] inputs) {
         // Act on the user's input.
         if (inputs[0] == null || inputs[0].equals("")) {
-            System.out.println("No player name entered. Returning to the Main Menu...");
+            ErrorView.display(this.getClass().getName(), "No player name entered. Returning to the Main Menu...");
             return false;
         }
 
@@ -74,13 +75,13 @@ public class NewGameView extends ViewBase {
         try {
             GameControl.createNewGame(playerName);
         } catch (GameControlException ex) {
-            Logger.getLogger(NewGameView.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorView.display(this.getClass().getName(), "Error: " + ex.getMessage());
         }
 
         Game thisGame = CityOfAaron.getCurrentGame();
         AnnualReport thisReport = CityOfAaron.getCurrentReport();
 
-        System.out.println(
+        this.console.println(
                 "\nWelcome to the game, " + thisGame.getThePlayer().getName() + "! \n"
                 + "Year: " + thisGame.getYear() + "\n"
                 + "Acres of wheat fields owned: " + thisGame.getAcresOwned() + "\n"

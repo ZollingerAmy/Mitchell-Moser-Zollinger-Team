@@ -69,9 +69,9 @@ public class FeedPeopleView extends ViewBase {
             int wheat = CityOfAaron.getCurrentGame().getWheatInStorage();
             
             if (bushelsToFeedPeople < 0) {
-                System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+                ErrorView.display(this.getClass().getName(), "Not a valid number. Returning to Manage Crops Menu.");
             } else if (bushelsToFeedPeople > wheat) {
-                System.out.println("You don't have enough wheat to feed your people that much!\n"
+                ErrorView.display(this.getClass().getName(), "You don't have enough wheat to feed your people that much!\n"
                         + "You have " + wheat + " bushels in storage.\n"
                         + "Please enter a valid number of bushels."
                 );
@@ -81,7 +81,7 @@ public class FeedPeopleView extends ViewBase {
             }
             
         } catch (NumberFormatException | NullPointerException e) {
-            System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+            ErrorView.display(this.getClass().getName(), "Not a valid number. Returning to Manage Crops Menu.");
         }
         // 
 
@@ -93,6 +93,6 @@ public class FeedPeopleView extends ViewBase {
 
     private void feedPeople(int bushelsToFeedPeople) {
         WheatControl.setBushelsToFeedPeople(bushelsToFeedPeople);
-        System.out.println("Success! You will feed your people " + bushelsToFeedPeople + " bushels when you live the year.");
+        this.console.println("Success! You will feed your people " + bushelsToFeedPeople + " bushels when you live the year.");
     }
 }

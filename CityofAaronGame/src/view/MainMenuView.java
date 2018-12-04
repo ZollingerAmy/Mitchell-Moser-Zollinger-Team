@@ -64,11 +64,11 @@ public class MainMenuView extends ViewBase {
                 helpMenu();
                 break;
             case "Q":
-                System.out.println("Thank you for playing. Good-bye.");
+                this.console.println("Thank you for playing. Good-bye.");
                 return false;
         }
         }catch (NullPointerException e){
-        System.out.println("A choice must be made.");
+        ErrorView.display(this.getClass().getName(), "A choice must be made.");
         }
         return true;
     }

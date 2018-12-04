@@ -32,7 +32,7 @@ public class MapView extends ViewBase {
         try {
             messageMap += MapControl.viewMap(mapArray);
         } catch (MapControlException mce) {
-            System.out.println(mce.getMessage());
+            ErrorView.display(this.getClass().getName(), "Error: " + mce.getMessage());
         }
         return messageMap;
     }
@@ -84,11 +84,11 @@ public class MapView extends ViewBase {
                     int col = Integer.parseInt(go.substring(go.length() - 1));
                     viewLocation(row, col);
                 } catch (NumberFormatException | NullPointerException e) {
-                    System.out.println("Please enter a row and column number such as: '2/4'.");
+                    ErrorView.display(this.getClass().getName(), "Please enter a row and column number such as: '2/4'.");
                 }
                 break;
             default:
-                System.out.println("\nPlease enter a row and column number such as: '2/4'\n or 'X' to exit to Game Menu.");
+                this.console.println("\nPlease enter a row and column number such as: '2/4'\n or 'X' to exit to Game Menu.");
         }
 
         // return false if we want this view to exit and return
@@ -101,7 +101,7 @@ public class MapView extends ViewBase {
         // look up the location with above args
         Location thisLocation = mapArray[row - 1][col - 1];
         // print to user
-        System.out.println(thisLocation.getMapSymbol() + " " + thisLocation.getName() + "\n"
+        this.console.println(thisLocation.getMapSymbol() + " " + thisLocation.getName() + "\n"
                 + thisLocation.getDescription() + "\n" + thisLocation.getGameTip());
     }
 }

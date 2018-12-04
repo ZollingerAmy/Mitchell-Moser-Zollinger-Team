@@ -63,12 +63,12 @@ public class PayTithingView extends ViewBase {
         try {
             int tithingPercentToPay = Integer.parseInt(inputs[0].trim());
             if (tithingPercentToPay < 0 || tithingPercentToPay > 100) {
-                System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+                ErrorView.display(this.getClass().getName(), "Not a valid number. Returning to Manage Crops Menu.");
             } else {
                 payTithing(tithingPercentToPay);
             }
         } catch (NumberFormatException | NullPointerException e) {
-            System.out.println("Not a valid number. Returning to Manage Crops Menu.");
+            ErrorView.display(this.getClass().getName(), "Not a valid number. Returning to Manage Crops Menu.");
         }
         // 
 
@@ -80,6 +80,6 @@ public class PayTithingView extends ViewBase {
 
     private void payTithing(int tithingPercentToPay) {
         WheatControl.setTithingPercentToPay(tithingPercentToPay);
-        System.out.println("Success! You will pay " + tithingPercentToPay + "% in tithes when you live the year.");
+        this.console.println("Success! You will pay " + tithingPercentToPay + "% in tithes when you live the year.");
     }
 }

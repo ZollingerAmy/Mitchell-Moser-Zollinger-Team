@@ -2,8 +2,11 @@
  * StoreHouseView
  */
 package view;
+
 import app.CityOfAaron;
 import control.PeopleControl;
+import control.StorehouseControl;
+import java.io.IOException;
 import java.util.Arrays;
 import model.Game;
 
@@ -12,6 +15,7 @@ import model.Game;
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class StorehouseView extends ViewBase {
+
     Game thisGame = CityOfAaron.getCurrentGame();
 
     /**
@@ -54,8 +58,7 @@ public class StorehouseView extends ViewBase {
      * Perform the action indicated by the user's input.
      *
      * @param inputs
-     * @return true if the view should repeat itself, and false if the view
-     * should exit and return to the previous view.
+     * @return true if the view should repeat itself, and false if the view should exit and return to the previous view.
      */
     @Override
     public boolean doAction(String[] inputs) {
@@ -87,7 +90,6 @@ public class StorehouseView extends ViewBase {
         return true;
     }
 
-
     private void animals() {
         System.out.println(thisGame.getTheStorehouse().getAnimals());
     }
@@ -97,7 +99,19 @@ public class StorehouseView extends ViewBase {
     }
 
     private void provisions() {
-        System.out.println(thisGame.getTheStorehouse().getProvisions());
+        this.console.println(thisGame.getTheStorehouse().getProvisions().toString());
+        String[] inputs = new String[1];
+        inputs[0] = getUserInput("\nWhat filename would you like for your provisions report?");
+        if (!inputs[0].matches(".*([.,/])txt\\1$")) {
+            inputs[0] = inputs[0] + ".txt";
+        }
+        try {
+            StorehouseControl.printProvisions(inputs[0]);
+        this.console.println("Success!");
+        } catch (IOException e) {
+            ErrorView.display(this.getClass().getName(), "File did not save properly!");
+        }
+        
     }
 
     private void authors() {

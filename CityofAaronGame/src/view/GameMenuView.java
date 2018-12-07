@@ -5,8 +5,6 @@ import control.GameControl;
 import exceptions.GameControlException;
 import exceptions.PeopleControlException;
 import exceptions.WheatControlException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.AnnualReport;
 import model.Game;
 
@@ -105,8 +103,8 @@ public class GameMenuView extends ViewBase {
             }
             
             return true;
-        } catch (WheatControlException ex) {
-            Logger.getLogger(GameMenuView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (WheatControlException WCE) {
+            System.out.println(WCE.getMessage());
         }
         return false;
     }

@@ -6,9 +6,6 @@ package view;
 import app.CityOfAaron;
 import control.GameControl;
 import exceptions.GameControlException;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.AnnualReport;
 import model.Game;
 
@@ -75,7 +72,7 @@ public class NewGameView extends ViewBase {
         try {
             GameControl.createNewGame(playerName);
         } catch (GameControlException ex) {
-            ErrorView.display(this.getClass().getName(), "Error: " + ex.getMessage());
+            ErrorView.display(this.getClass().getName(), "Error: Game not created.");
         }
 
         Game thisGame = CityOfAaron.getCurrentGame();

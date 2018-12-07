@@ -5,7 +5,7 @@ package view;
 
 import app.CityOfAaron;
 import control.MapControl;
-import exceptions.MapControlException;
+import exceptions.GameControlException;
 import model.Location;
 
 /**
@@ -31,8 +31,8 @@ public class MapView extends ViewBase {
                 + "\n";
         try {
             messageMap += MapControl.viewMap(mapArray);
-        } catch (MapControlException mce) {
-            ErrorView.display(this.getClass().getName(), "Error: " + mce.getMessage());
+        } catch (GameControlException e) {
+            ErrorView.display(this.getClass().getName(), "Error: " + e.getMessage());
         }
         return messageMap;
     }

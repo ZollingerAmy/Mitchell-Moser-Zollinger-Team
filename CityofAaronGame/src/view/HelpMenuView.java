@@ -3,8 +3,6 @@
  */
 package view;
 
-
-
 /**
  *
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger

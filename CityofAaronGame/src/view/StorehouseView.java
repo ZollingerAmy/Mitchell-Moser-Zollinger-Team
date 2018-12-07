@@ -91,17 +91,39 @@ public class StorehouseView extends ViewBase {
     }
 
     private void animals() {
-        System.out.println(thisGame.getTheStorehouse().getAnimals());
+        this.console.println(thisGame.getTheStorehouse().getAnimals().toString());
+        String[] inputs = new String[1];
+        inputs[0] = getUserInput("\nWhat filename would you like for your report?");
+        if (!inputs[0].matches(".*([.,/])txt\\1$")) {
+            inputs[0] = inputs[0] + ".txt";
+        }
+        try {
+            StorehouseControl.printAnimals(inputs[0]);
+        this.console.println("Success!");
+        } catch (IOException e) {
+            ErrorView.display(this.getClass().getName(), "File did not save properly!");
+        }
     }
 
     private void tools() {
-        System.out.println(thisGame.getTheStorehouse().getTools());
+        this.console.println(thisGame.getTheStorehouse().getTools().toString());
+        String[] inputs = new String[1];
+        inputs[0] = getUserInput("\nWhat filename would you like for your report?");
+        if (!inputs[0].matches(".*([.,/])txt\\1$")) {
+            inputs[0] = inputs[0] + ".txt";
+        }
+        try {
+            StorehouseControl.printTools(inputs[0]);
+        this.console.println("Success!");
+        } catch (IOException e) {
+            ErrorView.display(this.getClass().getName(), "File did not save properly!");
+        }
     }
 
     private void provisions() {
         this.console.println(thisGame.getTheStorehouse().getProvisions().toString());
         String[] inputs = new String[1];
-        inputs[0] = getUserInput("\nWhat filename would you like for your provisions report?");
+        inputs[0] = getUserInput("\nWhat filename would you like for your report?");
         if (!inputs[0].matches(".*([.,/])txt\\1$")) {
             inputs[0] = inputs[0] + ".txt";
         }
@@ -111,16 +133,15 @@ public class StorehouseView extends ViewBase {
         } catch (IOException e) {
             ErrorView.display(this.getClass().getName(), "File did not save properly!");
         }
-        
     }
 
     private void authors() {
-        System.out.println(Arrays.toString(thisGame.getTheStorehouse().getAuthors()));
+        this.console.println(Arrays.toString(thisGame.getTheStorehouse().getAuthors()));
     }
 
     private void easterEgg() {
         String str = PeopleControl.prettyPrint("You found the easter egg!", "cyan");
-        System.out.println(str);
+        this.console.println(str);
     }
 
 }

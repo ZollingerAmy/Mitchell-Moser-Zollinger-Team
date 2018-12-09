@@ -91,9 +91,21 @@ public class GameControl {
         tools.add(tool8);
         tools.add(tool9);
         tools.add(tool10);
+        
+       
+// Create an array of items that are in poor condition and need to be replaced. 
+        ArrayList<InventoryItem> poorCondition = new ArrayList<>();
+         for (InventoryItem myTool : tools) {
+            if (myTool.getCondition() == Condition.Poor) {
+                poorCondition.add(myTool);
+             //System.out.print(poorCondition);
+            }
+        }
+
+
 
         // initialize Storehouse elements
-        Storehouse storehouse = new Storehouse(authors, animals, tools, provisions);
+        Storehouse storehouse = new Storehouse(authors, animals, tools, provisions, poorCondition);
 
         // create the map (call MapControl for this job)
         Map map = new Map();

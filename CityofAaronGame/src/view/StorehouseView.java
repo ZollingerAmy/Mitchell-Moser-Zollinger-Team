@@ -2,6 +2,7 @@
  * StoreHouseView
  */
 package view;
+
 import app.CityOfAaron;
 import control.PeopleControl;
 import java.util.Arrays;
@@ -12,7 +13,9 @@ import model.Game;
  * @author Amber Mitchell, Teresa Moser, Amy Zollinger
  */
 public class StorehouseView extends ViewBase {
+
     Game thisGame = CityOfAaron.getCurrentGame();
+    private Object TheStorehouse;
 
     /**
      * Constructor
@@ -29,6 +32,7 @@ public class StorehouseView extends ViewBase {
                 + "2 - View Tool report \n"
                 + "3 - View Provisions report\n"
                 + "4 - View the authors of this game\n"
+                + "5 - View Tools to replace\n"
                 + "X - Return to the Game Menu\n";
     }
 
@@ -79,6 +83,9 @@ public class StorehouseView extends ViewBase {
                 authors();
                 break;
             case "5":
+                poorCondition();
+                break;
+            case "6":
                 easterEgg();
                 break;
             case "X":
@@ -87,26 +94,28 @@ public class StorehouseView extends ViewBase {
         return true;
     }
 
-
     private void animals() {
-        System.out.println(thisGame.getTheStorehouse().getAnimals());
+        this.console.println(thisGame.getTheStorehouse().getAnimals());
     }
 
     private void tools() {
-        System.out.println(thisGame.getTheStorehouse().getTools());
+        this.console.println(thisGame.getTheStorehouse().getTools());
     }
 
     private void provisions() {
-        System.out.println(thisGame.getTheStorehouse().getProvisions());
+        this.console.println(thisGame.getTheStorehouse().getProvisions());
     }
 
     private void authors() {
-        System.out.println(Arrays.toString(thisGame.getTheStorehouse().getAuthors()));
+        this.console.println(Arrays.toString(thisGame.getTheStorehouse().getAuthors()));
     }
 
     private void easterEgg() {
         String str = PeopleControl.prettyPrint("You found the easter egg!", "cyan");
-        System.out.println(str);
+        this.console.println(str);
     }
 
+    private void poorCondition() {
+        this.console.println(thisGame.getTheStorehouse().getPoorCondition());
+    }
 }

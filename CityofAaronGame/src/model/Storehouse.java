@@ -1,4 +1,5 @@
 package model;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,13 +12,14 @@ public class Storehouse implements Serializable {
     private ArrayList<Animal> animals = new ArrayList<>();
     private ArrayList<InventoryItem> tools = new ArrayList<>();
     private ArrayList<Provision> provisions = new ArrayList<>();
+    private ArrayList<InventoryItem> poorCondition = new ArrayList<>();
 
     public Storehouse() {
         // Empty constructor for bean
     }
 
-    public Storehouse(String[] aAuthors, ArrayList<Animal> aAnimals, ArrayList<InventoryItem> aTools, ArrayList<Provision> aProvisions) {
-        setAuthors(aAuthors); 
+    public Storehouse(String[] aAuthors, ArrayList<Animal> aAnimals, ArrayList<InventoryItem> aTools, ArrayList<Provision> aProvisions, ArrayList<InventoryItem> aPoorCondition) {
+        setAuthors(aAuthors);
         setAnimals(aAnimals);
         setTools(aTools);
         setProvisions(aProvisions);
@@ -53,6 +55,14 @@ public class Storehouse implements Serializable {
 
     public void setProvisions(ArrayList<Provision> provisions) {
         this.provisions = provisions;
+    }
+
+    public ArrayList<InventoryItem> getPoorCondition() {
+        return poorCondition;
+    }
+
+    public void setPoorCondition(ArrayList<InventoryItem> poorCondition) {
+        this.poorCondition = poorCondition;
     }
 
     // toString method

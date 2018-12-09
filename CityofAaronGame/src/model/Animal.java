@@ -2,6 +2,10 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import app.CityOfAaron;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @authors Amber Mitchell, Teresa Moser, Amy Zollinger
@@ -39,17 +43,6 @@ public class Animal extends InventoryItem implements Serializable {
                 + type + ", "
                 + quantity + ", "
                 + condition + " }";
-    }
-    //bubble sort for Animals Array List
-
-    public String animals;
-
-    public Animal(String animals) {
-        this.animals = animals;
-    }
-
-    public String getName() {
-        return animals;
     }
 
 }

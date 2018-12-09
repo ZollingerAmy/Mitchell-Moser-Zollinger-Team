@@ -167,7 +167,8 @@ public class GameControl {
      *
      * @param game The current Game object (pass by reference)
      * @param tithesPercent The percentage of tithing selected for the year
-     * @param bushelsForFood The number of bushels of wheat allocated as food for the year
+     * @param bushelsForFood The number of bushels of wheat allocated as food
+     * for the year
      * @param acresToPlant The number of acres to be used for planting
      */
     public static void liveTheYear(Game game) throws GameControlException, WheatControlException, PeopleControlException {
@@ -253,7 +254,8 @@ public class GameControl {
     /**
      * Generates a random integer between lowValue and highValue, inclusive.
      * <ul>Requirements:
-     * <li>lowValue and highValue must be positive int (&gt;= 0) (return -1)</li>
+     * <li>lowValue and highValue must be positive int (&gt;= 0) (return
+     * -1)</li>
      * <li>highValue must be greater than lowValue (return -2) </li>
      * <li>highValue cannot be equal to the max value for int (return -3)</li>
      * </ul>
@@ -293,27 +295,40 @@ public class GameControl {
     protected static void setRandomGenerator(Random random) {
         randomGenerator = random;
     }
-       public void main(String[] args) {
-            //create the unsorted array
-            Animal[] animals = new Animal[5];
-            ArrayList<Integer> ages = null;
-            animals[0] = new Animal("Dairy Cows", ItemType.Animal, 20, Condition.Good, ages);
-            animals[1] = new Animal("Oxen", ItemType.Animal, 20, Condition.Good, ages);
-            animals[2] = new Animal("Horse", ItemType.Animal, 20, Condition.Good, ages);
-            animals[3] = new Animal("Pig", ItemType.Animal, 20, Condition.Good, ages);
-            animals[4] = new Animal("Chicken", ItemType.Animal, 20, Condition.Good, ages);
+    
+    //bubble sort for Animals Array List
 
-            //two for-loops, one inside the other
-            for (int i = 0; i < animals.length - 1; i++) {
-                for (int j = i + 1; j < animals.length; j++) {
-                    //if animal[i] > animal[j] then, swap them...
-                    if (animals[i].getName().compareTo(animals[j].getName()) > 0) {
-                        Animal temp = animals[i];
-                        animals[i] = animals[j];
-                        animals[j] = temp;
-                    }
+    public String animals;
+
+    public GameControl(String animals) {
+        this.animals = animals;
+    }
+
+    public String getName() {
+        return animals;
+    }
+
+    public void main(String[] args) {
+        //create the unsorted array
+        Animal[] animals = new Animal[5];
+        ArrayList<Integer> ages = null;
+        animals[0] = new Animal("Dairy Cows", ItemType.Animal, 20, Condition.Good, ages);
+        animals[1] = new Animal("Oxen", ItemType.Animal, 20, Condition.Good, ages);
+        animals[2] = new Animal("Horse", ItemType.Animal, 20, Condition.Good, ages);
+        animals[3] = new Animal("Pig", ItemType.Animal, 20, Condition.Good, ages);
+        animals[4] = new Animal("Chicken", ItemType.Animal, 20, Condition.Good, ages);
+
+        //two for-loops, one inside the other
+        for (int i = 0; i < animals.length - 1; i++) {
+            for (int j = i + 1; j < animals.length; j++) {
+                //if animal[i] > animal[j] then, swap them...
+                if (animals[i].getName().compareTo(animals[j].getName()) > 0) {
+                    Animal temp = animals[i];
+                    animals[i] = animals[j];
+                    animals[j] = temp;
                 }
             }
         }
+    }
 
 }

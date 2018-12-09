@@ -18,14 +18,12 @@ public class Animal extends InventoryItem implements Serializable {
         // Empty constructor for bean
     }
 
-    public Animal(String aName, ItemType aType, int aQuantity, Condition aCondition, ArrayList<Integer> aAges) {
+    public Animal(String aName, int aQuantity, Condition aCondition, ArrayList<Integer> aAges) {
         setName(aName);
-        setType(aType);
         setQuantity(aQuantity);
         setCondition(aCondition);
         setAge(aAges);
     }
-
     public ArrayList<Integer> getAge() {
         return ages;
     }
@@ -40,7 +38,6 @@ public class Animal extends InventoryItem implements Serializable {
         return "\n{ Animal: "
                 + name + ", "
                 + ages + ", "
-                + type + ", "
                 + quantity + ", "
                 + condition + " }";
     }

@@ -49,11 +49,11 @@ public class GameControl {
         ages.add(3);
         ages.add(4);
         ArrayList<Animal> animals = new ArrayList<>();
-        Animal cows = new Animal("Dairy Cows", ItemType.Animal, 20, Condition.Good, ages);
-        Animal oxen = new Animal("Oxen", ItemType.Animal, 20, Condition.Good, ages);
-        Animal horse = new Animal("Horse", ItemType.Animal, 20, Condition.Good, ages);
-        Animal pig = new Animal("Pig", ItemType.Animal, 20, Condition.Good, ages);
-        Animal chicken = new Animal("Chicken", ItemType.Animal, 20, Condition.Good, ages);
+        Animal cows = new Animal("Dairy Cows", 20, Condition.Good, ages);
+        Animal oxen = new Animal("Oxen", 20, Condition.Good, ages);
+        Animal horse = new Animal("Horse", 20, Condition.Good, ages);
+        Animal pig = new Animal("Pig", 20, Condition.Good, ages);
+        Animal chicken = new Animal("Chicken", 20, Condition.Good, ages);
         animals.add(cows);
         animals.add(oxen);
         animals.add(horse);
@@ -295,9 +295,8 @@ public class GameControl {
     protected static void setRandomGenerator(Random random) {
         randomGenerator = random;
     }
-    
-    //bubble sort for Animals Array List
 
+    //bubble sort for Animals Array List
     public String animals;
 
     public GameControl(String animals) {
@@ -312,11 +311,11 @@ public class GameControl {
         //create the unsorted array
         Animal[] animals = new Animal[5];
         ArrayList<Integer> ages = null;
-        animals[0] = new Animal("Dairy Cows", ItemType.Animal, 20, Condition.Good, ages);
-        animals[1] = new Animal("Oxen", ItemType.Animal, 20, Condition.Good, ages);
-        animals[2] = new Animal("Horse", ItemType.Animal, 20, Condition.Good, ages);
-        animals[3] = new Animal("Pig", ItemType.Animal, 20, Condition.Good, ages);
-        animals[4] = new Animal("Chicken", ItemType.Animal, 20, Condition.Good, ages);
+        animals[0] = new Animal("Dairy Cows", 20, Condition.Good, ages);
+        animals[1] = new Animal("Oxen", 20, Condition.Good, ages);
+        animals[2] = new Animal("Horse", 20, Condition.Good, ages);
+        animals[3] = new Animal("Pig", 20, Condition.Good, ages);
+        animals[4] = new Animal("Chicken", 20, Condition.Good, ages);
 
         //two for-loops, one inside the other
         for (int i = 0; i < animals.length - 1; i++) {

@@ -22,17 +22,18 @@ public class StorehouseControl {
     /**
      * Constructor
      *
-     * @param animalFile
+     * @param animalsFile
      * @param provisionFile
      * @param toolFile
      * @throws java.io.IOException
      */
-    public StorehouseControl(String animalFile, String provisionFile, String toolFile) throws IOException {
-        args[0] = animalFile;
+    public StorehouseControl(String animalsFile, String provisionFile, String toolFile) throws IOException {
+        args[0] = animalsFile;
         args[1] = provisionFile;
         args[2] = toolFile;
-        printProvisions(args[1]);
         printAnimals(args[0]);
+        printProvisions(args[1]);
+
     }
 
     public static void printProvisions(String arg) throws IOException {
@@ -66,14 +67,9 @@ public class StorehouseControl {
         // set up data
         ArrayList<Animal> animals = CityOfAaron.getCurrentGame().getTheStorehouse().getAnimals();
         try (PrintWriter report = new PrintWriter(new FileWriter(filename))) {
-            report.println("LIST OF ANIMALS");
-            
-            String[] columnNames = {"Name", "Type", "Quantity", "Condition", "Age"};
-            ArrayList<Animal> data = CityOfAaron.getCurrentGame().getTheStorehouse().getAnimals();
-            JTable table = new JTable(data, columnNames);
-            JScrollPane tableScrollPane = new JScrollPane(table);
-            table.setShowGrid(true);
-            
+            report.println("List of Animals");
+            report.println();
+            report.println(String.format("Name\tType\tQuantity\tCondition\tAge"));
             for (Animal animal : animals) {
                 report.println(String.format( animal.getName(), animal.getType(), animal.getQuantity(), animal.getCondition(), animal.getAge()));
             }
@@ -82,37 +78,5 @@ public class StorehouseControl {
             report.flush();
         }
     }
-
-    private static class Columns {
-
-        public Columns() {
-        }
-
-    }
-
-    private static class JTable {
-
-        public JTable() {
-        }
-
-        private JTable(ArrayList<Animal> data, String[] columnNames) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        private void setShowGrid(boolean b) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    }
-
-    private static class JScrollPane {
-
-        public JScrollPane() {
-        }
-
-        private JScrollPane(JTable table) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    }
-
 
 }

@@ -1,1 +1,10 @@
-LIST OF ANIMALS
+List of Animals
+
+Name	, Quantity	, Condition	, Age
+Dairy Cows
+Oxen
+Horse
+Pig
+Chicken
+
+End

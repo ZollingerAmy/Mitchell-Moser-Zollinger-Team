@@ -1,0 +1,11 @@
+List of Animals
+
+Name
+Animals3.txt
+Dairy Cows
+Oxen
+Horse
+Pig
+Chicken
+
+End

@@ -1,0 +1,3 @@
+
+
+view.NewGameView -- No player name entered. Returning to the Main Menu...

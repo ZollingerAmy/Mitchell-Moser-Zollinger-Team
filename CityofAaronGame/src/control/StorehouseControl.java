@@ -59,19 +59,20 @@ public class StorehouseControl {
     }
 
     //print report for Animals --Teresa Mo
-    public static void printAnimals(String arg) throws IOException {
+    public static void printAnimals(String args) throws IOException {
         String filename = "animals.txt";
-        if (arg != null) {
-            filename = arg;
+        if (args != null) {
+            filename = args;
         }
         // set up data
         ArrayList<Animal> animals = CityOfAaron.getCurrentGame().getTheStorehouse().getAnimals();
         try (PrintWriter report = new PrintWriter(new FileWriter(filename))) {
             report.println("List of Animals");
             report.println();
-            report.println(String.format("Name\t", "Quantity\t", "Condition\t", "Age\t"));
+            report.println(String.format("Name", "Quantity", "Condition", "Age"));
+            report.println(String.format(args));
             for (Animal animal : animals) {
-                report.println(String.format(String.format(animal.getName(), animal.getQuantity(), animal.getCondition(), animal.getAge())));
+                report.println(String.format(animal.getName(), animal.getQuantity(), animal.getCondition(), animal.getAge()));
             }
             report.println();
             report.println("End");

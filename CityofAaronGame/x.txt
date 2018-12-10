@@ -1,4 +1,6 @@
-LIST OF ANIMALS
+List of Animals
+
+Name
 Dairy Cows
 Oxen
 Horse

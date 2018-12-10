@@ -69,7 +69,7 @@ public class StorehouseControl {
         try (PrintWriter report = new PrintWriter(new FileWriter(filename))) {
             report.println("List of Animals");
             report.println();
-            report.println(String.format("Name", "Quantity", "Condition", "Age"));
+            report.println(String.format("Name      ", "Quantity      ", "Condition      ", "Age      "));
             report.println(String.format(args));
             for (Animal animal : animals) {
                 report.println(String.format(animal.getName(), animal.getQuantity(), animal.getCondition(), animal.getAge()));

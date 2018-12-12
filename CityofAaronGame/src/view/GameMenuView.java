@@ -103,8 +103,10 @@ public class GameMenuView extends ViewBase {
             }
             
             return true;
+
         } catch (WheatControlException WCE) {
             System.out.println(WCE.getMessage());
+
         }
         return false;
     }

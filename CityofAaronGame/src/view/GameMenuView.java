@@ -103,8 +103,10 @@ public class GameMenuView extends ViewBase {
             }
             
             return true;
-        } catch (WheatControlException ex) {
-            ErrorView.display(GameMenuView.class.getName(), "Error: " + ex.getMessage());
+
+        } catch (WheatControlException WCE) {
+            System.out.println(WCE.getMessage());
+
         }
         return false;
     }

@@ -1,0 +1,8 @@
+LIST OF ANIMALS
+Dairy Cows
+Oxen
+Horse
+Pig
+Chicken
+
+End

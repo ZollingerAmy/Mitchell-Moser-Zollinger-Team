@@ -7,8 +7,6 @@ import app.CityOfAaron;
 import control.GameControl;
 import exceptions.GameControlException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.AnnualReport;
 import model.Game;
 
@@ -27,7 +25,7 @@ public class NewGameView extends ViewBase {
 
     @Override
     protected String getMessage() {
-        return "\n\nLet's get to playing!\n\n";
+        return "\n\nLet's get playing!\n\n";
 
     }
 

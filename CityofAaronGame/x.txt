@@ -1,0 +1,10 @@
+List of Animals
+
+Name
+Dairy Cows
+Oxen
+Horse
+Pig
+Chicken
+
+End

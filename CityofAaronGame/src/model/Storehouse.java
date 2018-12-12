@@ -23,6 +23,7 @@ public class Storehouse implements Serializable {
         setAnimals(aAnimals);
         setTools(aTools);
         setProvisions(aProvisions);
+        setPoorCondition(aPoorCondition);
     }
 
     public String[] getAuthors() {

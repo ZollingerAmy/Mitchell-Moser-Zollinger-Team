@@ -100,12 +100,14 @@ public class GameControl {
                 poorCondition.add(myTool);
              //System.out.print(poorCondition);
             }
+            
         }
 
-
-
+       
         // initialize Storehouse elements
         Storehouse storehouse = new Storehouse(authors, animals, tools, provisions, poorCondition);
+        
+        storehouse.setPoorCondition(poorCondition);
 
         // create the map (call MapControl for this job)
         Map map = new Map();

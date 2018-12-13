@@ -12,97 +12,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import model.Animal;
 import model.Condition;
 import model.InventoryItem;
-import view.ErrorView;
-
-/**
- *
- * @author Amber Mitchell, Teresa Moser, Amy Zollinger
- */
-public class StorehouseControl {
-
-    /**
-     * Constructor
-     *
-     */
-    public StorehouseControl() {
-
-    }
-
-    /**
-     *
-     * @param tools
-     * @throws IOException
-     */
-    public void printToolsReport(ArrayList<model.InventoryItem> tools) throws IOException {
-        //  
-
-        try (PrintWriter out = new PrintWriter("toolReport.txt")) {
-
-            out.println("\n\n      Tools Report                 ");
-            out.printf("%n%-20s%10s%10s%", "Tool", "Quantity", "Condition");
-            out.printf("%n%-20s%10d%10%", "----", "--------", "---------");
-
-            for (model.InventoryItem allTools : tools) {
-
-                out.printf("%n%-20s%10s%10s%", allTools.getName(), allTools.getQuantity(), allTools.getCondition());
-
-            }
-        } catch (IOException ex) {
-            ErrorView.display(this.getClass().getName(), "I/O Error: " + ex.getMessage());
-        }
-
-    }
-
-    /**
-     *
-     * @throws IOException
-     */
-    
-    /**
-     *
-     * @param poorCondition
-     * @param location
-     * @throws IOException
-     */
-    public static void printPoorCondition(ArrayList<model.InventoryItem> poorCondition, String location) throws IOException {
-
-        try (PrintWriter out = new PrintWriter(location)) {
-
-            System.out.println("\n\n      Tools in Poor Condition Report                 ");
-            System.out.printf("%n%-20s%10s%10s%", "Tool", "Quantity", "Condition");
-            System.out.printf("%n%-20s%10d%10%", "----", "--------", "---------");
-
-            for (model.InventoryItem myTool : poorCondition) {
-                out.printf("%n%-20s%10s%10s%", myTool.getName(), myTool.getQuantity(), myTool.getCondition());
-            }
-            
-//             String file = new String();
-//            file = getUserInput("Please enter a file name to save report.");
-//            File location = new File("C:\\Users\\Amy\\Documents\\" + file + ".txt");
-//            FileWriter write = new FileWriter(location);
-//            write.write(poorCondition());
-//            write.close();
-//        } catch (IOException e) {
-//            ErrorView.display(this.getClass().getName(), "Must enter file name.");
-        }
-    }
-    
-}
-
-/*
- * This class helps us print reports from the Storehouse
- */
-package control;
-
-import app.CityOfAaron;
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import model.Animal;
 import model.Provision;
+import view.ErrorView;
 
 /**
  *
@@ -126,6 +40,8 @@ public class StorehouseControl {
         args[2] = toolFile;
         printAnimals(args[0]);
         printProvisions(args[1]);
+        printTools(args[2]);
+        printPoorCondition(args[3]);
 
     }
 
@@ -173,5 +89,57 @@ public class StorehouseControl {
             report.flush();
         }
     }
-}
 
+    /**
+     *
+     * @param tools
+     * @throws IOException
+     */
+    public static void printTools(String arg) throws IOException {
+        //  
+
+        String filename = "animals.txt";
+        if (arg != null) {
+            filename = arg;
+        }
+        // set up data
+        ArrayList<model.InventoryItem> tools = CityOfAaron.getCurrentGame().getTheStorehouse().getTools();
+        try (PrintWriter report = new PrintWriter(new FileWriter(filename))) {
+            report.println("List of Tools");
+            report.println();
+            String formatString = "%-20s %-15s %-15s";
+            report.println(String.format(formatString, "NAME", "QUANTITY", "CONDITION"));
+            report.println("-----------------------------------------------------------------------------");
+            for (model.InventoryItem allTools : tools) {
+                report.println(String.format(formatString, allTools.getName(), allTools.getQuantity(), allTools.getCondition()));
+            }
+
+            report.println();
+            report.println("End");
+            report.flush();
+        }
+    }
+
+    
+    public static void printPoorCondition(String arg) throws IOException {
+        String filename = "poorTools.txt";
+        if (arg != null) {
+            filename = arg;
+        }
+        ArrayList<model.InventoryItem> tools = CityOfAaron.getCurrentGame().getTheStorehouse().getTools();
+        try (PrintWriter report = new PrintWriter(new FileWriter(filename))) {
+            report.println("List of Poor Tools");
+            report.println();
+            String formatString = "%-20s %-15s %-15s";
+            report.println(String.format(formatString, "NAME", "QUANTITY", "CONDITION"));
+            report.println("-----------------------------------------------------------------------------");
+            for (model.InventoryItem allTools : tools) {
+                report.println(String.format(formatString, allTools.getName(), allTools.getQuantity(), allTools.getCondition()));
+            }
+            report.println();
+            report.println("End");
+            report.flush();
+        }
+
+    }
+}

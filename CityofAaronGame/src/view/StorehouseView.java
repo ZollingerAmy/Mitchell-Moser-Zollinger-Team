@@ -40,6 +40,7 @@ public class StorehouseView extends ViewBase {
                 + "3 - View Provisions report\n"
                 + "4 - View the authors of this game\n"
                 + "5 - View Tools to replace\n"
+                + "6 - Save Tools to replace\n"
                 + "X - Return to the Game Menu\n";
     }
 
@@ -91,6 +92,9 @@ public class StorehouseView extends ViewBase {
                     poorCondition();
                     break;
                 case "6":
+                    savePoorCondition();
+                    break;
+                case "7":
                     easterEgg();
                     break;
                 case "X":
@@ -162,9 +166,10 @@ public class StorehouseView extends ViewBase {
         this.console.println(str);
     }
 
-  
     private void poorCondition() {
-        //this.console.println(thisGame.getTheStorehouse().getPoorCondition());
+        /*You can also do this with the matches method and a fairly simple regex:
+         if (str.matches(".*([.,/])work\\1$"))
+         Using the character class [.,/] specifying either a period, a slash, or a comma, and a backreference, \1 that matches whichever of the alternates were found, if any. from StackOverflow*/
         this.console.println(thisGame.getTheStorehouse().getPoorCondition().toString());
         String[] inputs = new String[1];
         inputs[0] = getUserInput("\nWhat filename would you like for your Poor Condition Tools report?");
@@ -180,16 +185,17 @@ public class StorehouseView extends ViewBase {
 
     }
 
-//    private void savePoorCondition() {
-////         System.out.println("Please enter a file name to save report.");
-//        try {
-//            String file = new String();
-//            file = getUserInput("Please enter a file name to save report.");
-//            File location = new File("C:\\Users\\Amy\\Documents\\" + file + ".txt");
-//            FileWriter write = new FileWriter(location);
-//            write.write("Coming Soon" /*StorehouseControl.printPoorCondition(thisGame.getTheStorehouse().getPoorCondition())*/);
-//            write.close();
-//        } catch (IOException e) {
-//            ErrorView.display(this.getClass().getName(), "Must enter file name.");
-//        }
+    private void savePoorCondition() {
+
+        try {
+            String file = new String();
+            file = getUserInput("Please enter a file name to save report.");
+            File location = new File("C:\\Users\\Amy\\Documents\\" + file + ".txt");
+            FileWriter write = new FileWriter(location);
+            write.write(thisGame.getTheStorehouse().getPoorCondition().toString());
+            write.close();
+        } catch (IOException e) {
+            ErrorView.display(this.getClass().getName(), "Must enter file name.");
+        }
+    }
 }

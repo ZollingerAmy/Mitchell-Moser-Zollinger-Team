@@ -24,7 +24,7 @@ import view.ErrorView;
  */
 public class StorehouseControl {
 
-    private final String[] args = new String[3];
+      private final String[] args = new String[3];
 
     /**
      * Constructor
@@ -98,7 +98,7 @@ public class StorehouseControl {
     public static void printTools(String arg) throws IOException {
         //  
 
-        String filename = "animals.txt";
+        String filename = "tools.txt";
         if (arg != null) {
             filename = arg;
         }
@@ -126,14 +126,14 @@ public class StorehouseControl {
         if (arg != null) {
             filename = arg;
         }
-        ArrayList<model.InventoryItem> tools = CityOfAaron.getCurrentGame().getTheStorehouse().getTools();
+        ArrayList<model.InventoryItem> poorCondition = CityOfAaron.getCurrentGame().getTheStorehouse().getPoorCondition();
         try (PrintWriter report = new PrintWriter(new FileWriter(filename))) {
             report.println("List of Poor Tools");
             report.println();
             String formatString = "%-20s %-15s %-15s";
             report.println(String.format(formatString, "NAME", "QUANTITY", "CONDITION"));
             report.println("-----------------------------------------------------------------------------");
-            for (model.InventoryItem allTools : tools) {
+            for (model.InventoryItem allTools : poorCondition) {
                 report.println(String.format(formatString, allTools.getName(), allTools.getQuantity(), allTools.getCondition()));
             }
             report.println();

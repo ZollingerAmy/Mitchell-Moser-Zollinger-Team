@@ -1,0 +1,11 @@
+List of Poor Tools
+
+NAME                 QUANTITY        CONDITION      
+-----------------------------------------------------------------------------
+Shovel               5               Poor           
+Hoe                  8               Poor           
+Plow                 3               Poor           
+Rake                 5               Poor           
+Spade                8               Poor           
+
+End
